@@ -2,6 +2,7 @@ drop table user_t CASCADE CONSTRAINTS;
 drop table cust_t CASCADE CONSTRAINTS;
 drop table employee_t CASCADE CONSTRAINTS;
 drop table order_status CASCADE CONSTRAINTS;
+drop table address CASCADE CONSTRAINTS;
 drop table orders CASCADE CONSTRAINTS;
 drop table order_item CASCADE CONSTRAINTS;
 drop table menu CASCADE CONSTRAINTS;
@@ -42,11 +43,21 @@ status_id number(5) primary key,
 status varchar2(50)
 );
 
+create table address(
+address_id number(5) primary key,
+address varchar2(100) not null,
+city varchar2(100) not null,
+states varchar2(100) not null,
+zipcode varchar2(100) not null
+);
+
 create table orders(
 order_id number(5) primary key,
 cust_id number(5),
 price decimal(10,2),
 status number(5),
+address_id number(5),
+CONSTRAINT fk_addressId FOREIGN KEY (address_id) REFERENCES address(address_id),
 CONSTRAINT fk_oCustId FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id),
 CONSTRAINT fk_status FOREIGN KEY (status) REFERENCES order_status(status_id)
 );
