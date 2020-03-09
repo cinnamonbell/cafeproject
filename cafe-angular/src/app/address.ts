@@ -1,7 +1,7 @@
 export class Address {
     id: number;
-    address: String;
-    city: String;
-    state: String;
-    zipcode: String;
+    address: string;
+    city: string;
+    state: string;
+    zipCode: string;
 }

@@ -1,11 +1,11 @@
 import { OrderItem } from "./order-item";
 import { OrderStatus } from "./order-status.enum";
 import { Review } from './review';
-import {Customers} from './customers';
+import {Customer} from './customer';
 import {Address} from './address';
 
 export class Order {
-    customer: Customers;
+    customer: Customer;
     price: number;
     status: OrderStatus;
     orderItems: OrderItem[];

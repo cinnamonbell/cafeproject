@@ -1,4 +1,6 @@
+import { MenuItem } from './menu-item';
+
 export class OrderItem {
-    menuItem: string;
+    menuItem: MenuItem;
     quantity: number;
 }
