@@ -67,6 +67,7 @@ CONSTRAINT fk_status FOREIGN KEY (status) REFERENCES order_status(status_id)
 create table menu(
 menu_id number primary key,
 item_name varchar(50),
+item_price decimal(10,2),
 inventory number(10,0) check (inventory > 0)
 );
 
