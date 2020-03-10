@@ -2,6 +2,7 @@ package com.revature.cafe.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,16 +24,21 @@ public class User {
 
 	@Column(name="user_id")
 	private Integer id;
-	@OneToOne
+	
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="cust_id")
 	private Customer customer;
-	@OneToOne
+	
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="emp_id")
 	private Employee employee;
+	
 	@Column(name="user_name")
 	private String username;
+	
 	@Column(name="user_pass")
 	private String password;
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
