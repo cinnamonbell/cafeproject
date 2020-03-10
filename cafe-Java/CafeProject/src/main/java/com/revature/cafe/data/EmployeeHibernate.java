@@ -17,7 +17,7 @@ import com.revature.cafe.util.LogUtil;
 
 public class EmployeeHibernate implements EmployeeDAO{
 	private HibernateUtil hu = HibernateUtil.getInstance();
-	private Logger log = Logger.getLogger(CustomerHibernate.class);
+	private Logger log = Logger.getLogger(EmployeeHibernate.class);
 
 	@Override
 	public void addEmployee(Employee employee) {
@@ -39,8 +39,8 @@ public class EmployeeHibernate implements EmployeeDAO{
 	@Override
 	public Employee getEmployee(Employee emp) {
 		Session s = hu.getSession();
-		Employee e;
-		if (emp.getId()!=null && emp.getId() != 0) {
+		Employee e = null;
+		if (emp !=null && emp.getId() != 0) {
 			// this means we're going to retrieve by id
 			e = s.get(Employee.class, emp.getId());
 		} else {
