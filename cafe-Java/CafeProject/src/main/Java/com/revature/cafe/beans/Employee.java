@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
+
 public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee_t")
