@@ -24,5 +24,83 @@ public class Review {
     private Integer orderId;
     private boolean goodRating;
     private String comments;
+	public Review() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Review(Integer id, Integer orderId, boolean goodRating, String comments) {
+		super();
+		this.id = id;
+		this.orderId = orderId;
+		this.goodRating = goodRating;
+		this.comments = comments;
+	}
+	@Override
+	public String toString() {
+		return "Review [id=" + id + ", orderId=" + orderId + ", goodRating=" + goodRating + ", comments=" + comments
+				+ "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + (goodRating ? 1231 : 1237);
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Review other = (Review) obj;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
+		if (goodRating != other.goodRating)
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (orderId == null) {
+			if (other.orderId != null)
+				return false;
+		} else if (!orderId.equals(other.orderId))
+			return false;
+		return true;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Integer getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+	public boolean isGoodRating() {
+		return goodRating;
+	}
+	public void setGoodRating(boolean goodRating) {
+		this.goodRating = goodRating;
+	}
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
     
 }
