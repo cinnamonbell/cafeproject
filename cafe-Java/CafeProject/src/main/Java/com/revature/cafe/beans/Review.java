@@ -3,6 +3,7 @@ package com.revature.cafe.beans;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,13 +16,16 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="review")
 public class Review {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="review")
 	@SequenceGenerator(name="review", sequenceName="review_seq", allocationSize=1)
-    private Integer id;
+    @Column(name="review_id")
+	private Integer id;
+	@Column(name="order_id")
     private Integer orderId;
+	@Column(name="good_rating")
     private boolean goodRating;
     private String comments;
 	public Review() {
