@@ -109,35 +109,6 @@ public class Review {
 		this.comments = comments;
 	}
     
-    public Review() {
-    	super();
-    }
-    
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Integer getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
-	}
-	public boolean isGoodRating() {
-		return goodRating;
-	}
-	public void setGoodRating(boolean goodRating) {
-		this.goodRating = goodRating;
-	}
-	public String getComments() {
-		return comments;
-	}
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-    
-    
+  
     
 }
