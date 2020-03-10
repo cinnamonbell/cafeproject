@@ -39,9 +39,9 @@ public class CustomerHibernate implements CustomerDAO {
 	@Override
 	public Customer getCustomer(Customer cust) {
 		Session s = hu.getSession();
-		Customer c;
+		Customer c = null;
 		log.trace(cust);
-		if (cust.getId() != null && cust.getId() != 0) {
+		if (cust != null && cust.getId() != 0) {
 			// this means we're going to retrieve by id
 			c = s.get(Customer.class, cust.getId());
 		} else {
