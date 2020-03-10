@@ -3,6 +3,7 @@ package com.revature.cafe.beans;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,10 +23,13 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="address")
 	@SequenceGenerator(name="address", sequenceName="address_seq", allocationSize=1)
+	@Column(name = "address_id")
     private int id;
     private String address;
     private String city;
+    @Column(name = "states")
     private String state;
+    @Column(name = "zipCode")
     private String zipCode;
     
     public Address() {

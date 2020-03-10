@@ -2,6 +2,7 @@ package com.revature.cafe.beans;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,8 +20,11 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee_t")
 	@SequenceGenerator(name="employee_t", sequenceName="employee_t_seq", allocationSize=1)
+	@Column(name = "emp_id")
     private int id;
+	@Column(name = "emp_first")
     private String first;
+	@Column(name = "emp_last")
     private String last;
     
     public Employee() {

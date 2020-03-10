@@ -3,6 +3,7 @@ package com.revature.cafe.beans;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,10 +26,15 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cust_t")
 	@SequenceGenerator(name="cust_t", sequenceName="cust_t_seq", allocationSize=1)
+	@Column(name = "cust_id")
     private int id;
+	@Column(name = "cust_first")
     private String first;
+	@Column(name = "cust_last")
     private String last;
+	@Column(name = "reward_stars")
     private int stars;
+    @OneToMany
     private List<Order> orders;
     
     public Customer() {
