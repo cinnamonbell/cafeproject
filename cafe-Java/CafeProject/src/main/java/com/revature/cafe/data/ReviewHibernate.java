@@ -1,12 +1,17 @@
 package com.revature.cafe.data;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import com.revature.cafe.beans.Address;
+import com.revature.cafe.beans.Customer;
 import com.revature.cafe.beans.Review;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
@@ -34,21 +39,39 @@ public class ReviewHibernate implements ReviewDAO {
 	}
 
 	@Override
-	public Review getReview(Review review) {
-		// TODO Auto-generated method stub
-		return null;
+	public Review getReview(int id) {
+		Session s = hu.getSession();
+		Review r = s.get(Review.class, id);
+		s.close();
+		return r;
 	}
 
 	@Override
 	public Set<Review> getReviews() {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = hu.getSession();
+		String query = "FROM review";
+		Query<Review> q = s.createQuery(query, Review.class);
+		List<Review> reviewList = q.getResultList();
+		Set<Review> reviewSet = new HashSet<Review>();
+		reviewSet.addAll(reviewList);
+		s.close();
+		return reviewSet;
 	}
 
 	@Override
 	public void updateReviews(Review review) {
-		// TODO Auto-generated method stub
-		
+		Session s = hu.getSession();
+		Transaction t = null;
+		try {
+			t = s.beginTransaction();
+			s.update(review);
+			t.commit();
+		} catch (HibernateException e) {
+			if (t != null)
+				t.rollback();
+			LogUtil.logException(e, CustomerHibernate.class);
+		} finally {
+			s.close();
+		}	
 	}
-
 }
