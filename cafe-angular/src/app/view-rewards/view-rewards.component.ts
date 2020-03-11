@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from '../customer';
+import {ViewRewardsService} from '../view-rewards.service';
 
 @Component({
   selector: 'app-view-rewards',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewRewardsComponent implements OnInit {
 
-  constructor() { }
+  public cust: Customer;
+  constructor(private viewRewardsService: ViewRewardsService ) { 
+    this.cust = viewRewardsService.getCustRewards();
+  }
 
   ngOnInit(): void {
   }

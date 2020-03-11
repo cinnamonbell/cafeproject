@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CustSignUpComponent } from 'src/app/cust-sign-up/cust-sign-up.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-
+import {ViewRewardsService} from '../view-rewards.service';
+import { Customer } from '../customer';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,8 +10,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
-  constructor(public matDialog: MatDialog) { }
+  public cust = new Customer();
+  constructor(public matDialog: MatDialog, public viewRewardsService:ViewRewardsService) {
+    this.cust = viewRewardsService.getCustRewards();
+   }
 
   ngOnInit(): void {
   }
