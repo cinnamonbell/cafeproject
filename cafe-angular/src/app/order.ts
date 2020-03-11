@@ -11,4 +11,6 @@ export class Order {
     orderItems: OrderItem[];
     review: Review;
     address: Address;
+    orderTime: Date;
+    lastActionTime: Date
 }
