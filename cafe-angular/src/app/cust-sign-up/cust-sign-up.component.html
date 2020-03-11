@@ -1,12 +1,37 @@
 <div id="modal-content-wrapper">
     <header id="modal-header">
-        <h1 id="modal-title">Are you sure you want to logout?</h1>
+        <h1 id="modal-title">Customer Sign Up</h1>
     </header>
     <section id="modal-body">
-        <p>If you logout bad things might happen, but don't mind me, I'm just the description in a modal...</p>
+        <form #custSignUp = "ngForm" (ngSubmit) = "onClickSubmit(custSignUp.value)">
+
+            <div class="container">
+                <div class="formgroup">
+                    <label for="user" style="background-color: #ffffff">Username:</label>
+                    <input class="form-control" type="text" placeholder="Username" name="username" id="username" required ngModel/>
+                    <br>
+                </div>
+                <div class="formgroup">
+                    <label for="req_type" style="background-color: #ffffff">Password:</label>
+                    <input class="form-control" type="text" placeholder="Password" name="password" id="password" required ngModel/>
+                    <br>
+                </div>
+                <div class="formgroup">
+                    <label for="first" style="background-color: #ffffff">Firstname:</label>
+                    <input class="form-control" type="text" placeholder="Firstname" name="firstname" id="firstname" required ngModel/>
+                    <br>
+                </div>
+                <div class="formgroup">
+                    <label for="last" style="background-color: #ffffff">Lastname:</label>
+                    <input type="text" class="form-control" placeholder="Lastname" name="lastname" id="lastname" ngModel/>
+                    <br>
+                </div>
+
+                <input class='btn btn-success' type="submit" value="Sign Up">
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <button mat-raised-button id="modal-cancel-button" class="btn btn-dark" (click)="closeModal()">Go back</button>
+
+            </div>
+        </form>
     </section>
-    <footer id="modal-footer">
-        <button mat-raised-button id="modal-action-button">Logout</button>
-        <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
-    </footer>
 </div>
