@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <td>Menu ID</td>
+            <td>Menu Item</td>
+            <td>Quantity</td>
+            <td>Price</td>
+            <td>Add to Order</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let m of menuItem">
+            <td>{{m.menuItem.id}}</td>
+            <td>{{m.menuItem.name}}</td>
+            <td>${{m.menuItem.quantity}}</td>
+            <td>{{m.menuItem.Price}}</td>
+            <td><button type="button">Add to Order</button></td>
+        </tr>
+    </tbody>
+</table>
