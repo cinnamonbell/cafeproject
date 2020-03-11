@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     PendingOrdersComponent,
-    ViewRewardsComponent
+    ViewRewardsComponent,
     CustSignUpComponent,
     NavBarComponent
 
