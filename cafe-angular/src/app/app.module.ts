@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PendingOrdersComponent } from './pending-orders/pending-orders.component';
+import { MenuComponent } from './menu/menu.component'; //changes
 
 @NgModule({
   declarations: [
     AppComponent,
-    PendingOrdersComponent
+    PendingOrdersComponent,
+    MenuComponent //changes
   ],
   imports: [
     BrowserModule,

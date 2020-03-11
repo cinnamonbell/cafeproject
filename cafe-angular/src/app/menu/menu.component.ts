@@ -8,17 +8,17 @@ import { MenuItem } from '../menu-item';
   styleUrls: ['./menu.component.css']
 })
 
-//component for employee user to see and respond to pending orders
+
 export class MenuComponent implements OnInit {
 
-  public menuList: MenuItem[];
+  public menuItem: MenuItem[];
 
-  constructor(private orderService: MenuService) {
-    this.menuList = orderService.getMenuItems();
-   }
+  constructor(private MenuService: MenuService) {
+    this.menuItem = MenuService.getMenuItems();
+  }
 
   ngOnInit(): void {
-    for (let m of this.menuList){
+    for (let m of this.menuItem){
 
     }
   }

@@ -20,6 +20,6 @@ export class MenuService {
     menuItem.price = 3.00;
     menuItem.quantity = 10;
     console.log(menuItem);
-    return;
+    return [menuItem];
   }
 }
