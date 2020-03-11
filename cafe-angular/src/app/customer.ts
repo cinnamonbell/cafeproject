@@ -6,4 +6,5 @@ export class Customer {
     last: String;
     stars: number;
     orders: Order[];
+
 }
