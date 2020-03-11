@@ -1,66 +1,64 @@
 
 package com.revature.cafe.beans;
 
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Tables;
-
-import java.util.List;
 
 @Entity
 @Table
 public class OrderItem {
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="order_item")
-	@SequenceGenerator(name="order_item", sequenceName="order_item_seq", allocationSize=1)
-	@Column(name = "item_id")
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="order_item")
+    @SequenceGenerator(name="order_item", sequenceName="order_item_seq", allocationSize=1)
+    @Column(name = "item_id")
     private int id;
-	@Column(name = "order_id")
-	private int orderId;
-	private int quantity;
-	@Column(name = "menu_item")
+    @ManyToOne
+     @JoinColumn(name = "order_id")
+    private Order order;
+    private int quantity;
+    @Column(name = "menu_item")
     private MenuItem menuItem;
     
     public OrderItem() {
     	super();
     }
     
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public MenuItem getMenuItem() {
-		return menuItem;
-	}
-	public void setMenuItem(MenuItem menuItem) {
-		this.menuItem = menuItem;
-	}
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
+    public int getId() {
+            return id;
+    }
+    public void setId(int id) {
+            this.id = id;
+    }
+    public int getQuantity() {
+            return quantity;
+    }
+    public void setQuantity(int quantity) {
+            this.quantity = quantity;
+    }
+    public MenuItem getMenuItem() {
+            return menuItem;
+    }
+    public void setMenuItem(MenuItem menuItem) {
+            this.menuItem = menuItem;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
 
 	@Override
 	public int hashCode() {
@@ -92,11 +90,9 @@ public class OrderItem {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "OrderItem [id=" + id + ", orderId=" + orderId + ", quantity=" + quantity + ", menuItem=" + menuItem
-				+ "]";
-	}
-	
+    @Override
+    public String toString() {
+        return "OrderItem{" + "id=" + id + ", order=" + order + ", quantity=" + quantity + ", menuItem=" + menuItem + '}';
+    }	
     
 }
