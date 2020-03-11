@@ -16,13 +16,13 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class OrderItem {
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="order_item")
-    @SequenceGenerator(name="order_item", sequenceName="order_item_seq", allocationSize=1)
-    @Column(name = "item_id")
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="order_item")
+	@SequenceGenerator(name="order_item", sequenceName="ordI_seq", allocationSize=1)
+	@Column(name = "item_id")
     private int id;
     @ManyToOne
-     @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id")
     private Order order;
     private int quantity;
     @Column(name = "menu_item")
