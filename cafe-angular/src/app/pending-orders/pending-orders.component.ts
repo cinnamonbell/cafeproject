@@ -13,9 +13,17 @@ export class PendingOrdersComponent implements OnInit {
 
   public ordersList: Order[];
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService) {
+    this.ordersList = orderService.getPendingOrders();
+   }
 
   ngOnInit(): void {
+    for (let o of this.ordersList){
+      for (let i of o.orderItems){
+        
+        
+      }
+    }
   }
 
 }
