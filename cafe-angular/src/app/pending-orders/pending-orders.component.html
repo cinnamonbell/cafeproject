@@ -1,4 +1,4 @@
-<table>
+<table class="table">
     <thead>
         <tr>
             <td>Customer's Name</td>
@@ -8,19 +8,19 @@
             <td>Order</td>
             <td>Status</td>
             <td>Last Action</td>
-            <td>Update</td>
+            <td></td>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let o of ordersList">
             <td>{{o.customer.first+" "+o.customer.last}}</td>
-            <td>filler</td>
+            <td>{{o.orderTime.toString() | date:'short'}}</td>
             <td>${{o.price}}</td>
             <td>{{o.address.address}}</td>
-            <td><table><tr *ngFor="let i of o.orderItems"><td>{{i.menuItem.name+" x "+i.quantity}}</td></tr></table></td>
+            <td><table class="table-condensed"><tr *ngFor="let i of o.orderItems"><td>{{i.menuItem.name+" x "+i.quantity}}</td></tr></table></td>
             <td>{{o.status}}</td>
-            <td>filler</td>
-            <td><button type="button">click</button></td>
+            <td>{{o.lastActionTime.toString() | date:'short'}}</td>
+            <td><button type="button" class="btn btn-info btn-lg" (click)="getMoreInfo(o)">More Info</button></td>
         </tr>
 
     </tbody>

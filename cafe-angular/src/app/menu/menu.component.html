@@ -1,5 +1,7 @@
+<img src="/src/assets/header2.jpg" alt="Header"/>
+<span><h1>Beverages</h1>
 <table>
-    <thead>
+    <thead class = menuT>
         <tr>
             <td>Menu ID</td>
             <td>Beverages</td>
@@ -8,13 +10,37 @@
             <td>Add to Order</td>
         </tr>
     </thead>
-    <tbody>
+    <tbody class = menuI>
         <tr *ngFor="let m of menuItem">
             <td>{{m.id}}</td>
             <td>{{m.name}}</td>
             <td>{{m.quantity}}</td>
             <td>${{m.price}}</td>
-            <td><button type="button">Add to Order</button></td>
+            <td><button type="button" class="btn btn-info btn-sm">Add to Order</button></td>
         </tr>
     </tbody>
 </table>
+</span>
+<span>
+<h1>Food</h1>
+<table>
+    <thead class = menuT>
+        <tr>
+            <td>Menu ID</td>
+            <td>Food</td>
+            <td>Quantity</td>
+            <td>Price</td>
+            <td>Add to Order</td>
+        </tr>
+    </thead>
+    <tbody class = menuI>
+        <tr *ngFor="let f of food">
+            <td>{{f.id}}</td>
+            <td>{{f.name}}</td>
+            <td>{{f.quantity}}</td>
+            <td>${{f.price}}</td>
+            <td><button type="button" class="btn btn-info btn-sm">Add to Order</button></td>
+        </tr>
+    </tbody>
+</table>
+</span>

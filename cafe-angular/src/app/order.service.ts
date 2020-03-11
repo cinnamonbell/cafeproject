@@ -31,6 +31,8 @@ export class OrderService {
     order.orderItems[1].menuItem = new MenuItem();
     order.orderItems[1].menuItem.name = "baked beans";
     order.orderItems[1].quantity = 2;
+    order.orderTime = new Date("2021-01-09T14:17:23");
+    order.lastActionTime = new Date("2021-01-09T14:23:58");
     console.log(order);
     orderArray.push(order);
     order = new Order();
@@ -44,6 +46,8 @@ export class OrderService {
     order.orderItems[0].menuItem = new MenuItem();
     order.orderItems[0].menuItem.name = "metal";
     order.orderItems[0].quantity = 1;
+    order.orderTime = new Date("2021-01-09T14:18:59");
+    order.lastActionTime = new Date("2021-01-09T14:25:01");
     console.log(order);
     orderArray.push(order);
     return orderArray;

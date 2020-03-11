@@ -12,14 +12,19 @@ import { MenuItem } from '../menu-item';
 export class MenuComponent implements OnInit {
 
   public menuItem: MenuItem[];
+  public food: MenuItem[];
 
   constructor(private MenuService: MenuService) {
     this.menuItem = MenuService.getMenuItems();
+    this.food = MenuService.getMenuItems();
   }
 
   ngOnInit(): void {
+    //Beverages
     for (let m of this.menuItem){
-
+    }
+    // Food
+    for(let f of this.food){
     }
   }
 
