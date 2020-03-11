@@ -22,7 +22,7 @@ import org.hibernate.annotations.Tables;
 public class Address {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="address")
-	@SequenceGenerator(name="address", sequenceName="address_seq", allocationSize=1)
+	@SequenceGenerator(name="address", sequenceName="add_seq", allocationSize=1)
 	@Column(name = "address_id")
     private int id;
     private String address;

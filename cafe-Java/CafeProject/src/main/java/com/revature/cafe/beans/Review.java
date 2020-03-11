@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Review {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="review")
-	@SequenceGenerator(name="review", sequenceName="review_seq", allocationSize=1)
+	@SequenceGenerator(name="review", sequenceName="rev_seq", allocationSize=1)
 	@Column(name = "review_id")
     private Integer id;
 	@OneToOne
