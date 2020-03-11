@@ -108,8 +108,5 @@ public class Review {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-
-    
-    
     
 }
