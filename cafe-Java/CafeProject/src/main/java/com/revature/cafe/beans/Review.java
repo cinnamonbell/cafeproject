@@ -109,6 +109,4 @@ public class Review {
 		this.comments = comments;
 	}
     
-  
-    
 }
