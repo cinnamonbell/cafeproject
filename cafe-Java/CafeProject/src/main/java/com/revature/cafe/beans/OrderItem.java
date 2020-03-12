@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table
+@Table(name="order_item")
 public class OrderItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="order_item")

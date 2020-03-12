@@ -17,7 +17,7 @@ import org.hibernate.annotations.Tables;
 
 
 @Entity
-@Table
+@Table(name="menu")
 public class MenuItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="menu")

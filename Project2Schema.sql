@@ -87,8 +87,8 @@ create sequence ordI_seq NOCACHE;
 
 create table order_item(
 item_id number(5) primary key,
-order_id number(5) not null,
-menu_item number(5) not null,
+order_id number(5) not null unique,
+menu_item number(5) not null unique,
 quantity number(5) check (quantity > 0),
 CONSTRAINT fk_order_item FOREIGN KEY (order_id) REFERENCES orders(order_id),
 CONSTRAINT fk_menu_item FOREIGN KEY (menu_item) REFERENCES menu(menu_id)
