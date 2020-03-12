@@ -6,7 +6,7 @@ import { UrlMap } from './url-map';
 })
 export class UrlService {
 
-  private urlMap: UrlMap;
+  private urlMap = new UrlMap();
 
   constructor() { }
 
@@ -19,6 +19,7 @@ export class UrlService {
 
 
   getSignUpUrl(): string{
+      console.log('url: ' + this.urlMap.baseServerUrl+this.urlMap.signUp);
       return this.urlMap.baseServerUrl+this.urlMap.signUp;
   }
 }

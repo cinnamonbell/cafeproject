@@ -9,11 +9,12 @@ import { UrlService } from 'src/app/url.service';
 })
 export class CustSignUpService {
 
-  constructor(private http:HttpClient, private urlService:UrlService) { }
+  constructor(private http:HttpClient, private url:UrlService) { }
 
   signUp(data: User) {
+    console.log('is this working?' + data);
+    this.http.post(this.url.getSignUpUrl(), data);
     console.log(data);
-    this.http.post(this.urlService.getSignUpUrl(), data);
 
   }
 }

@@ -2,10 +2,12 @@ package com.revature.cafe.services;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import com.revature.cafe.beans.Customer;
 import com.revature.cafe.data.CustomerDAO;
 import com.revature.cafe.data.CustomerHibernate;
-
+@Service
 public class CustomerServiceHibernate implements CustomerService{
 	private CustomerDAO cd = new CustomerHibernate();
 
