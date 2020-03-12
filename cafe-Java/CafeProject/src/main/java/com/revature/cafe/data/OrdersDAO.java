@@ -1,5 +1,8 @@
 package com.revature.cafe.data;
 
-public interface OrdersDAO {
+import com.revature.cafe.beans.Order;
+import java.util.List;
 
+public interface OrdersDAO {
+    List<Order> getPendingOrders();
 }

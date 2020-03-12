@@ -1,8 +1,9 @@
 package com.revature.cafe.services;
 
-import org.springframework.stereotype.Service;
+import com.revature.cafe.beans.Order;
+import java.util.List;
 
-@Service
-public class OrderService {
-    
+
+public interface OrderService {
+    List<Order> getPendingOrders();
 }
