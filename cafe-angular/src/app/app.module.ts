@@ -12,6 +12,7 @@ import { ViewRewardsComponent } from './view-rewards/view-rewards.component';
 import { CustSignUpComponent } from './cust-sign-up/cust-sign-up.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MenuComponent,
     ViewRewardsComponent,
     CustSignUpComponent,
-    NavBarComponent
+    NavBarComponent,
+    LoginComponent
 
   ],
   imports: [

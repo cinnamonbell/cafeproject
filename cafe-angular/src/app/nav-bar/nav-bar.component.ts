@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustSignUpComponent } from 'src/app/cust-sign-up/cust-sign-up.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import {ViewRewardsService} from '../view-rewards.service';
+import { ViewRewardsService } from '../view-rewards.service';
 import { Customer } from '../customer';
 
 
@@ -13,20 +13,19 @@ import { Customer } from '../customer';
 })
 export class NavBarComponent implements OnInit {
   public cust = new Customer();
-  constructor(public matDialog: MatDialog, public viewRewardsService:ViewRewardsService) {
+  constructor(public matDialog: MatDialog, public viewRewardsService: ViewRewardsService) {
     this.cust = viewRewardsService.getCustRewards();
-   }
-
-  ngOnInit(): void {
-    this.selectStar();
   }
 
-  selectStar(){
-    let star1 = document.getElementById("star1");
-    let star2 = document.getElementById("star2");
-    let star3 = document.getElementById("star3");
-    let star4 = document.getElementById("star4");
-    let star5 = document.getElementById("star5");
+  ngOnInit(): void {
+    document.getElementById("divStar").style.display = 'none';
+    if (this.cust != null) {
+      this.selectStar();
+    }
+  }
+
+  selectStar() {
+    document.getElementById("divStar").style.display = 'block';
     console.log("stars");
   }
 
