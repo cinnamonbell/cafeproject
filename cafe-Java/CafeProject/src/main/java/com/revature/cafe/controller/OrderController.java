@@ -26,11 +26,6 @@ public class OrderController {
     }
     
     @Autowired
-    public OrderService getOrderService() {
-        return orderService;
-    }
-    
-    @Autowired
     public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
     }
