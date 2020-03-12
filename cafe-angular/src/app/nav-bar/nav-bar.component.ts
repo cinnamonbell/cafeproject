@@ -4,6 +4,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {ViewRewardsService} from '../view-rewards.service';
 import { Customer } from '../customer';
 
+
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -16,6 +18,16 @@ export class NavBarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.selectStar();
+  }
+
+  selectStar(){
+    let star1 = document.getElementById("star1");
+    let star2 = document.getElementById("star2");
+    let star3 = document.getElementById("star3");
+    let star4 = document.getElementById("star4");
+    let star5 = document.getElementById("star5");
+    console.log("stars");
   }
 
   openModal() {
@@ -28,5 +40,6 @@ export class NavBarComponent implements OnInit {
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(CustSignUpComponent, dialogConfig);
   }
+
 
 }

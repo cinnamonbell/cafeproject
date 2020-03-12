@@ -8,12 +8,14 @@
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
     <button mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
-    <p id = "customer">
+    <div id = divStar>
+    <p id = "emptyStar">
         {{cust.first + " " + cust.last}}
-        <i class="fa fa-star" style = "color: yellow;"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
+    <i class="fa fa-star" [ngStyle] = "{'color':cust.stars >= 1 ? 'yellow' : 'white'}"></i>
+    <i class="fa fa-star" [ngStyle] = "{'color':cust.stars >= 2 ? 'yellow' : 'white'}"></i>
+    <i class="fa fa-star" [ngStyle] = "{'color':cust.stars >= 3 ? 'yellow' : 'white'}"></i>
+    <i class="fa fa-star" [ngStyle] = "{'color':cust.stars >= 4 ? 'yellow' : 'white'}"></i>
+    <i class="fa fa-star" [ngStyle] = "{'color':cust.stars >= 5 ? 'yellow' : 'white'}"></i>
     </p>
+    </div>
 </div>
