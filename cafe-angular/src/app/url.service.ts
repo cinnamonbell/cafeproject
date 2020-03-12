@@ -6,7 +6,7 @@ import { UrlMap } from './url-map';
 })
 export class UrlService {
 
-  private urlMap: UrlMap;
+  private urlMap = new UrlMap();
 
   constructor() { }
 

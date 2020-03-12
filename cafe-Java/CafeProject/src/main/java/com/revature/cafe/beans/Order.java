@@ -106,6 +106,24 @@ public class Order {
         this.address = address;
     }
 
+    public Timestamp getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Timestamp orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public Timestamp getLastOrderTime() {
+        return lastOrderTime;
+    }
+
+    public void setLastOrderTime(Timestamp lastOrderTime) {
+        this.lastOrderTime = lastOrderTime;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 5;

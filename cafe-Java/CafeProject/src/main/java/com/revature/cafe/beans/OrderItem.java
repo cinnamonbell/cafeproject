@@ -2,6 +2,7 @@
 package com.revature.cafe.beans;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
