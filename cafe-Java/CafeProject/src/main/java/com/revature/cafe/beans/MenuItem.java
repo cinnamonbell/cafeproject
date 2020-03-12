@@ -22,38 +22,24 @@ public class MenuItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="menu")
 	@SequenceGenerator(name="menu", sequenceName="menu_seq", allocationSize=1)
-    private Integer id;
+    private int id;
 	private String name;
-    private Integer quantity;
-    private Double price;
-    
-    public MenuItem() {
-    	super();
-    }
-    
-	public int getId() {
-		return id;
+    private int quantity;
+    private double price;
+	public MenuItem() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setId(Integer id) {
+	public MenuItem(int id, String name, int quantity, double price) {
+		super();
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
 		this.name = name;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(Double price) {
 		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "MenuItem [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -89,9 +75,29 @@ public class MenuItem {
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "MenuItem [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + "]";
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
 	}
     
     
