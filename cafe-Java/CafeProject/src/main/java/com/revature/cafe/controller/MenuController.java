@@ -21,7 +21,7 @@ import antlr.collections.List;
 
 @RestController
 @RequestMapping(path="/menu")
-@CrossOrigin(origins="http://localhost:8080")
+@CrossOrigin(origins="http://localhost:4200")
 public class MenuController {
 	@Autowired
 	private MenuService ms;
