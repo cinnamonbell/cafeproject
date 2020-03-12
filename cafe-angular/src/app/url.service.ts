@@ -7,7 +7,7 @@ import { UrlMap } from './url-map';
 export class UrlService {
   private static readonly MONOLITH_URL = 'http://localhost:8080';
 
-  private urlMap: UrlMap;
+  private urlMap = new UrlMap();
 
   constructor() { }
 
