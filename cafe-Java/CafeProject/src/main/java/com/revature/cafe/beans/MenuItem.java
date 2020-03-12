@@ -1,19 +1,18 @@
 package com.revature.cafe.beans;
 
-import java.util.Set;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Tables;
+
 
 
 @Entity
@@ -22,9 +21,13 @@ public class MenuItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="menu")
 	@SequenceGenerator(name="menu", sequenceName="menu_seq", allocationSize=1)
+	@Column(name = "menu_id")
     private int id;
+	@Column(name = "item_name")
 	private String name;
+	@Column(name = "inventory")
     private int quantity;
+	@Column(name = "item_price")
     private double price;
 	public MenuItem() {
 		super();
