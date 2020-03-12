@@ -25,7 +25,7 @@ public class Review {
 	@Column(name = "review_id")
     private Integer id;
 	@OneToOne
-	@Column(name = "order_id")
+	@JoinColumn(name = "order_id")
     private Integer orderId;
 	@Column(name = "good_rating")
     private boolean goodRating;

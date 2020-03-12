@@ -19,7 +19,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
+@Entity
+@Table(name="orders")
 public class Order {
     
     public enum OrderStatus{
