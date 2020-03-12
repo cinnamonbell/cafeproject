@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table
+@Table(name="order_item")
 public class OrderItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="order_item")
@@ -25,7 +25,8 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
     private int quantity;
-    @Column(name = "menu_item")
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
     private MenuItem menuItem;
     
     public OrderItem() {

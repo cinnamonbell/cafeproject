@@ -1,7 +1,6 @@
 drop table user_t CASCADE CONSTRAINTS;
 drop table cust_t CASCADE CONSTRAINTS;
 drop table employee_t CASCADE CONSTRAINTS;
-drop table order_status CASCADE CONSTRAINTS;
 drop table address CASCADE CONSTRAINTS;
 drop table orders CASCADE CONSTRAINTS;
 drop table order_item CASCADE CONSTRAINTS;
@@ -11,7 +10,6 @@ drop table review CASCADE CONSTRAINTS;
 drop sequence cust_seq;
 drop sequence emp_seq;
 drop sequence user_seq;
-drop sequence ordS_seq;
 drop sequence add_seq;
 drop sequence ord_seq;
 drop sequence menu_seq;
@@ -71,8 +69,7 @@ address_id number(5),
 submittedTime TIMESTAMP,
 lastAction TIMESTAMP,
 CONSTRAINT fk_addressId FOREIGN KEY (address_id) REFERENCES address(address_id),
-CONSTRAINT fk_oCustId FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id),
-CONSTRAINT fk_status FOREIGN KEY (status) REFERENCES order_status(status_id)
+CONSTRAINT fk_oCustId FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id)
 );
 
 --cust_id references customer
@@ -90,8 +87,8 @@ create sequence ordI_seq NOCACHE;
 
 create table order_item(
 item_id number(5) primary key,
-order_id number(5) not null,
-menu_item number(5) not null,
+order_id number(5) not null unique,
+menu_item number(5) not null unique,
 quantity number(5) check (quantity > 0),
 CONSTRAINT fk_order_item FOREIGN KEY (order_id) REFERENCES orders(order_id),
 CONSTRAINT fk_menu_item FOREIGN KEY (menu_item) REFERENCES menu(menu_id)
@@ -107,3 +104,5 @@ comments varchar2(500),
 CONSTRAINT fk_orderId FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 --order_id references orders
+insert into employee_t (emp_id, emp_first, emp_last) values (1, 'david', 'youn');
+insert into user_t (user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'dav', 'pass');

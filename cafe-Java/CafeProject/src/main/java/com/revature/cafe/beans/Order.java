@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "orders")
+@Table(name="orders")
 public class Order {
     
     public enum OrderStatus{
