@@ -5,6 +5,7 @@ import { UrlMap } from './url-map';
   providedIn: 'root'
 })
 export class UrlService {
+  private static readonly MONOLITH_URL = 'http://localhost:8080';
 
   constructor(private urlMap: UrlMap) { }
 
@@ -12,6 +13,6 @@ export class UrlService {
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/pending";
   }
   getMenuUrl(): string{
-    return this.urlMap.baseServerUrl+this.urlMap.menuUrl+"/menu";
+    return this.urlMap.baseServerUrl+this.urlMap.menuUrl;
   }
 }
