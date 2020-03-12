@@ -7,7 +7,9 @@ import { UrlMap } from './url-map';
 export class UrlService {
   private static readonly MONOLITH_URL = 'http://localhost:8080';
 
-  constructor(private urlMap: UrlMap) { }
+  private urlMap: UrlMap;
+
+  constructor() { }
 
   getPendingOrdersUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/pending";
