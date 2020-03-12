@@ -4,6 +4,9 @@ import { Customer } from './customer';
 import { OrderItem } from './order-item';
 import { MenuItem } from './menu-item';
 import { Address } from './address';
+import { HttpClient } from '@angular/common/http';
+import { UrlService } from './url.service';
+
 
 
 @Injectable({
@@ -11,7 +14,7 @@ import { Address } from './address';
 })
 export class OrderService {
 
-  constructor() { }
+  constructor(private http:HttpClient, private url:UrlService) { }
 
   getPendingOrders(): Order[]{ 
     //implementation needed
@@ -50,6 +53,13 @@ export class OrderService {
     order.lastActionTime = new Date("2021-01-09T14:25:01");
     console.log(order);
     orderArray.push(order);
+    return orderArray;
+  }
+
+  getPendingOrdersI(): Order[]{
+    let orderArray:Array<Order> = [];
+    this.http.get<Order[]>(this.url.getPendingOrdersUrl()).pipe()
+      .subscribe((resp: Array<Order>) => orderArray = resp);
     return orderArray;
   }
 }
