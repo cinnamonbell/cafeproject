@@ -6,7 +6,9 @@ import { UrlMap } from './url-map';
 })
 export class UrlService {
 
-  constructor(private urlMap: UrlMap) { }
+  private urlMap: UrlMap;
+
+  constructor() { }
 
   getPendingOrdersUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/pending";
