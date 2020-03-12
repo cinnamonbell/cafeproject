@@ -11,4 +11,7 @@ export class UrlService {
   getPendingOrdersUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/pending";
   }
+  getMenuUrl(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.menuUrl+"/menu";
+  }
 }
