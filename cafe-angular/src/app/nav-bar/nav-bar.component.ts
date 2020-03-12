@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CustSignUpComponent } from 'src/app/cust-sign-up/cust-sign-up.component';
+import { LoginComponent } from 'src/app/login/login.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ViewRewardsService } from '../view-rewards.service';
+import {LoginService} from '../login.service';
 import { Customer } from '../customer';
+import { User } from '../user';
 
 
 
@@ -13,8 +16,10 @@ import { Customer } from '../customer';
 })
 export class NavBarComponent implements OnInit {
   public cust = new Customer();
-  constructor(public matDialog: MatDialog, public viewRewardsService: ViewRewardsService) {
+  public user = new User();
+  constructor(public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService:LoginService) {
     this.cust = viewRewardsService.getCustRewards();
+    this.user = loginService.makingUser();
   }
 
   ngOnInit(): void {
@@ -40,5 +45,15 @@ export class NavBarComponent implements OnInit {
     const modalDialog = this.matDialog.open(CustSignUpComponent, dialogConfig);
   }
 
+  openLoginModal(){
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "500px";
+    dialogConfig.width = "600px";
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(LoginComponent, dialogConfig);
+  }
 
 }

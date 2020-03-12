@@ -6,11 +6,16 @@ import { UrlMap } from './url-map';
 })
 export class UrlService {
 
-  private urlMap: UrlMap;
+  private urlMap = new UrlMap();
 
   constructor() { }
 
   getPendingOrdersUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/pending";
+  }
+
+  getLoginUrl(): string{
+    console.log(this.urlMap.baseServerUrl+this.urlMap.loginUrl);
+    return this.urlMap.baseServerUrl+this.urlMap.loginUrl;
   }
 }
