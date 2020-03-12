@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PendingOrdersComponent } from './pending-orders/pending-orders.component';
+import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { ViewRewardsComponent } from './view-rewards/view-rewards.component';
 import { CustSignUpComponent } from './cust-sign-up/cust-sign-up.component';
@@ -17,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     PendingOrdersComponent,
+    MenuComponent,
     ViewRewardsComponent,
     CustSignUpComponent,
     NavBarComponent
@@ -27,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

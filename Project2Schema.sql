@@ -50,13 +50,6 @@ CONSTRAINT fk_uCustId FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id),
 CONSTRAINT fk_uEmpId FOREIGN KEY (emp_id) REFERENCES employee_t(emp_id)
 );
 
-create sequence ordS_seq NOCACHE;
-
-create table order_status(
-status_id number(5) primary key,
-status varchar2(50)
-);
-
 create sequence add_seq NOCACHE;
 
 create table address(
@@ -73,8 +66,10 @@ create table orders(
 order_id number(5) primary key,
 cust_id number(5),
 price decimal(10,2),
-status number(5),
+status varchar2(15),
 address_id number(5),
+submittedTime TIMESTAMP,
+lastAction TIMESTAMP,
 CONSTRAINT fk_addressId FOREIGN KEY (address_id) REFERENCES address(address_id),
 CONSTRAINT fk_oCustId FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id),
 CONSTRAINT fk_status FOREIGN KEY (status) REFERENCES order_status(status_id)
