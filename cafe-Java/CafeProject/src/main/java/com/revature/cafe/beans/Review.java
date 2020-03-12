@@ -23,10 +23,7 @@ public class Review {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="review")
 	@SequenceGenerator(name="review", sequenceName="rev_seq", allocationSize=1)
 	@Column(name = "review_id")
-    private Integer id;
-	@OneToOne
-	@JoinColumn(name = "order_id")
-    private Integer orderId;
+    private int id;
 	@Column(name = "good_rating")
     private boolean goodRating;
     private String comments;
@@ -34,17 +31,29 @@ public class Review {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Review(Integer id, Integer orderId, boolean goodRating, String comments) {
+	public Review(int id, boolean goodRating, String comments) {
 		super();
 		this.id = id;
-		this.orderId = orderId;
 		this.goodRating = goodRating;
 		this.comments = comments;
 	}
-	@Override
-	public String toString() {
-		return "Review [id=" + id + ", orderId=" + orderId + ", goodRating=" + goodRating + ", comments=" + comments
-				+ "]";
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public boolean isGoodRating() {
+		return goodRating;
+	}
+	public void setGoodRating(boolean goodRating) {
+		this.goodRating = goodRating;
+	}
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	@Override
 	public int hashCode() {
@@ -52,8 +61,7 @@ public class Review {
 		int result = 1;
 		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + (goodRating ? 1231 : 1237);
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 	@Override
@@ -72,41 +80,13 @@ public class Review {
 			return false;
 		if (goodRating != other.goodRating)
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (orderId == null) {
-			if (other.orderId != null)
-				return false;
-		} else if (!orderId.equals(other.orderId))
+		if (id != other.id)
 			return false;
 		return true;
 	}
-	public Integer getId() {
-		return id;
+	@Override
+	public String toString() {
+		return "Review [id=" + id + ", goodRating=" + goodRating + ", comments=" + comments + "]";
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Integer getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
-	}
-	public boolean isGoodRating() {
-		return goodRating;
-	}
-	public void setGoodRating(boolean goodRating) {
-		this.goodRating = goodRating;
-	}
-	public String getComments() {
-		return comments;
-	}
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-    
+
 }
