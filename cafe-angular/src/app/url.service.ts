@@ -18,4 +18,7 @@ export class UrlService {
     console.log(this.urlMap.baseServerUrl+this.urlMap.loginUrl);
     return this.urlMap.baseServerUrl+this.urlMap.loginUrl;
   }
+  getSignUpUrl(): string{
+      return this.urlMap.baseServerUrl+this.urlMap.signUp;
+  }
 }
