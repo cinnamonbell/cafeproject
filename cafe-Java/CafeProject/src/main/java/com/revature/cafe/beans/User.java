@@ -43,6 +43,11 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+	
 	public User(Customer customer, Employee employee, String username, String password) {
 
 		this.customer = customer;
