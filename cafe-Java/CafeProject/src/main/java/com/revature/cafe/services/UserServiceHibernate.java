@@ -20,5 +20,10 @@ public class UserServiceHibernate implements UserService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void addUser(User u) {
+		ud.addUser(u);
+		
+	}
 	
 }

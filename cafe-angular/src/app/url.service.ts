@@ -11,4 +11,12 @@ export class UrlService {
   getPendingOrdersUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/pending";
   }
+
+
+
+
+
+  getSignUpUrl(): string{
+      return this.urlMap.baseServerUrl+this.urlMap.signUp;
+  }
 }
