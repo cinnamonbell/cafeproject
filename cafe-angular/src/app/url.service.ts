@@ -24,7 +24,7 @@ export class UrlService {
   }
   getSignUpUrl(): string{
       console.log('url: ' + this.urlMap.baseServerUrl+this.urlMap.signUp);
-      return this.urlMap.baseServerUrl+this.urlMap.signUp;
+    return this.urlMap.baseServerUrl+this.urlMap.signUp;
   }
 
   getHeader(): HttpHeaders{
