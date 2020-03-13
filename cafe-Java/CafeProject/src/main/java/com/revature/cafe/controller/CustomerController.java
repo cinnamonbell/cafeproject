@@ -15,22 +15,21 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping(value="/customer")
-@CrossOrigin(origins="http://localhost:4200")
+@RequestMapping(value = "/customer")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CustomerController {
 	@Autowired
 	private CustomerService cs;
 	@Autowired
 	private UserService us;
 	private Logger log = Logger.getLogger(CustomerController.class);
-	
+
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> cust(@RequestBody User user ) {
-                 log.trace("user? " + user);
-		//cs.addCustomer(user.getCustomer());
-		//us.addUser(user);
-		
-		
+	public ResponseEntity<String> cust(@RequestBody User user) {
+		log.trace("user? " + user);
+		cs.addCustomer(user.getCustomer());
+		us.addUser(user);
+
 		return ResponseEntity.ok("Success");
 	}
 
