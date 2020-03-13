@@ -12,19 +12,16 @@ import { MenuItem } from '../menu-item';
 export class MenuComponent implements OnInit {
 
   public menuItem: MenuItem[];
-  public food: MenuItem[];
 
   constructor(private MenuService: MenuService) {
-    // this.menuItem = MenuService.getMenuItems();
+    this.menuItem = MenuService.getMenuItems();
     // this.food = MenuService.getMenuItems();
   }
+  getMoreInfo(mi: MenuItem){
+    console.log(mi);
+   }
 
   ngOnInit(): void {
-    this.MenuService.getMenuItems().subscribe(
-      (resp) => this.menuItem = resp
-    );
-    for (let m of this.menuItem) { // This is not iterable
-    }
   }
 
 }
