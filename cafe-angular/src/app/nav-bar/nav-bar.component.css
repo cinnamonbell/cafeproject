@@ -40,7 +40,22 @@
     color: white;
   }
 
+
 #customer {
   float: right;
   color: white;
+}
+
+#stars {
+  float:right;
+}
+
+#emptyStar{
+  float:right;
+  color:white;
+}
+
+#divStar{
+  font-size: 30px;
+  padding-top: 10px;
 }
