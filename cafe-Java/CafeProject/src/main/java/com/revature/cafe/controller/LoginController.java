@@ -1,11 +1,13 @@
 package com.revature.cafe.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,7 @@ import com.revature.cafe.services.UserServiceHibernate;
 public class LoginController {
 	@Autowired
 	private LoginService ls;
+	private Logger log = Logger.getLogger(CustomerController.class);
 	
 	@GetMapping
 	public ResponseEntity<String> getCust(@RequestParam("user") User user) {
@@ -35,11 +38,16 @@ public class LoginController {
 
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> cust(@RequestParam("user") User user) {
-		ls.getUser(user);
-		System.out.println(user);
+	public ResponseEntity<String> custLogin(@RequestBody User user) {
+		log.trace(user);
+		User u = new User();
 		
-		return ResponseEntity.ok("Success");
+		u = ls.getUser(user);
+		
+		if (u != null)
+			return ResponseEntity.ok("Success");
+		else
+			return ResponseEntity.ok("Failure");
 	}
 
 }

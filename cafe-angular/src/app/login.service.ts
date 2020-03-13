@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http:HttpClient, private url:UrlService) {}
 
   login(data:User):Observable<any>{
-    console.log(data);
+    console.log(this.url.getLoginUrl());
     return this.http.post(this.url.getLoginUrl(), data, {headers: this.url.getHeader()});
   }
 
