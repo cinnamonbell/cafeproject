@@ -4,5 +4,4 @@ export class UrlMap {
     readonly loginUrl: string = "login";
     readonly signUp:String = "customer";
     readonly menuUrl:string = "menu";
-    readonly signUp: string = "customer";
 }
