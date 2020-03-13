@@ -17,4 +17,5 @@ export class ViewRewardsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
 }

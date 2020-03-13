@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 import com.revature.cafe.beans.Customer;
 import com.revature.cafe.data.CustomerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+
 @Service
 public class CustomerServiceHibernate implements CustomerService{
 	
 	@Autowired
 	private CustomerDAO cd;
+
 
 	@Override
 	public void addCustomer(Customer customer) {

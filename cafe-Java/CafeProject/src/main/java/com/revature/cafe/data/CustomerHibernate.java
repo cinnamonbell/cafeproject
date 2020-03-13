@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CustomerHibernate implements CustomerDAO {
-
+        
 	private HibernateUtil hu = HibernateUtil.getInstance();
 	private Logger log = Logger.getLogger(CustomerHibernate.class);
 
