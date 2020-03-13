@@ -13,6 +13,7 @@ import org.hibernate.query.Query;
 import com.revature.cafe.beans.Customer;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
+import org.springframework.stereotype.Repository;
 
 public class CustomerHibernate implements CustomerDAO {
 
