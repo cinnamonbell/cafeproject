@@ -10334,3 +10334,122 @@
 2020-03-12 11:18:47 INFO  pooling:140 - HHH10001003: Autocommit mode: false
 2020-03-12 11:18:47 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
 2020-03-12 11:18:47 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 11:30:08 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2020-03-12 11:30:08 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2020-03-12 11:30:08 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2020-03-12 11:30:09 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020-03-12 11:30:09 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 11:30:09 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 11:30:09 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 11:30:09 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 11:30:09 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 11:30:09 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 11:30:10 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 11:30:10 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 11:30:10 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 11:30:10 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 11:30:10 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 11:30:10 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 11:30:10 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2020-03-12 11:30:10 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 11:30:10 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 11:30:10 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 11:30:10 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 11:30:10 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 11:30:10 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 11:30:11 WARN  SqlExceptionHelper:129 - SQL Error: 1, SQLState: 23000
+2020-03-12 11:30:11 ERROR SqlExceptionHelper:131 - ORA-00001: unique constraint (HR.SYS_C0013510) violated
+
+2020-03-12 11:30:11 INFO  AbstractBatchImpl:193 - HHH000010: On release of batch it still contained JDBC statements
+2020-03-12 11:30:11 ERROR ExceptionMapperStandardImpl:39 - HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2020-03-12 11:31:43 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2020-03-12 11:31:43 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2020-03-12 11:31:43 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2020-03-12 11:31:43 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020-03-12 11:31:43 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 11:31:43 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 11:31:43 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 11:31:43 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 11:31:43 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 11:31:44 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 11:31:44 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 11:31:44 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 11:31:44 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 11:31:44 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 11:31:44 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 11:31:44 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 11:31:45 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2020-03-12 11:31:45 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 11:31:45 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 11:31:45 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 11:31:45 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 11:31:45 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 11:31:45 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 12:53:04 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2020-03-12 12:53:04 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2020-03-12 12:53:04 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2020-03-12 12:53:05 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020-03-12 12:53:05 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 12:53:05 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 12:53:05 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 12:53:05 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 12:53:05 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 12:53:06 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 12:53:06 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 12:53:06 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 12:53:06 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 12:53:06 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 12:53:06 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 12:53:06 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 12:53:06 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2020-03-12 12:53:06 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 12:53:06 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 12:53:06 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 12:53:06 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 12:53:06 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 12:53:06 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 12:53:07 WARN  SqlExceptionHelper:129 - SQL Error: 1, SQLState: 23000
+2020-03-12 12:53:07 ERROR SqlExceptionHelper:131 - ORA-00001: unique constraint (HR.SYS_C0013510) violated
+
+2020-03-12 12:53:07 INFO  AbstractBatchImpl:193 - HHH000010: On release of batch it still contained JDBC statements
+2020-03-12 12:53:07 ERROR ExceptionMapperStandardImpl:39 - HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2020-03-12 12:55:31 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2020-03-12 12:55:31 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2020-03-12 12:55:31 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2020-03-12 12:55:31 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020-03-12 12:55:31 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 12:55:31 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 12:55:31 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 12:55:31 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 12:55:31 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 12:55:32 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 12:55:33 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 12:55:33 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 12:55:33 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 12:55:33 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 12:55:33 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 12:55:33 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 12:55:33 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
+2020-03-12 12:55:33 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 12:55:33 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 12:55:33 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 12:55:33 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 12:55:33 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 12:55:33 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 13:29:29 DEBUG logging:109 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2020-03-12 13:29:29 INFO  Version:45 - HHH000412: Hibernate Core {5.2.12.Final}
+2020-03-12 13:29:29 INFO  Environment:213 - HHH000206: hibernate.properties not found
+2020-03-12 13:29:29 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020-03-12 13:29:29 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 13:29:29 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 13:29:29 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 13:29:29 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 13:29:29 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 13:29:30 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 13:29:31 WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-03-12 13:29:31 INFO  pooling:126 - HHH10001005: using driver [oracle.jdbc.OracleDriver] at URL [jdbc:oracle:thin:@localhost:1521/orclpdb]
+2020-03-12 13:29:31 INFO  pooling:135 - HHH10001001: Connection properties: {user=hr, password=****}
+2020-03-12 13:29:31 INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2020-03-12 13:29:31 INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-03-12 13:29:31 INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-03-12 13:29:31 INFO  QueryTranslatorFactoryInitiator:47 - HHH000397: Using ASTQueryTranslatorFactory
