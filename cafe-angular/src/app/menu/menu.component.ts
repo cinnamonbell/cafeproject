@@ -15,16 +15,15 @@ export class MenuComponent implements OnInit {
   public food: MenuItem[];
 
   constructor(private MenuService: MenuService) {
-    this.menuItem = MenuService.getMenuItems();
-    this.food = MenuService.getMenuItems();
+    // this.menuItem = MenuService.getMenuItems();
+    // this.food = MenuService.getMenuItems();
   }
 
   ngOnInit(): void {
-    //Beverages
-    for (let m of this.menuItem){
-    }
-    // Food
-    for(let f of this.food){
+    this.MenuService.getMenuItems().subscribe(
+      (resp) => this.menuItem = resp
+    );
+    for (let m of this.menuItem) { // This is not iterable
     }
   }
 
