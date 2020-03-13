@@ -9,8 +9,9 @@ import com.revature.cafe.data.CustomerDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class CustomerServiceHibernate implements CustomerService{
-
-	private CustomerDAO cd = null;
+	
+	@Autowired
+	private CustomerDAO cd;
 
 	@Override
 	public void addCustomer(Customer customer) {

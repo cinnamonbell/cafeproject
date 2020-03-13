@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "cust_t")
 public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cust_t")
