@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping(value = "/customer")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+
 public class CustomerController {
 
 	private CustomerService cs;
@@ -29,7 +30,10 @@ public class CustomerController {
 	public ResponseEntity<String> cust(@RequestBody User user) {
 
 		log.trace("user? " + user);
+
+
 		log.trace("customer: " + user.getCustomer());
+
 		cs.addCustomer(user.getCustomer());
 		us.addUser(user);
 
