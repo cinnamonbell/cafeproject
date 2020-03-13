@@ -3,4 +3,6 @@ export class UrlMap {
     readonly orderUrl: string = "order";
     
     readonly signUp: string = "customer";
+
+    
 }
