@@ -8,6 +8,11 @@
 		<property name="hibernate.connection.username">hr</property>
 		<property name="hibernate.connection.password">jordan0406</property>
 		
+		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/orclpdb</property>
+		<property name="hibernate.connection.username">Project2Schema</property>
+		<property name="hibernate.connection.password">cafeproject</property>
+		
 		<!-- Hibernate set up -->
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		
