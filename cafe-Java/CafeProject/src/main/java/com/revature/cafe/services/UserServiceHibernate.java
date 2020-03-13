@@ -2,10 +2,11 @@ package com.revature.cafe.services;
 
 import com.revature.cafe.beans.User;
 import com.revature.cafe.data.UserDAO;
-import com.revature.cafe.data.UserHibernate;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceHibernate implements UserService{
-	private UserDAO ud = new UserHibernate();
+	private UserDAO ud = null;
 
 
 	@Override
