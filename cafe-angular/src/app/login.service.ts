@@ -13,7 +13,7 @@ export class LoginService {
 
   login(data:User):Observable<any>{
     console.log(this.url.getLoginUrl());
-    return this.http.post(this.url.getLoginUrl(), data, {headers: this.url.getHeader()});
+    return this.http.post<string>(this.url.getLoginUrl(), data, {headers: this.url.getHeader()});
   }
 
   makingUser():User{

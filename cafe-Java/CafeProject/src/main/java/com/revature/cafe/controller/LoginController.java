@@ -2,6 +2,7 @@ package com.revature.cafe.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +27,7 @@ import com.revature.cafe.services.UserServiceHibernate;
 public class LoginController {
 	@Autowired
 	private LoginService ls;
-	private Logger log = Logger.getLogger(CustomerController.class);
+	private Logger log = Logger.getLogger(LoginController.class);
 	
 	@GetMapping
 	public ResponseEntity<String> getCust(@RequestParam("user") User user) {

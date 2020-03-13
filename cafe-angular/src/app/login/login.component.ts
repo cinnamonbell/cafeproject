@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     user.username = data.username;
     user.password = data.password;
     console.log(user);
-    console.log(this.loginService.login(user));
+    console.log(this.loginService.login(user).subscribe());
     this.loginService.login(user);
     this.closeModal();
  }
