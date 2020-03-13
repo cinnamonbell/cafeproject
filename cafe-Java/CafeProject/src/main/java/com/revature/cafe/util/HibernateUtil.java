@@ -4,10 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 
@@ -22,23 +20,27 @@ public class HibernateUtil {
 	}
 
 	private HibernateUtil() {
+                 StandardServiceRegistry registry = null;
 		try {
-			// Create the SessionFactory from standard (hibernate.cfg.xml)
-			// config file.
-			StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().configure().build();
-			Metadata meta = new MetadataSources(standardRegistry).getMetadataBuilder()
-					.applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE).build();
-			sessionFactory = meta.getSessionFactoryBuilder().build();
+                    // Create the SessionFactory from standard (hibernate.cfg.xml)
+                    // config file.
+                     registry = new StandardServiceRegistryBuilder()
+                        .configure()
+                        .build();
+
+                    MetadataSources sources = new MetadataSources(registry);
+
+                    Metadata metadata = sources.getMetadataBuilder().build();
+                    sessionFactory = metadata.getSessionFactoryBuilder().build();
 		} catch (Throwable ex) {
 			// Log the exception.
 			System.err.println("Initial SessionFactory creation failed." + ex);
+                        if (registry != null) StandardServiceRegistryBuilder.destroy(registry);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
 
 	public SessionFactory getSessionFactory() {
-
-		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		return sessionFactory;
 	}
 

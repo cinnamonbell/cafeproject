@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UrlMap } from './url-map';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,20 @@ export class UrlService {
   getPendingOrdersUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/pending";
   }
+  getLoginUrl(): string{
+    console.log(this.urlMap.baseServerUrl+this.urlMap.loginUrl);
+    return this.urlMap.baseServerUrl+this.urlMap.loginUrl;
+  }
   getMenuUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.menuUrl;
+  }
+  getSignUpUrl(): string{
+      console.log('url: ' + this.urlMap.baseServerUrl+this.urlMap.signUp);
+      return this.urlMap.baseServerUrl+this.urlMap.signUp;
+  }
+
+  getHeader(): HttpHeaders{
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return headers;
   }
 }
