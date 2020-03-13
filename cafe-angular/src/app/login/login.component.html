@@ -1,0 +1,27 @@
+<div id="modal-content-wrapper">
+    <header id="modal-header">
+        <h1 id="modal-title">Login</h1>
+    </header>
+    <section id="modal-body">
+        <form #userLogin = "ngForm" (ngSubmit) = "onClickSubmit(userLogin.value)">
+
+            <div class="container">
+                <div class="formgroup">
+                    <label for="user" style="background-color: #ffffff">Username:</label>
+                    <input class="form-control" type="text" placeholder="Username" name="username" id="username" required ngModel/>
+                    <br>
+                </div>
+                <div class="formgroup">
+                    <label for="req_type" style="background-color: #ffffff">Password:</label>
+                    <input class="form-control" type="text" placeholder="Password" name="password" id="password" required ngModel/>
+                    <br>
+                </div>
+
+                <input class='btn btn-success' type="submit" value="Login">
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <button mat-raised-button id="modal-cancel-button" class="btn btn-dark" (click)="closeModal()">Go back</button>
+
+            </div>
+        </form>
+    </section>
+</div>
