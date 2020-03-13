@@ -11,9 +11,8 @@ export class CustSignUpService {
 
   constructor(private http:HttpClient, private url:UrlService) { }
 
-  signUp(data: User) :Observable<User> {
+  signUp(data: User) :Observable<object> {
     console.log(this.url.getSignUpUrl());
     return this.http.post(this.url.getSignUpUrl(), data, {headers: this.url.getHeader(), withCredentials: true});
-
   }
 }
