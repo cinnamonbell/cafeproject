@@ -4,7 +4,6 @@ import com.revature.cafe.beans.User;
 import com.revature.cafe.data.UserDAO;
 import org.springframework.stereotype.Service;
 
-@Service
 public class UserServiceHibernate implements UserService{
 	private UserDAO ud = null;
 

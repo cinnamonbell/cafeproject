@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping(value="/customer")
 @CrossOrigin(origins="http://localhost:4200")
 public class CustomerController {
-	@Autowired
+
 	private CustomerService cs;
-	@Autowired
+
 	private UserService us;
 	private Logger log = Logger.getLogger(CustomerController.class);
 	
