@@ -34,7 +34,7 @@ export class CustSignUpComponent implements OnInit {
     user.password = data.password;
     user.customer = cust;
     console.log(user);
-    this.signUpService.signUp(user);
+    this.signUpService.signUp(user).subscribe();
     this.closeModal();
  }
 

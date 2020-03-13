@@ -106,6 +106,7 @@ CONSTRAINT fk_orderId FOREIGN KEY (order_id) REFERENCES orders(order_id)
 --order_id references orders
 insert into employee_t (emp_id, emp_first, emp_last) values (1, 'david', 'youn');
 insert into user_t (user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'dav', 'pass');
+select * from user_t;
 
 
 --inserting menu items into menu table
@@ -122,3 +123,4 @@ insert into menu(menu_id, item_name, item_price, inventory) values(10,'Bagel', 5
 insert into menu(menu_id, item_name, item_price, inventory) values(11,'Glazed Donut', 1.00, 5);
 insert into menu(menu_id, item_name, item_price, inventory) values(12,'Egg Sandwich', 3.50, 37);
 insert into menu(menu_id, item_name, item_price, inventory) values(13,'Fruit Cup', 2.75, 20);
+commit;
