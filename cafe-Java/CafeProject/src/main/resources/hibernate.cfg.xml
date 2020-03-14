@@ -4,10 +4,19 @@
 	<session-factory>
 		<!-- JDBC set up -->
 		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+<<<<<<< HEAD
 		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/orclpdb</property>
 		<property name="hibernate.connection.username">hr</property>
 		<property name="hibernate.connection.password">jordan0406</property>
 		
+=======
+
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/orclpdb</property>
+		<property name="hibernate.connection.username">hr</property>
+		<property name="hibernate.connection.password">jordan0406</property>
+
+
+>>>>>>> d6e0cf94da041efce416461c2b0ad837ae07a9f0
 		<!-- Hibernate set up -->
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		

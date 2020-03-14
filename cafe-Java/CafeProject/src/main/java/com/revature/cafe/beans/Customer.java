@@ -18,6 +18,10 @@ import javax.persistence.FetchType;
 
 @Entity
 @Table(name = "cust_t")
+<<<<<<< HEAD
+=======
+
+>>>>>>> d6e0cf94da041efce416461c2b0ad837ae07a9f0
 @JsonIgnoreProperties({"orders"})
 public class Customer {
 	@Id
