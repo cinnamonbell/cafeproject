@@ -10,17 +10,17 @@ import { map } from 'rxjs/internal/operators/map';
   providedIn: 'root'
 })
 export class LoginService {
- 
 
-  constructor(private http:HttpClient, private url:UrlService) {}
 
-  login(data:User):Observable<any>{
+  constructor(private http: HttpClient, private url: UrlService) { }
+
+  login(data: User): Observable<any> {
     console.log(this.url.getLoginUrl());
-    return this.http.post<string>(this.url.getLoginUrl(), data, {headers: this.url.getHeader()}).pipe(map(resp => {const user:string = resp}));
+    return this.http.post(this.url.getLoginUrl(), data, { headers: this.url.getHeader() }).pipe(map(resp => { const user: User = resp as User;console.log(user); return user}));
   }
 
-  makingUser():User{
-    let user:User = new User();
+  makingUser(): User {
+    let user: User = new User();
     user.id = 1;
     user.customer = null;
     user.employee = null;
@@ -29,5 +29,5 @@ export class LoginService {
     return user;
   }
 
-  
+
 }

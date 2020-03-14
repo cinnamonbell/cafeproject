@@ -104,8 +104,8 @@ comments varchar2(500),
 CONSTRAINT fk_orderId FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 --order_id references orders
-insert into employee_t (emp_id, emp_first, emp_last) values (1, 'david', 'youn');
-insert into user_t (user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'dav', 'pass');
+--insert into employee_t (emp_id, emp_first, emp_last) values (1, 'david', 'youn');
+--insert into user_t (user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'dav', 'pass');
 select * from user_t;
 
 

@@ -1,5 +1,7 @@
 package com.revature.cafe.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,33 +24,33 @@ import com.revature.cafe.services.UserService;
 import com.revature.cafe.services.UserServiceHibernate;
 
 @RestController
-@RequestMapping(value="/login")
+@RequestMapping(value = "/login")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class LoginController {
 	@Autowired
 	private LoginService ls;
 	private Logger log = Logger.getLogger(LoginController.class);
-	
+
 	@GetMapping
 	public ResponseEntity<String> getCust(@RequestParam("user") User user) {
 		ls.getUser(user);
 		System.out.println(user);
-		
+
 		return ResponseEntity.ok("Success");
 	}
 
-	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> custLogin(@RequestBody User user) {
+	public ResponseEntity<User> custLogin(@RequestBody User user, HttpSession session) {
 		log.trace(user);
 		User u = new User();
-		
+
 		u = ls.getUser(user);
-		
-		if (u != null)
-			return ResponseEntity.ok("Success");
-		else
-			return ResponseEntity.ok("Failure");
+
+		if (u != null) {
+			session.setAttribute("loggedUser", u);
+			return ResponseEntity.ok(u);
+		} else
+			return ResponseEntity.status(401).build();
 	}
 
 }
