@@ -27,9 +27,9 @@ public class OrdersHibernate implements OrdersDAO {
         Session session = hibernate.getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Order> c = builder.createQuery(Order.class);
-//        Root<Order> root = c.from(Order.class);
-//        c.select(root).where(builder.in(root.get(Order_.status))
-//                .value(OrderStatus.PENDING).value(OrderStatus.READY));
+        Root<Order> root = c.from(Order.class);
+        c.select(root).where(builder.in(root.get(Order_.status))
+                .value(OrderStatus.PENDING).value(OrderStatus.READY));
         Query<Order> query = session.createQuery(c);
         list = query.getResultList();
         for ( Order o : list ) log.trace(o.toString());
