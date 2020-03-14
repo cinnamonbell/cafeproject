@@ -11,12 +11,25 @@ import { map } from 'rxjs/internal/operators/map';
 })
 export class LoginService {
 
+  public loggedUser:User = null;
 
   constructor(private http: HttpClient, private url: UrlService) { }
 
+  getLoggedInUser(): User{
+    return this.loggedUser;
+  }
+
   login(data: User): Observable<any> {
     console.log(this.url.getLoginUrl());
-    return this.http.post(this.url.getLoginUrl(), data, { headers: this.url.getHeader() }).pipe(map(resp => { const user: User = resp as User;console.log(user); return user}));
+    return this.http.post(this.url.getLoginUrl(), data, { headers: this.url.getHeader() }).pipe(
+      map(resp => 
+        { const user: User = resp as User; 
+          if(user){
+            this.loggedUser = user;
+          }
+          return this.loggedUser;
+        }
+      ));
   }
 
   makingUser(): User {
