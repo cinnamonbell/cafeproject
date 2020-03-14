@@ -24,14 +24,10 @@ import antlr.collections.List;
 @RequestMapping(path="/menu")
 @CrossOrigin(origins="http://localhost:4200")
 public class MenuController {
-<<<<<<< HEAD
 
 	private Logger log = Logger.getLogger(MenuController.class);
 	
 	@Autowired
-=======
-	//@Autowired
->>>>>>> d6e0cf94da041efce416461c2b0ad837ae07a9f0
 	private MenuService ms;
 	
 	@GetMapping
