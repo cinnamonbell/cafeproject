@@ -2,6 +2,7 @@
 package com.revature.cafe.beans;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,11 @@ import javax.persistence.Table;
 
 
 import java.util.List;
+import javax.persistence.FetchType;
 
 @Entity
-@Table
+@Table(name = "cust_t")
+@JsonIgnoreProperties({"orders"})
 public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cust_t")
@@ -28,7 +31,7 @@ public class Customer {
     private String last;
 	@Column(name = "reward_stars")
     private int stars;
-    @OneToMany
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Order> orders;
     
     public Customer() {

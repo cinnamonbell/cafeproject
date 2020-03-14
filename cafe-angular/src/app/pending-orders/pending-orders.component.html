@@ -16,7 +16,7 @@
             <td>{{o.customer.first+" "+o.customer.last}}</td>
             <td>{{o.orderTime.toString() | date:'short'}}</td>
             <td>${{o.price}}</td>
-            <td>{{o.address.address}}</td>
+            <td>{{ (o.address != null) ? o.address.address : "No Delivery"}}</td>
             <td><table class="table-condensed"><tr *ngFor="let i of o.orderItems"><td>{{i.menuItem.name+" x "+i.quantity}}</td></tr></table></td>
             <td>{{o.status}}</td>
             <td>{{o.lastActionTime.toString() | date:'short'}}</td>
