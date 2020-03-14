@@ -19,7 +19,7 @@ drop sequence rev_seq;
 
 --cust id references customer table
 --emp id references employee table
-create sequence cust_seq NOCACHE;
+create sequence cust_seq NOCACHE start with 2;
 
 create table cust_t(
 cust_id number(5) primary key,

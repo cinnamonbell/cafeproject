@@ -9,7 +9,7 @@
     <a href="#contact">Contact</a>
     <button mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
     <button mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
-    <div id=divStar style.display='none'>
+    <div *ngIf="cust != null" id=divStar style.display='none'>
         <p id="emptyStar">
             {{cust.first + " " + cust.last}}
             <i class="fa fa-star" [ngStyle]="{'color':cust.stars >= 1 ? 'yellow' : 'white'}"></i>

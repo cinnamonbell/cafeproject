@@ -24,34 +24,52 @@ import com.revature.cafe.services.UserService;
 import com.revature.cafe.services.UserServiceHibernate;
 
 @RestController
-@RequestMapping(value="/login")
+@RequestMapping(value = "/login")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class LoginController {
 	@Autowired
 	private LoginService ls;
 	private Logger log = Logger.getLogger(LoginController.class);
-	
+
 	@GetMapping
 	public ResponseEntity<String> getCust(@RequestParam("user") User user) {
 		ls.getUser(user);
 		System.out.println(user);
-		
+
 		return ResponseEntity.ok("Success");
 	}
 
+<<<<<<< HEAD
 	
 	@PostMapping(path = "/login")
+=======
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)//, produces = MediaType.TEXT_PLAIN_VALUE)
+>>>>>>> 003865aab09cbbe64ca6070798e8f997b2826ab5
 	public ResponseEntity<User> custLogin(@RequestBody User user, HttpSession session) {
 		log.trace(user);
 		User u = new User();
-		
+
 		u = ls.getUser(user);
+//		log.trace("user: " + u.getUsername());
+//		log.trace("pass: " + u.getPassword());
 		
+<<<<<<< HEAD
 		if (u != null) {
 			session.setAttribute("logged", u);
 		return ResponseEntity.ok(u);}
 		else
 			return ResponseEntity.notFound().build();
+=======
+	
+
+
+		if (u != null) {
+			session.setAttribute("loggedUser", u);
+			return ResponseEntity.ok(u);
+			
+		} else
+			return ResponseEntity.status(401).build();
+>>>>>>> 003865aab09cbbe64ca6070798e8f997b2826ab5
 	}
 
 }

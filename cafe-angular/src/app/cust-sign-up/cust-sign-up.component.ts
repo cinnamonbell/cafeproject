@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Customer } from '../customer';
 import { User } from '../user';
 import { CustSignUpService } from 'src/app/cust-sign-up.service';
+import { LoginService } from 'src/app/login.service';
 
 @Component({
   selector: 'app-cust-sign-up',
@@ -11,9 +12,9 @@ import { CustSignUpService } from 'src/app/cust-sign-up.service';
 })
 export class CustSignUpComponent implements OnInit {
 
+  public loggedUser:User = new User();
 
-
-  constructor(public dialogRef: MatDialogRef<CustSignUpComponent>, public signUpService:CustSignUpService) { }
+  constructor(public dialogRef: MatDialogRef<CustSignUpComponent>, public signUpService:CustSignUpService, public loginService:LoginService) { }
 
   ngOnInit(): void {
 
@@ -39,6 +40,9 @@ export class CustSignUpComponent implements OnInit {
  }
 
   closeModal() {
+    this.loggedUser = this.loginService.getLoggedInUser();
+    console.log('did this work?');
+    console.log(this.loggedUser);
     this.dialogRef.close();
   }
 
