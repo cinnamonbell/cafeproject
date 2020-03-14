@@ -2,6 +2,7 @@ package com.revature.cafe.controller;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,12 +25,16 @@ import antlr.collections.List;
 @CrossOrigin(origins="http://localhost:4200")
 public class MenuController {
 
+	private Logger log = Logger.getLogger(MenuController.class);
+	
 	@Autowired
 	private MenuService ms;
 	
 	@GetMapping
 	public ResponseEntity <Set<MenuItem>> getMenuItems() {
-		return ResponseEntity.ok(ms.getMenuItems());
+		Set<MenuItem> mss = ms.getMenuItems();
+		log.trace(mss);
+		return ResponseEntity.ok(mss);
 	}
 	
 	@PostMapping

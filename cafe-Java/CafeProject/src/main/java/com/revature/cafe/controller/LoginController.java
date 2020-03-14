@@ -45,9 +45,13 @@ public class LoginController {
 		User u = new User();
 
 		u = ls.getUser(user);
+//		log.trace("user: " + u.getUsername());
+//		log.trace("pass: " + u.getPassword());
+		
+		session.setAttribute("loggedUser", u.getUsername());
+		log.trace(session.getAttribute("loggedUser"));
 
 		if (u != null) {
-			session.setAttribute("loggedUser", u);
 			return ResponseEntity.ok(u);
 		} else
 			return ResponseEntity.status(401).build();

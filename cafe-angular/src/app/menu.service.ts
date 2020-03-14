@@ -18,6 +18,7 @@ export class MenuService {
   getMenuItems(): MenuItem[]{ 
     let menuArray:Array<MenuItem> = [];
     this.http.get<MenuItem[]>(this.urlService.getMenuUrl()).pipe().subscribe((resp:Array<MenuItem>) => menuArray = resp);
+    console.log("davidspp");
     console.log(menuArray);
     return menuArray;
     //implementation needed
