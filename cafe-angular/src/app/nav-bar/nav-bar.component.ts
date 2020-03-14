@@ -16,19 +16,15 @@ import { User } from '../user';
 })
 export class NavBarComponent implements OnInit {
   public cust = null;
-  public user = null;
+  public user: User;
   constructor(public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService) {
 
   }
   
 
   ngOnInit(): void {
-    this.user = this.loginService.getLoggedInUser();
-    if (this.user != null) {
-      this.cust = this.user.customer;
-      console.log("in rewards " + this.cust)
-      //this.cust = this.viewRewards.getCustRewards();
-    }
+    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null});
+    console.log(this.user);
   }
 
 
