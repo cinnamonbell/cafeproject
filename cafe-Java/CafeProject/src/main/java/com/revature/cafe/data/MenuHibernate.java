@@ -9,11 +9,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
-
+@Repository
 public class MenuHibernate implements MenuDAO {
 
 	private HibernateUtil hu = HibernateUtil.getInstance();
@@ -71,6 +72,16 @@ public class MenuHibernate implements MenuDAO {
 			s.close();
 		}
 
+	}
+
+	@Override
+	public Set<MenuItem> getMenuList() {
+		Session s = hu.getSession();
+		String query = "FROM MenuItem";
+		Query<MenuItem> q = s.createQuery(query, MenuItem.class);
+		List<MenuItem> menuList = q.getResultList();
+		s.close();
+		return new HashSet<MenuItem>(menuList);
 	}
 
 }

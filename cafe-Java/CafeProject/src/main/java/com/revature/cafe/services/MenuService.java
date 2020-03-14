@@ -6,8 +6,7 @@ import com.revature.cafe.beans.Customer;
 
 public interface MenuService {
 	public void updateMenuItem(MenuItem mi);
-	public void deleteMenuItem(MenuItem mi);
-	public MenuItem addMenuItem(MenuItem mi);
+	public void addMenuItem(MenuItem mi);
 	public Set<MenuItem> getMenuItems();
 	public MenuItem getMenuItemById(int id);
 
