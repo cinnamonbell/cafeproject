@@ -15,11 +15,10 @@ export class MenuService {
 
   constructor(private http:HttpClient, private urlService:UrlService) { }
 
-  getMenuItems(): MenuItem[]{ 
+  getMenuItems(): Observable<Array<MenuItem>>{ 
     let menuArray:Array<MenuItem> = [];
-    this.http.get<MenuItem[]>(this.urlService.getMenuUrl(), {headers: this.urlService.getHeader()}).pipe().subscribe((resp:Array<MenuItem>) => menuArray = resp);
     console.log(menuArray);
-    return menuArray;
+    return this.http.get<MenuItem[]>(this.urlService.getMenuUrl(), {headers: this.urlService.getHeader()}).pipe();
     //implementation needed
     //currently contains mock data
     // let menuItem:MenuItem = new MenuItem();
