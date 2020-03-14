@@ -23,7 +23,7 @@ import antlr.collections.List;
 @RequestMapping(path="/menu")
 @CrossOrigin(origins="http://localhost:4200")
 public class MenuController {
-	
+	@Autowired
 	private MenuService ms;
 	
 	@GetMapping
@@ -37,14 +37,14 @@ public class MenuController {
 		return ResponseEntity.ok(mi);
 	}
 	
-	@GetMapping(value = "{id}") //maybe id should be menu_id?
-	public ResponseEntity<MenuItem> getMenuItem(@PathVariable("id") int id){
-		MenuItem mi = ms.getMenuItemById(id);
-		if(mi != null) {
-			return ResponseEntity.ok(mi);
-		}
-		return ResponseEntity.notFound().build();
-	}
+//	@GetMapping(value = "{id}") //maybe id should be menu_id?
+//	public ResponseEntity<MenuItem> getMenuItem(@PathVariable("id") int id){
+//		MenuItem mi = ms.getMenuItemById(id);
+//		if(mi != null) {
+//			return ResponseEntity.ok(mi);
+//		}
+//		return ResponseEntity.notFound().build();
+//	}
 	
 	@PutMapping(value="{id}") //same deal as above
 	public ResponseEntity<MenuItem> updateMenuItem(@PathVariable("id") int id, @RequestBody MenuItem mi) {
