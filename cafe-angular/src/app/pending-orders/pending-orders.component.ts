@@ -15,8 +15,13 @@ export class PendingOrdersComponent implements OnInit {
   public ordersList: Order[];
 
   constructor(private orderService: OrderService) {
-    this.ordersList = orderService.getPendingOrders();
-   }
+    orderService.getPendingOrders().subscribe((resp: Array<Order>) => {
+      this.ordersList = resp;
+      this.ordersList.forEach( (order, i) => {
+        console.log(order);
+        })
+      });
+  }
 
    getMoreInfo(order: Order){
     console.log(order);
