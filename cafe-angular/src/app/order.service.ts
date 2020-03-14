@@ -6,6 +6,7 @@ import { MenuItem } from './menu-item';
 import { Address } from './address';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -16,7 +17,7 @@ export class OrderService {
 
   constructor(private http:HttpClient, private url:UrlService) { }
 
-  getPendingOrders(): Order[]{ 
+  getPendingOrdersM(): Order[]{ 
     //implementation needed
     //currently contains mock data
     let orderArray:Array<Order> = [];
@@ -56,10 +57,8 @@ export class OrderService {
     return orderArray;
   }
 
-  getPendingOrdersI(): Order[]{
+  getPendingOrders(): Observable<Array<Order>>{
     let orderArray:Array<Order> = [];
-    this.http.get<Order[]>(this.url.getPendingOrdersUrl()).pipe()
-      .subscribe((resp: Array<Order>) => orderArray = resp);
-    return orderArray;
+    return this.http.get<Order[]>(this.url.getPendingOrdersUrl(), {headers: this.url.getHeader()}).pipe();
   }
 }

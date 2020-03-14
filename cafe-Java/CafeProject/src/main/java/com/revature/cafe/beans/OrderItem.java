@@ -2,7 +2,7 @@
 package com.revature.cafe.beans;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="order_item")
+@JsonIgnoreProperties("order")
 public class OrderItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="order_item")
@@ -26,8 +28,8 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
     private int quantity;
-    @ManyToOne
-    @JoinColumn(name = "menu_id")
+    @OneToOne
+    @JoinColumn(name = "menu_item", nullable = false)
     private MenuItem menuItem;
     
     public OrderItem() {
@@ -94,7 +96,7 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return "OrderItem{" + "id=" + id + ", order=" + order + ", quantity=" + quantity + ", menuItem=" + menuItem + '}';
+        return "OrderItem{" + "id=" + id + ", order=" + (order == null ? "null" : order.getId()) + ", quantity=" + quantity + ", menuItem=" + menuItem + '}';
     }	
     
 }
