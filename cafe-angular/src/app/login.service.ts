@@ -11,9 +11,14 @@ export class LoginService {
 
   constructor(private http:HttpClient, private url:UrlService) {}
 
-  login(data:User):Observable<any>{
+  login(username:string, password:string):Observable<User>{
+    let u = new User;
+    u.username = username;
+    u.password = password;
+    const body = JSON.stringify(u);
+    console.log(body);
     console.log(this.url.getLoginUrl());
-    return this.http.post<string>(this.url.getLoginUrl(), data, {headers: this.url.getHeader()});
+    return this.http.post<string>(this.url.getLoginUrl(), body, {headers: this.url.getHeader()});
   }
 
   makingUser():User{
