@@ -13,11 +13,16 @@ describe('OrderService', () => {
   let service: OrderService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
-  let url = new UrlService();
+  let url: UrlService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ]
+    });
     service = TestBed.inject(OrderService);
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
+    url = TestBed.inject(UrlService);
   });
 
   it('should be created', () => {
