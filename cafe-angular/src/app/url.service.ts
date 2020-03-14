@@ -28,7 +28,7 @@ export class UrlService {
   }
 
   getHeader(): HttpHeaders{
-    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
     return headers;
   }
 }
