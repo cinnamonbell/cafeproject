@@ -29,6 +29,7 @@ public class Order {
     }
     
     @Id
+    @Column(name = "order_id")
     private int id;
     @ManyToOne
     @JoinColumn(name = "cust_id", nullable=false)
@@ -36,11 +37,10 @@ public class Order {
     private double price;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-    @OneToMany
-    @JoinColumn(name="item_id")
+    @OneToMany(mappedBy="order")
     private List<OrderItem> orderItems;
     @OneToOne
-    @JoinColumn(name="_column name missing_____")
+    @JoinColumn(name="rev_id")
     private Review review;
     @OneToOne
     @JoinColumn(name="address_id")
@@ -48,7 +48,7 @@ public class Order {
     @Column(name="submitted_time")
     Timestamp orderTime;
     @Column(name="last_action")
-    Timestamp lastOrderTime;
+    Timestamp lastActionTime;
 
     public int getId() {
         return id;
@@ -114,12 +114,12 @@ public class Order {
         this.orderTime = orderTime;
     }
 
-    public Timestamp getLastOrderTime() {
-        return lastOrderTime;
+    public Timestamp getLastActionTime() {
+        return lastActionTime;
     }
 
-    public void setLastOrderTime(Timestamp lastOrderTime) {
-        this.lastOrderTime = lastOrderTime;
+    public void setLastActionTime(Timestamp lastActionTime) {
+        this.lastActionTime = lastActionTime;
     }
     
     
@@ -171,7 +171,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", customer=" + customer + ", price=" + price + ", status=" + status + ", orderItems=" + orderItems + ", review=" + review + ", address=" + address + '}';
+        return "Order{" + "id=" + id + ", customer=" + (customer == null ? "null" : customer.getId()) + ", price=" + price + ", status=" + status + ", orderItems=" + orderItems + ", review=" + review + ", address=" + address + '}';
     }
     
 

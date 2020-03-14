@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Repository;
 public class OrdersHibernate implements OrdersDAO {
 
     private static HibernateUtil hibernate = HibernateUtil.getInstance();
+    private static Logger log = Logger.getLogger(OrdersHibernate.class);
     
     @Override
     public List<Order> getPendingOrders() {
@@ -29,6 +32,8 @@ public class OrdersHibernate implements OrdersDAO {
                 .value(OrderStatus.PENDING).value(OrderStatus.READY));
         Query<Order> query = session.createQuery(c);
         list = query.getResultList();
+        for ( Order o : list ) log.trace(o.toString());
+        Hibernate.initialize(list);
         session.close();
         return list;
     }

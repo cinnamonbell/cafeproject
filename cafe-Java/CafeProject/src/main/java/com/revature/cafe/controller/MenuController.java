@@ -23,7 +23,8 @@ import antlr.collections.List;
 @RequestMapping(path="/menu")
 @CrossOrigin(origins="http://localhost:8080")
 public class MenuController {
-	//@Autowired
+
+	@Autowired
 	private MenuService ms;
 	
 	@GetMapping
