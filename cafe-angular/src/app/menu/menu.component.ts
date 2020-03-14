@@ -11,15 +11,17 @@ import { MenuItem } from '../menu-item';
 
 export class MenuComponent implements OnInit {
 
-  public menuItem: MenuItem[];
+  public menuItemList: MenuItem[];
 
-  constructor(private MenuService: MenuService) {
-    this.menuItem = MenuService.getMenuItems();
-    // this.food = MenuService.getMenuItems();
+  constructor(private menuService: MenuService) {
+    //this.menuItem = MenuService.getMenuItems();
+    menuService.getMenuItems().subscribe((resp:Array<MenuItem>) => {
+      this.menuItemList = resp;
+      this.menuItemList.forEach((menuItem) => {
+        console.log(menuItem);
+      })
+    });
   }
-  getMoreInfo(mi: MenuItem){
-    console.log(mi);
-   }
 
   ngOnInit(): void {
   }

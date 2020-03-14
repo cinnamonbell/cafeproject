@@ -8,4 +8,5 @@ public interface MenuDAO {
     public MenuItem getMenu(MenuItem menuItem);
     public Set<MenuItem> getMenuList(MenuItem menuItem);
     public void updateMenu(MenuItem menuItem);
+	public Set<MenuItem> getMenuList();
 }

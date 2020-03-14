@@ -21,9 +21,9 @@ import antlr.collections.List;
 
 @RestController
 @RequestMapping(path="/menu")
-@CrossOrigin(origins="http://localhost:8080")
+@CrossOrigin(origins="http://localhost:4200")
 public class MenuController {
-	
+	@Autowired
 	private MenuService ms;
 	
 	@GetMapping
@@ -33,17 +33,18 @@ public class MenuController {
 	
 	@PostMapping
 	public ResponseEntity<MenuItem> addMenuItem(@RequestBody MenuItem mi) {
-		return ResponseEntity.status(201).body(ms.addMenuItem(mi));
+		//return ResponseEntity.status(201).body(ms.addMenuItem(mi));
+		return ResponseEntity.ok(mi);
 	}
 	
-	@GetMapping(value = "{id}") //maybe id should be menu_id?
-	public ResponseEntity<MenuItem> getMenuItem(@PathVariable("id") int id){
-		MenuItem mi = ms.getMenuItemById(id);
-		if(mi != null) {
-			return ResponseEntity.ok(mi);
-		}
-		return ResponseEntity.notFound().build();
-	}
+//	@GetMapping(value = "{id}") //maybe id should be menu_id?
+//	public ResponseEntity<MenuItem> getMenuItem(@PathVariable("id") int id){
+//		MenuItem mi = ms.getMenuItemById(id);
+//		if(mi != null) {
+//			return ResponseEntity.ok(mi);
+//		}
+//		return ResponseEntity.notFound().build();
+//	}
 	
 	@PutMapping(value="{id}") //same deal as above
 	public ResponseEntity<MenuItem> updateMenuItem(@PathVariable("id") int id, @RequestBody MenuItem mi) {
@@ -53,7 +54,7 @@ public class MenuController {
 	
 	@DeleteMapping(value="{id}")
 	public ResponseEntity<Void> deleteMenuItem(@PathVariable("id") int id) {
-		ms.deleteMenuItem(ms.getMenuItemById(id));
+		ms.addMenuItem(ms.getMenuItemById(id)); //changed to delete because I don't think we need to delete menu items
 		return ResponseEntity.noContent().build();
 	}
 
