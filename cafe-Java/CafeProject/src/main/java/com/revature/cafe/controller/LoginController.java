@@ -1,5 +1,7 @@
 package com.revature.cafe.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,17 +40,18 @@ public class LoginController {
 	}
 
 	
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> custLogin(@RequestBody User user) {
+	@PostMapping(path = "/login")
+	public ResponseEntity<User> custLogin(@RequestBody User user, HttpSession session) {
 		log.trace(user);
 		User u = new User();
 		
 		u = ls.getUser(user);
 		
-		if (u != null)
-			return ResponseEntity.ok("Success");
+		if (u != null) {
+			session.setAttribute("logged", u);
+		return ResponseEntity.ok(u);}
 		else
-			return ResponseEntity.ok("Failure");
+			return ResponseEntity.notFound().build();
 	}
 
 }
