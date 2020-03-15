@@ -40,9 +40,7 @@ export class CustSignUpComponent implements OnInit {
  }
 
   closeModal() {
-    this.loggedUser = this.loginService.getLoggedInUser();
-    console.log('did this work?');
-    console.log(this.loggedUser);
+ 
     this.dialogRef.close();
   }
 
