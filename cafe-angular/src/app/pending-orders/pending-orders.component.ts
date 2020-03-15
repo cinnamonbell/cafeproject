@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../order.service';
 import { Order } from '../order';
-import { UrlService } from '../url.service';
 
 @Component({
   selector: 'app-pending-orders',

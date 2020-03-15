@@ -15,7 +15,7 @@ import { User } from '../user';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  public cust = null;
+  public cust: Customer = null;
   public user: User;
   constructor(public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService) {
 
@@ -23,7 +23,7 @@ export class NavBarComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null});
+    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
     console.log(this.user);
   }
 
@@ -36,7 +36,7 @@ export class NavBarComponent implements OnInit {
     dialogConfig.height = "500px";
     dialogConfig.width = "600px";
     // https://material.angular.io/components/dialog/overview
-    const modalDialog = this.matDialog.open(CustSignUpComponent, dialogConfig);
+    this.matDialog.open(CustSignUpComponent, dialogConfig);
   }
 
   openLoginModal() {
@@ -47,7 +47,7 @@ export class NavBarComponent implements OnInit {
     dialogConfig.height = "500px";
     dialogConfig.width = "600px";
     // https://material.angular.io/components/dialog/overview
-    const modalDialog = this.matDialog.open(LoginComponent, dialogConfig);
+    this.matDialog.open(LoginComponent, dialogConfig);
   }
 
 }

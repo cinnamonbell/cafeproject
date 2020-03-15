@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LoginService } from '../login.service';
 import { Customer } from '../customer';
 import { User } from '../user';
 import { ViewRewardsService } from 'src/app/view-rewards.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
