@@ -39,8 +39,8 @@ create sequence user_seq NOCACHE start with 2;
 
 create table user_t(
 user_id number(5) primary key,
-cust_id number(5),
-emp_id number(5),
+cust_id number(5) unique,
+emp_id number(5) unique,
 user_name varchar2(50) unique,
 user_pass varchar2(50) not null,
 CONSTRAINT fk_uCustId FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id),
