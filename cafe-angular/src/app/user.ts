@@ -5,6 +5,6 @@ export class User {
     id: number;
     customer:Customer;
     employee:Employee;
-    username: String;
-    password: String;
+    username: string;
+    password: string;
 }

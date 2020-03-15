@@ -4,7 +4,6 @@ import { MenuItem } from './menu-item';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
-import {map } from 'rxjs/operators';
 
 
 @Injectable({
