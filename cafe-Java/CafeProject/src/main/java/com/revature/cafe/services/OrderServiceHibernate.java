@@ -1,5 +1,6 @@
 package com.revature.cafe.services;
 
+import com.revature.cafe.beans.Customer;
 import com.revature.cafe.beans.Order;
 import com.revature.cafe.data.OrdersDAO;
 import java.util.List;
@@ -19,5 +20,11 @@ public class OrderServiceHibernate implements OrderService{
     public List<Order> getPendingOrders(){
         return ordersDao.getPendingOrders();
     }
+
+	@Override
+	public List<Order> getCustOrders(Customer cust) {
+		
+		return ordersDao.viewCustOrders(cust);
+	}
     
 }

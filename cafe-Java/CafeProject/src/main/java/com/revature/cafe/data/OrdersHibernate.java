@@ -1,5 +1,7 @@
 package com.revature.cafe.data;
 
+import com.revature.cafe.beans.Customer;
+import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.beans.Order;
 import com.revature.cafe.beans.Order.OrderStatus;
 import com.revature.cafe.beans.Order_;
@@ -15,11 +17,12 @@ import org.hibernate.query.Query;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class OrdersHibernate implements OrdersDAO {
 
     private static HibernateUtil hibernate = HibernateUtil.getInstance();
     private static Logger log = Logger.getLogger(OrdersHibernate.class);
+	private HibernateUtil hu = HibernateUtil.getInstance();
     
     @Override
     public List<Order> getPendingOrders() {
@@ -37,5 +40,16 @@ public class OrdersHibernate implements OrdersDAO {
         session.close();
         return list;
     }
+
+	@Override
+	public List<Order> viewCustOrders(Customer cust) {
+		Session s = hu.getSession();
+		int id = cust.getId();
+		String query = "FROM Order o where o.customer.id = " + id + " ORDER BY o.orderTime";
+		Query<Order> q = s.createQuery(query, Order.class);
+		List<Order> custOrderList = q.getResultList();
+		s.close();
+		return custOrderList;
+	}
 
 }
