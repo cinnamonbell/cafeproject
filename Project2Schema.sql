@@ -39,8 +39,8 @@ create sequence user_seq NOCACHE start with 2;
 
 create table user_t(
 user_id number(5) primary key,
-cust_id number(5),
-emp_id number(5),
+cust_id number(5) unique,
+emp_id number(5) unique,
 user_name varchar2(50) unique,
 user_pass varchar2(50) not null,
 CONSTRAINT fk_uCustId FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id),
@@ -145,6 +145,10 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (3, 2, 11,
 insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 1);
 commit;
 
+<<<<<<< HEAD
 
 select * from orders;
 select * from user_t;
+=======
+select * from orders;
+>>>>>>> a9a557b39cc11cd1e2e275be41b77cb8746fb294

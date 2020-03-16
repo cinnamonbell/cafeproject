@@ -25,8 +25,6 @@ import antlr.collections.List;
 @CrossOrigin(origins="http://localhost:4200")
 public class MenuController {
 
-	//@Autowired
-
 
 	private Logger log = Logger.getLogger(MenuController.class);
 	

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from './user';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/internal/operators/catchError';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
@@ -11,12 +10,12 @@ import { map } from 'rxjs/internal/operators/map';
 })
 export class LoginService {
 
-  public loggedUser:User = null;
+  private loggedUser = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient, private url: UrlService) { }
 
-  getLoggedInUser(): User{
-    return this.loggedUser;
+  getLoggedInUser(): Observable<User>{
+    return this.loggedUser.asObservable();
   }
 
   login(data: User): Observable<any> {
@@ -25,22 +24,10 @@ export class LoginService {
       map(resp => 
         { const user: User = resp as User; 
           if(user){
-            this.loggedUser = user;
+            this.loggedUser.next(user);
           }
-          return this.loggedUser;
         }
       ));
   }
-
-  makingUser(): User {
-    let user: User = new User();
-    user.id = 1;
-    user.customer = null;
-    user.employee = null;
-    user.username = "username";
-    user.password = "password";
-    return user;
-  }
-
-
+  
 }
