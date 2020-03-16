@@ -1,4 +1,9 @@
 .DJAMHeader {
     font-size: 20pt;
     text-align:center;
+    width: 100%;
+}
+
+table {
+    width: 35%;
 }
