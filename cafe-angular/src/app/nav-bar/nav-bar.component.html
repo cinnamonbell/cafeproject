@@ -7,16 +7,12 @@
     <a class="active" href="#home">Home</a>
     <a href="#news">News</a>
     <a href="#contact">Contact</a>
-    <button mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
-    <button mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
-    <div id=divStar style.display='none'>
+    <button *ngIf="user == null" mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
+    <button *ngIf="user == null"mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
+    <div *ngIf="cust != null" id=divStar style.display='none'>
         <p id="emptyStar">
             {{cust.first + " " + cust.last}}
-            <i class="fa fa-star" [ngStyle]="{'color':cust.stars >= 1 ? 'yellow' : 'white'}"></i>
-            <i class="fa fa-star" [ngStyle]="{'color':cust.stars >= 2 ? 'yellow' : 'white'}"></i>
-            <i class="fa fa-star" [ngStyle]="{'color':cust.stars >= 3 ? 'yellow' : 'white'}"></i>
-            <i class="fa fa-star" [ngStyle]="{'color':cust.stars >= 4 ? 'yellow' : 'white'}"></i>
-            <i class="fa fa-star" [ngStyle]="{'color':cust.stars >= 5 ? 'yellow' : 'white'}"></i>
+            <i class="fa fa-star" *ngFor="let j of [1,2,3,4,5]" [ngStyle]="{'color':cust.stars >= j ? 'yellow' : 'white'}"></i>          
         </p>
     </div>
 </div>

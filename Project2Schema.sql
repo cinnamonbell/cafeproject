@@ -19,7 +19,7 @@ drop sequence rev_seq;
 
 --cust id references customer table
 --emp id references employee table
-create sequence cust_seq NOCACHE;
+create sequence cust_seq NOCACHE start with 2;
 
 create table cust_t(
 cust_id number(5) primary key,
@@ -39,8 +39,8 @@ create sequence user_seq NOCACHE start with 2;
 
 create table user_t(
 user_id number(5) primary key,
-cust_id number(5),
-emp_id number(5),
+cust_id number(5) unique,
+emp_id number(5) unique,
 user_name varchar2(50) unique,
 user_pass varchar2(50) not null,
 CONSTRAINT fk_uCustId FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id),
@@ -108,8 +108,8 @@ CONSTRAINT unique_menu_item UNIQUE (order_id, menu_item)
 
 
 --order_id references orders
-insert into employee_t (emp_id, emp_first, emp_last) values (1, 'david', 'youn');
-insert into user_t (user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'dav', 'pass');
+--insert into employee_t (emp_id, emp_first, emp_last) values (1, 'david', 'youn');
+--insert into user_t (user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'dav', 'pass');
 select * from user_t;
 
 

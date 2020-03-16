@@ -15,6 +15,7 @@ import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
 import org.springframework.stereotype.Repository;
 
+@Repository
 public class CustomerHibernate implements CustomerDAO {
         
 	private HibernateUtil hu = HibernateUtil.getInstance();

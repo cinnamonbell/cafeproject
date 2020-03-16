@@ -4,11 +4,13 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 import com.revature.cafe.beans.User;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
 
+@Repository
 public class UserHibernate implements UserDAO{
 	private HibernateUtil hu = HibernateUtil.getInstance();
 	@Override

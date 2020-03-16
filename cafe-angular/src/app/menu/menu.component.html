@@ -1,9 +1,8 @@
 <img src="/assets/header2.jpg" alt="Header"/>
-<span><h1>Menu</h1>
+<h1>Menu</h1>
 <table>
     <thead class = menuT>
         <tr>
-            <td>Menu ID</td>
             <td>Menu Item</td>
             <td>Quantity</td>
             <td>Price</td>
@@ -13,13 +12,11 @@
     </thead>
     <tbody class = menuI>
         <tr *ngFor="let m of menuItemList">
-            <td>{{m.id}}</td>
             <td>{{m.name}}</td>
             <td>{{m.quantity}}</td>
-            <td>${{m.price}}</td>
+            <td>{{m.price | currency }}</td>
             <td><button type="button" class="btn btn-info btn-sm">Add to Order</button></td>
             <!--<td><button type="button" class="btn btn-info btn-sm"> + </button></td> should only be seen by the manager-->
         </tr>
     </tbody>
 </table>
-</span>
