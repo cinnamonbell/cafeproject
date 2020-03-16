@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LoginService } from '../login.service';
 import { Customer } from '../customer';
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   onClickSubmit(data) {
     console.log('username ' + data.username);
     console.log('password ' + data.password);
@@ -33,9 +34,8 @@ export class LoginComponent implements OnInit {
     if (this.loggedUser != null) {
       this.cust = this.loggedUser.customer;
       console.log("in rewards " + this.cust)
-      this.cust = this.viewRewards.getCustRewards();
+      
     }
-    console.log("yoyo");
     
     this.closeModal();
  }

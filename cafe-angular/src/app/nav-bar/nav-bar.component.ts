@@ -23,12 +23,7 @@ export class NavBarComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.user = this.loginService.getLoggedInUser();
-    if (this.user != null) {
-      this.cust = this.user.customer;
-      console.log("in rewards " + this.cust)
-      //this.cust = this.viewRewards.getCustRewards();
-    }
+
   }
 
 
@@ -52,6 +47,10 @@ export class NavBarComponent implements OnInit {
     dialogConfig.width = "600px";
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(LoginComponent, dialogConfig);
+    this.user = this.loginService.getLoggedInUser();
+    this.cust = this.user;
+    console.log('did this work?');
+    console.log(this.user);
   }
 
 }

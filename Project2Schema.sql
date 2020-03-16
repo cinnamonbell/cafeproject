@@ -145,4 +145,6 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (3, 2, 11,
 insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 1);
 commit;
 
+
 select * from orders;
+select * from user_t;
