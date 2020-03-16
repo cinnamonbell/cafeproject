@@ -13,6 +13,10 @@ export class OrderService {
 
   constructor(private http:HttpClient, private url:UrlService) { }
 
+createOrder(){
+  
+}
+
   getPendingOrders(): Observable<Array<Order>>{
     let orderArray:Array<Order> = [];
     return this.http.get<Order[]>(this.url.getPendingOrdersUrl(), {headers: this.url.getHeader()}).pipe();

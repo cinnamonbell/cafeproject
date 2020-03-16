@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { MenuItem } from '../menu-item';
+import { OrderItem } from '../order-item';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +14,8 @@ import { MenuItem } from '../menu-item';
 export class MenuComponent implements OnInit {
 
   public menuItemList: MenuItem[];
-
-  constructor(private menuService: MenuService) {
+  public currentMenu: MenuItem[] = [];
+  constructor(private menuService: MenuService, private orderService:OrderService) {
     //this.menuItem = MenuService.getMenuItems();
     menuService.getMenuItems().subscribe((resp:Array<MenuItem>) => {
       this.menuItemList = resp;
@@ -26,4 +28,20 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addToOrder(menu:MenuItem){
+    console.log(this.currentMenu);
+    console.log(menu);
+    this.currentMenu.push(menu);
+    console.log(this.currentMenu);
+  }
+  removeFromOrder(menu:MenuItem){
+    let index:number = this.currentMenu.indexOf(menu);
+    this.currentMenu.splice(index,1);
+    console.log(this.currentMenu);
+  }
+
+  submitOrder(){
+    
+
+  }
 }

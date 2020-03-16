@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-=======
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
->>>>>>> a9a557b39cc11cd1e2e275be41b77cb8746fb294
 import { MatDialogRef } from '@angular/material/dialog';
 import { LoginService } from '../login.service';
 import { Customer } from '../customer';
@@ -27,14 +23,10 @@ export class LoginComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-<<<<<<< HEAD
-
-=======
   ngOnChanges(changes: SimpleChanges):void{
     console.log(changes.cust);
     console.log("What up what up" + this.cust);
   }
->>>>>>> a9a557b39cc11cd1e2e275be41b77cb8746fb294
   onClickSubmit(data) {
     console.log('username ' + data.username);
     console.log('password ' + data.password);
@@ -45,15 +37,7 @@ export class LoginComponent implements OnInit, OnChanges {
 
     this.loginService.login(user).subscribe();
     
-<<<<<<< HEAD
-    if (this.loggedUser != null) {
-      this.cust = this.loggedUser.customer;
-      console.log("in rewards " + this.cust)
-      
-    }
-=======
     console.log("yoyo");
->>>>>>> a9a557b39cc11cd1e2e275be41b77cb8746fb294
     
     this.closeModal();
  }

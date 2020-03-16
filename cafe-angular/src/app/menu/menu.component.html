@@ -14,7 +14,25 @@
             <td>{{m.name}}</td>
             <td>{{m.quantity}}</td>
             <td>{{m.price | currency }}</td>
-            <td><button type="button" class="btn btn-info btn-sm">Add to Order</button></td>
+            <td><button type="button" class="btn btn-info btn-sm" (click)="addToOrder(m)">Add to Order</button></td>
         </tr>
     </tbody>
+</table>
+<br>
+<table>
+    <thead class = menuT>
+        <tr>
+            <td>Menu Item</td>
+            <td>Price</td>
+            <td>Remove</td>
+        </tr>
+    </thead>
+    <tbody class = menuI>
+        <tr *ngFor="let m of currentMenu">
+            <td>{{m.name}}</td>
+            <td>{{m.price | currency }}</td>
+            <td><button type="button" class="btn btn-info btn-sm" id = "removebutton" (click)="removeFromOrder(m)">Remove</button></td>
+        </tr>
+    </tbody>
+    <input class='btn btn-success' type="submit" value="Submit Order" (click)="submitOrder()">
 </table>
