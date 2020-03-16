@@ -19,7 +19,7 @@ drop sequence rev_seq;
 
 --cust id references customer table
 --emp id references employee table
-create sequence cust_seq NOCACHE start with 2;
+create sequence cust_seq start with 2 NOCACHE;
 
 create table cust_t(
 cust_id number(5) primary key,
@@ -27,7 +27,7 @@ cust_first varchar2(50),
 cust_last varchar2(50),
 reward_stars number(5)
 );
-create sequence emp_seq NOCACHE start with 2;
+create sequence emp_seq start with 2 NOCACHE;
 
 create table employee_t(
 emp_id number(5) primary key,
@@ -35,7 +35,7 @@ emp_first varchar2(50),
 emp_last varchar2(50)
 
 );
-create sequence user_seq NOCACHE start with 2;
+create sequence user_seq start with 2 NOCACHE;
 
 create table user_t(
 user_id number(5) primary key,
@@ -64,7 +64,7 @@ good_rating varchar2(100),
 comments varchar2(500)
 );
 
-create sequence ord_seq NOCACHE start with 3;
+create sequence ord_seq start with 3 NOCACHE;
 
 create table orders(
 order_id number(5) primary key,
@@ -84,7 +84,7 @@ CONSTRAINT fk_cust_id FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id)
 
 --cust_id references customer
 --status references order_status table
-create sequence menu_seq NOCACHE start with 14;
+create sequence menu_seq start with 14 NOCACHE;
 
 create table menu(
 menu_id number primary key,
@@ -93,7 +93,7 @@ item_price decimal(10,2),
 inventory number(10,0) check (inventory > 0)
 );
 
-create sequence ordI_seq NOCACHE start with 5;
+create sequence ordI_seq start with 5 NOCACHE;
 
 create table order_item(
 item_id number(5) primary key,
@@ -110,7 +110,7 @@ CONSTRAINT unique_menu_item UNIQUE (order_id, menu_item)
 --order_id references orders
 --insert into employee_t (emp_id, emp_first, emp_last) values (1, 'david', 'youn');
 --insert into user_t (user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'dav', 'pass');
-select * from user_t;
+
 
 
 --inserting menu items into menu table
@@ -146,3 +146,5 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 
 commit;
 
 select * from orders;
+select * from cust_t;
+select * from user_t;

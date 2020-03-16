@@ -19,25 +19,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping(value = "/customer")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class CustomerController {
-	
+
 	@Autowired
 	private CustomerService cs;
 	@Autowired
 	private UserService us;
 	private Logger log = Logger.getLogger(CustomerController.class);
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> cust(@RequestBody User user) {
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) // , produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<User> cust(@RequestBody User user) {
 
 		log.trace("user? " + user);
 
-
 		log.trace("customer: " + user.getCustomer());
-
-		cs.addCustomer(user.getCustomer());
-		us.addUser(user);
-
-		return ResponseEntity.ok("Success");
+		try {
+			cs.addCustomer(user.getCustomer());
+			us.addUser(user);
+			return ResponseEntity.ok(user);
+		} catch (RuntimeException e) {
+			log.trace(e);
+			return ResponseEntity.ok(null);
+		}
 	}
 
 }
