@@ -16,14 +16,12 @@ export class UrlService {
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/pending";
   }
   getLoginUrl(): string{
-    console.log(this.urlMap.baseServerUrl+this.urlMap.loginUrl);
     return this.urlMap.baseServerUrl+this.urlMap.loginUrl;
   }
   getMenuUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.menuUrl;
   }
   getSignUpUrl(): string{
-      console.log('url: ' + this.urlMap.baseServerUrl+this.urlMap.signUp);
     return this.urlMap.baseServerUrl+this.urlMap.signUp;
   }
 
@@ -31,4 +29,9 @@ export class UrlService {
     let headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
     return headers;
   }
+
+  getCustOrder(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.custOrder;
+  }
+
 }

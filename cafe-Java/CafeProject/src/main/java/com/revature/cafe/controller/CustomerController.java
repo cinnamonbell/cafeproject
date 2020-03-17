@@ -1,6 +1,10 @@
 package com.revature.cafe.controller;
 
+import com.revature.cafe.beans.Customer;
+import com.revature.cafe.beans.Order;
 import com.revature.cafe.beans.User;
+
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +29,15 @@ public class CustomerController {
 	@Autowired
 	private UserService us;
 	private Logger log = Logger.getLogger(CustomerController.class);
+
+	@PostMapping(value = "/orders")
+	public ResponseEntity<List<Order>> custOrders(@RequestBody Customer cust) {
+		log.trace("we in customer?");
+		log.trace(cust);
+		
+		return ResponseEntity.ok(null);
+		
+	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) // , produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<User> cust(@RequestBody User user) {

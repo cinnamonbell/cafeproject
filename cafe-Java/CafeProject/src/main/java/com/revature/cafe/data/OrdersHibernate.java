@@ -17,29 +17,29 @@ import org.hibernate.query.Query;
 
 import org.springframework.stereotype.Repository;
 
-//@Repository
+@Repository
 public class OrdersHibernate implements OrdersDAO {
 
-    private static HibernateUtil hibernate = HibernateUtil.getInstance();
-    private static Logger log = Logger.getLogger(OrdersHibernate.class);
+	private static HibernateUtil hibernate = HibernateUtil.getInstance();
+	private static Logger log = Logger.getLogger(OrdersHibernate.class);
 	private HibernateUtil hu = HibernateUtil.getInstance();
-    
-    @Override
-    public List<Order> getPendingOrders() {
-        List<Order> list;
-        Session session = hibernate.getSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Order> c = builder.createQuery(Order.class);
-        Root<Order> root = c.from(Order.class);
-        c.select(root).where(builder.in(root.get(Order_.status))
-                .value(OrderStatus.PENDING).value(OrderStatus.READY));
-        Query<Order> query = session.createQuery(c);
-        list = query.getResultList();
-        for ( Order o : list ) log.trace(o.toString());
-        Hibernate.initialize(list);
-        session.close();
-        return list;
-    }
+
+	@Override
+	public List<Order> getPendingOrders() {
+		List<Order> list;
+		Session session = hibernate.getSession();
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Order> c = builder.createQuery(Order.class);
+		Root<Order> root = c.from(Order.class);
+		c.select(root).where(builder.in(root.get(Order_.status)).value(OrderStatus.PENDING).value(OrderStatus.READY));
+		Query<Order> query = session.createQuery(c);
+		list = query.getResultList();
+		for (Order o : list)
+			log.trace(o.toString());
+		Hibernate.initialize(list);
+		session.close();
+		return list;
+	}
 
 	@Override
 	public List<Order> viewCustOrders(Customer cust) {

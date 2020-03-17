@@ -132,6 +132,7 @@ insert into menu(menu_id, item_name, item_price, inventory) values(13,'Fruit Cup
 insert into cust_t(cust_id, cust_first, cust_last, reward_stars)
     values (1, 'Leeroy', 'Jenkins', 2);
 
+
 insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
 	values (1, 1, null, 7.75, 'READY', null, TO_TIMESTAMP('2020/02/18 14:39:16', 'YYYY/MM/DD HH24:MI:SS'),
 		TO_TIMESTAMP('2020/02/18 14:41:57', 'YYYY/MM/DD HH24:MI:SS'));
@@ -139,7 +140,7 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (1, 1, 4, 
 insert into order_item(item_id, order_id, menu_item, quantity) values (2, 1, 10, 1);
 		
 insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
-	values (2, 1, null, 5.50, 'PENDING', null, TO_TIMESTAMP('2020/02/18 14:50:22', 'YYYY/MM/DD HH24:MI:SS'),
+	values (2, 1, null, 5.50, 'PENDING', null, TO_TIMESTAMP('2020/02/18 14:25:22', 'YYYY/MM/DD HH24:MI:SS'),
 		TO_TIMESTAMP('2020/02/18 14:54:36', 'YYYY/MM/DD HH24:MI:SS'));
 insert into order_item(item_id, order_id, menu_item, quantity) values (3, 2, 11, 2);
 insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 1);
