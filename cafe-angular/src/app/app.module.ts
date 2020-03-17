@@ -14,6 +14,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderUpdateComponent } from './order-update/order-update.component';
+import { OrderStatusPipe } from './order-status.pipe';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     ViewRewardsComponent,
     CustSignUpComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    OrderUpdateComponent,
+    OrderStatusPipe
 
   ],
   imports: [
