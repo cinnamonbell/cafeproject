@@ -19,5 +19,12 @@ public class OrderServiceHibernate implements OrderService{
     public List<Order> getPendingOrders(){
         return ordersDao.getPendingOrders();
     }
+
+    @Override
+    public Order updateOrder(Order order) {
+        return ordersDao.updateOrder(order);
+    }
+    
+    
     
 }

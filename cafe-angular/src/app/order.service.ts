@@ -19,7 +19,7 @@ export class OrderService {
   }
 
   updateOrder(order: Order): Observable<Order>{
-    return this.http.put<Order>(this.url.getUpdateOrderUrl(order.id), 
-    {headers: this.url.getHeader}).pipe();
+    return this.http.put<Order>(this.url.getUpdateOrderUrl(order.id), order, 
+    {headers: this.url.getHeader() }).pipe();
   }
 }

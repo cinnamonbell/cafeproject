@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface OrderService {
     List<Order> getPendingOrders();
+    Order updateOrder(Order order);
 }

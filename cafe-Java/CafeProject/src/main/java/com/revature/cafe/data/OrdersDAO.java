@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface OrdersDAO {
     List<Order> getPendingOrders();
+    Order updateOrder(Order order);
 }
