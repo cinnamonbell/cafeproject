@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/login.service';
 import { Customer } from 'src/app/customer';
 import { OrderService } from 'src/app/order.service';
 import { Order } from 'src/app/order';
+import { ReviewService } from 'src/app/review.service';
 
 @Component({
   selector: 'app-customer-orders',
@@ -16,7 +17,7 @@ export class CustomerOrdersComponent implements OnInit {
   public cust: Customer = new Customer();
   public ordersList: Order[];
 
-  constructor(public loginService: LoginService, private orderService: OrderService) { }
+  constructor(public loginService: LoginService, private orderService: OrderService, private reviewService:ReviewService) { }
 
   ngOnInit(): void {
   }
@@ -34,8 +35,19 @@ export class CustomerOrdersComponent implements OnInit {
   }
 
   reviewItem(order:Order){
-    console.log(order.)
+    console.log(order.id);
 
+
+  }
+
+  rateGood(order:Order){
+    console.log('good rating');
+    console.log(order.id);
+  }
+  
+  rateBad(order:Order){
+    console.log('bad rating');
+    console.log(order.id);
   }
 
 }

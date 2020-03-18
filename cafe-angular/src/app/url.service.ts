@@ -37,4 +37,16 @@ export class UrlService {
     return this.urlMap.baseServerUrl+this.urlMap.custOrder;
   }
 
+  getGoodReview(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.review+'/good';
+  }
+
+  getBadReview(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.review+'/bad';
+  }
+
+  getCommentReview(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.review+'/comment';
+  }
+
 }

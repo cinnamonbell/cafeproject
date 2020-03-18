@@ -1,4 +1,9 @@
-<p>customer-orders works!</p>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+
+</head>
+
 <button mat-raised-button id="logout-button" (click)="viewCustOrders()">View Orders</button>
 
 <table class="table">
@@ -20,10 +25,20 @@
             <td>{{o.orderTime.toString() | date:'short'}}</td>
             <td>{{o.price | currency}}</td>
             <td>{{ (o.address != null) ? o.address.address : "No Delivery"}}</td>
-            <td><table class="table-condensed"><tr *ngFor="let i of o.orderItems"><td>{{i.menuItem.name+" x "+i.quantity}}</td></tr></table></td>
-            <td>{{o.status}}</td>
+            <td>
+                <table class="table-condensed">
+                    <tr *ngFor="let i of o.orderItems">
+                        <td>{{i.menuItem.name+" x "+i.quantity}}</td>
+                    </tr>
+                </table>
+            </td>
+            <td>{{o.status | ostatus}}</td>
             <td>{{o.lastActionTime.toString()| date:'short'}}</td>
-            <td><button type="button" class="btn btn-info btn-lg" (click)="reviewItem(o)">Comment</button></td>
+            <td><i type="button" class="fa fa-heart fa-2x" style="color:rgb(0, 129, 22);"  (click)="rateGood(o)"></i></td>
+            <td><i type="button" class="fa fa-thumbs-down fa-2x"  style="color:rgb(153, 0, 0);" aria-hidden="true" (click)="rateBad(o)"></i></td>
+            <td>
+                <button type="button" class="btn btn-info btn-lg" (click)="reviewItem(o)">Comment</button>
+            </td>
         </tr>
 
     </tbody>

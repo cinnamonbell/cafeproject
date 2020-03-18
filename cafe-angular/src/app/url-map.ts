@@ -5,5 +5,6 @@ export class UrlMap {
     readonly signUp: string = "customer";
     readonly menuUrl:string = "menu";
     readonly custOrder:string = 'customer/orders';
+    readonly review:string = 'review';
 
 }
