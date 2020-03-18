@@ -34,7 +34,8 @@ export class CustomerOrdersComponent implements OnInit {
   }
 
   reviewItem(order:Order){
-    
+    console.log(order.)
+
   }
 
 }

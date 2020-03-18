@@ -5,6 +5,7 @@ import {Customer} from './customer';
 import {Address} from './address';
 
 export class Order {
+    id: number;
     customer: Customer;
     price: number;
     status: OrderStatus;

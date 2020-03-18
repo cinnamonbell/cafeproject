@@ -15,6 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
+import { OrderUpdateComponent } from './order-update/order-update.component';
+import { OrderStatusPipe } from './order-status.pipe';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { CustomerOrdersComponent } from './customer-orders/customer-orders.compo
     CustSignUpComponent,
     NavBarComponent,
     LoginComponent,
-    CustomerOrdersComponent
+    CustomerOrdersComponent,
+    OrderUpdateComponent,
+    OrderStatusPipe
 
   ],
   imports: [

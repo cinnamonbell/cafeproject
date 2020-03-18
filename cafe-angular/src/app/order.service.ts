@@ -25,4 +25,9 @@ export class OrderService {
     console.log(cust);
     return this.http.post<Order[]>(this.url.getCustOrder(), cust, { headers: this.url.getHeader() }).pipe();
   }
+
+  updateOrder(order: Order): Observable<Order>{
+    return this.http.put<Order>(this.url.getUpdateOrderUrl(order.id), 
+    {headers: this.url.getHeader}).pipe();
+  }
 }
