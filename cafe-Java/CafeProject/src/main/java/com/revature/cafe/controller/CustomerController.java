@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.cafe.services.CustomerService;
+import com.revature.cafe.services.OrderService;
 import com.revature.cafe.services.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class CustomerController {
 
 	@Autowired
+	private OrderService os;
+	@Autowired
 	private CustomerService cs;
 	@Autowired
 	private UserService us;
@@ -34,9 +37,15 @@ public class CustomerController {
 	public ResponseEntity<List<Order>> custOrders(@RequestBody Customer cust) {
 		log.trace("we in customer?");
 		log.trace(cust);
+		List<Order> ol = os.getCustOrders(cust);
+		//log.trace(ol.toString());
 		
-		return ResponseEntity.ok(null);
-		
+
+		if (ol != null)
+			return ResponseEntity.ok(ol);
+		else
+			return ResponseEntity.notFound().build();
+
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) // , produces = MediaType.TEXT_PLAIN_VALUE)
