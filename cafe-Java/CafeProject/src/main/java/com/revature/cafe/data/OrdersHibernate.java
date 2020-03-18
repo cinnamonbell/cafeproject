@@ -5,6 +5,8 @@ import com.revature.cafe.beans.Order.OrderStatus;
 import com.revature.cafe.beans.Order_;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -44,6 +46,7 @@ public class OrdersHibernate implements OrdersDAO {
     @Override
     public Order updateOrder(Order order) {
 		Session session = hibernate.getSession();
+                  order.setLastActionTime(Timestamp.valueOf(LocalDateTime.now()));
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
