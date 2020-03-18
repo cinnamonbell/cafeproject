@@ -32,19 +32,23 @@ public class LoginController {
 
 		return ResponseEntity.ok("Success");
 	}
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+
+
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)//, produces = MediaType.TEXT_PLAIN_VALUE)
+
+
+
 	public ResponseEntity<User> custLogin(@RequestBody User user, HttpSession session) {
 		log.trace(user);
 		User u = ls.getUser(user);
-//		log.trace("user: " + u.getUsername());
-//		log.trace("pass: " + u.getPassword());
-		
+
 		if (u != null) {
 			session.setAttribute("loggedUser", u);
 			return ResponseEntity.ok(u);
 			
 		} else
 			return ResponseEntity.status(401).build();
+
 	}
 
 }
