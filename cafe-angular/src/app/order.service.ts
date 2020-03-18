@@ -17,4 +17,9 @@ export class OrderService {
     let orderArray:Array<Order> = [];
     return this.http.get<Order[]>(this.url.getPendingOrdersUrl(), {headers: this.url.getHeader()}).pipe();
   }
+
+  updateOrder(order: Order): Observable<Order>{
+    return this.http.put<Order>(this.url.getUpdateOrderUrl(order.id), 
+    {headers: this.url.getHeader}).pipe();
+  }
 }
