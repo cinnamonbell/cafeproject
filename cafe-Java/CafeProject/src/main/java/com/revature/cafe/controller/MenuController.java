@@ -1,5 +1,4 @@
 package com.revature.cafe.controller;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -18,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.services.MenuService;
 
-import antlr.collections.List;
 
 @RestController
 @RequestMapping(path="/menu")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 public class MenuController {
 
 

@@ -1,5 +1,6 @@
 package com.revature.cafe.controller;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -19,10 +20,11 @@ import com.revature.cafe.services.LoginService;
 
 @RestController
 @RequestMapping(value = "/login")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LoginController {
 	@Autowired
 	private LoginService ls;
+        
 	private Logger log = Logger.getLogger(LoginController.class);
 
 	@GetMapping
@@ -34,18 +36,23 @@ public class LoginController {
 	}
 
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)//, produces = MediaType.TEXT_PLAIN_VALUE)
+//	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)//, produces = MediaType.TEXT_PLAIN_VALUE)
+//
+//
+//
+//	public ResponseEntity<User> custLogin(@RequestBody User user, HttpSession session) {
+//		log.trace(user);
+//		User u = ls.getUser(user);}
+//
 
-
-
-	public ResponseEntity<User> custLogin(@RequestBody User user, HttpSession session) {
-		log.trace(user);
+        
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<User> custLogin(@RequestBody User user) {
 		User u = ls.getUser(user);
+		
 
 		if (u != null) {
-			session.setAttribute("loggedUser", u);
-			return ResponseEntity.ok(u);
-			
+			return ResponseEntity.ok(u);			
 		} else
 			return ResponseEntity.status(401).build();
 

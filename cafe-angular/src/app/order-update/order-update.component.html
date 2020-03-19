@@ -1,0 +1,36 @@
+<h2>Order by {{order.customer == null ? "guest" : order.customer.first+" "+order.customer.last}}</h2>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td>Order Time: </td>
+            <td>{{order.orderTime.toString() | date:'medium'}}</td>
+        </tr>
+        <tr>
+            <td [style]="order.address != null ? 'color:red' : 'color:green'"><strong>{{order.address != null ? "Deliver to " : "Pick-up"}}</strong></td>
+            <td>{{(order.address != null ? order.address.address + ", " + order.address.city + ", " + order.address.state + " " + order.address.zipCode : "")}}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Order Details:</strong></td>
+        </tr>
+        <tr *ngFor="let itm of order.orderItems">
+            <td>{{itm.menuItem.name + " x " + itm.quantity}}</td>
+            <td>{{(itm.menuItem.price * itm.quantity) | currency}}</td>
+        </tr>
+        <tr>
+            <td><strong>Total: </strong></td>
+            <td><strong>{{order.price | currency}}</strong></td>
+        </tr>
+        <tr>
+            <td>{{(order.status | ostatus) + " since "}}</td>
+            <td>{{order.lastActionTime | date:'medium'}}</td>
+        </tr>
+    </tbody>
+</table>
+<div class="button-container">
+    <span class="button-row">
+        <button type="button" class="btn btn-secondary btn-lg" (click)="closeComponent()">Return without updating</button>
+        <button type="button" class="btn btn-primary btn-lg" (click)="updateOrder()">Update to {{nextStage | lowercase }}</button>
+    </span>
+</div>
+<div class="request-status" [style]="badAction ? 'color:red' : 'color:green'"><p style="white-space: pre-line">{{comStatus}}</p></div>

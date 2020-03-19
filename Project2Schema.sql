@@ -19,7 +19,7 @@ drop sequence rev_seq;
 
 --cust id references customer table
 --emp id references employee table
-create sequence cust_seq NOCACHE start with 2;
+create sequence cust_seq start with 2 NOCACHE;
 
 create table cust_t(
 cust_id number(5) primary key,
@@ -27,7 +27,7 @@ cust_first varchar2(50),
 cust_last varchar2(50),
 reward_stars number(5)
 );
-create sequence emp_seq NOCACHE start with 2;
+create sequence emp_seq start with 2 NOCACHE;
 
 create table employee_t(
 emp_id number(5) primary key,
@@ -35,7 +35,7 @@ emp_first varchar2(50),
 emp_last varchar2(50)
 
 );
-create sequence user_seq NOCACHE start with 2;
+create sequence user_seq start with 2 NOCACHE;
 
 create table user_t(
 user_id number(5) primary key,
@@ -60,11 +60,11 @@ zipcode varchar2(100) not null
 create sequence rev_seq NOCACHE;
 create table review(
 review_id number(5) primary key,
-good_rating varchar2(100),
+good_rating varchar2(100), --true = good false = bad
 comments varchar2(500)
 );
 
-create sequence ord_seq NOCACHE start with 3;
+create sequence ord_seq start with 3 NOCACHE;
 
 create table orders(
 order_id number(5) primary key,
@@ -84,7 +84,7 @@ CONSTRAINT fk_cust_id FOREIGN KEY (cust_id) REFERENCES cust_t(cust_id)
 
 --cust_id references customer
 --status references order_status table
-create sequence menu_seq NOCACHE start with 14;
+create sequence menu_seq start with 14 NOCACHE;
 
 create table menu(
 menu_id number primary key,
@@ -93,7 +93,7 @@ item_price decimal(10,2),
 inventory number(10,0) check (inventory > 0)
 );
 
-create sequence ordI_seq NOCACHE start with 5;
+create sequence ordI_seq start with 5 NOCACHE;
 
 create table order_item(
 item_id number(5) primary key,
@@ -110,7 +110,7 @@ CONSTRAINT unique_menu_item UNIQUE (order_id, menu_item)
 --order_id references orders
 --insert into employee_t (emp_id, emp_first, emp_last) values (1, 'david', 'youn');
 --insert into user_t (user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'dav', 'pass');
-select * from user_t;
+
 
 
 --inserting menu items into menu table
@@ -132,6 +132,7 @@ insert into menu(menu_id, item_name, item_price, inventory) values(13,'Fruit Cup
 insert into cust_t(cust_id, cust_first, cust_last, reward_stars)
     values (1, 'Leeroy', 'Jenkins', 2);
 
+
 insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
 	values (1, 1, null, 7.75, 'READY', null, TO_TIMESTAMP('2020/02/18 14:39:16', 'YYYY/MM/DD HH24:MI:SS'),
 		TO_TIMESTAMP('2020/02/18 14:41:57', 'YYYY/MM/DD HH24:MI:SS'));
@@ -139,12 +140,28 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (1, 1, 4, 
 insert into order_item(item_id, order_id, menu_item, quantity) values (2, 1, 10, 1);
 		
 insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
-	values (2, 1, null, 5.50, 'PENDING', null, TO_TIMESTAMP('2020/02/18 14:50:22', 'YYYY/MM/DD HH24:MI:SS'),
+	values (2, 1, null, 5.50, 'PENDING', null, TO_TIMESTAMP('2020/02/18 14:25:22', 'YYYY/MM/DD HH24:MI:SS'),
 		TO_TIMESTAMP('2020/02/18 14:54:36', 'YYYY/MM/DD HH24:MI:SS'));
 insert into order_item(item_id, order_id, menu_item, quantity) values (3, 2, 11, 2);
 insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 1);
+
+--review order tests have to create user to work
+insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
+	values (3, 2, null, 7.75, 'READY', null, TO_TIMESTAMP('2020/02/18 14:39:16', 'YYYY/MM/DD HH24:MI:SS'),
+		TO_TIMESTAMP('2020/02/18 14:41:57', 'YYYY/MM/DD HH24:MI:SS'));
+insert into order_item(item_id, order_id, menu_item, quantity) values (5, 3, 4, 1);
+insert into order_item(item_id, order_id, menu_item, quantity) values (6, 3, 10, 1);
+		
+insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
+	values (4, 2, null, 5.50, 'PENDING', null, TO_TIMESTAMP('2020/02/18 14:25:22', 'YYYY/MM/DD HH24:MI:SS'),
+		TO_TIMESTAMP('2020/02/18 14:54:36', 'YYYY/MM/DD HH24:MI:SS'));
+insert into order_item(item_id, order_id, menu_item, quantity) values (7, 4, 11, 2);
+insert into order_item(item_id, order_id, menu_item, quantity) values (8, 4, 3, 1);
+
+--insert into review(review_id, good_rating, comments) values (0, 0, null);
 commit;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 select * from orders;
@@ -152,3 +169,10 @@ select * from user_t;
 =======
 select * from orders;
 >>>>>>> a9a557b39cc11cd1e2e275be41b77cb8746fb294
+=======
+select * from review;
+select * from order_item;
+select * from orders;
+select * from cust_t;
+select * from user_t;
+>>>>>>> a863a4dffab95baa29a87e3ae48af32116c832df

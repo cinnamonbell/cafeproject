@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value="/order")
-@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
+@CrossOrigin(origins="*", allowedHeaders="*")
 public class OrderController {
     private OrderService orderService;
     private Logger log = Logger.getLogger(OrderController.class);
@@ -27,8 +30,19 @@ public class OrderController {
         else return ResponseEntity.notFound().build();
     }
     
-   
-    
+
+    @PutMapping(value="/{id}")
+    public ResponseEntity<Order> updateOrder(@PathVariable int id, 
+            @RequestBody Order order){
+        if (order == null || order.getId() != id){
+            log.trace("Request URI "+id+" does not match order's ID");
+            log.trace("Order "+order);
+            return ResponseEntity.badRequest().build();
+        }
+        order = orderService.updateOrder(order);
+        return ResponseEntity.ok(order);
+    }
+
     @Autowired
     public void setOrderService(OrderService orderService) {
         this.orderService = orderService;

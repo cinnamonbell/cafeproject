@@ -23,8 +23,20 @@ export class OrderService {
     return this.http.post(this.url.getOrderUrl(), data, {headers: this.url.getHeader()});
   }
 
-  getPendingOrders(): Observable<Array<Order>>{
-    let orderArray:Array<Order> = [];
-    return this.http.get<Order[]>(this.url.getPendingOrdersUrl(), {headers: this.url.getHeader()}).pipe();
+
+  getPendingOrders(): Observable<Array<Order>> {
+    let orderArray: Array<Order> = [];
+    return this.http.get<Order[]>(this.url.getPendingOrdersUrl(), { headers: this.url.getHeader() }).pipe();
+  }
+
+  getCustOrders(cust: Customer): Observable<Array<Order>> {
+    let custOrders: Array<Order> = [];
+    console.log(cust);
+    return this.http.post<Order[]>(this.url.getCustOrder(), cust, { headers: this.url.getHeader() }).pipe();
+  }
+
+  updateOrder(order: Order): Observable<Order>{
+    return this.http.put<Order>(this.url.getUpdateOrderUrl(order.id), order, 
+    {headers: this.url.getHeader() }).pipe();
   }
 }

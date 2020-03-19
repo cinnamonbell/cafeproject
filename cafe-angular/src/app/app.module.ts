@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
+import { OrderUpdateComponent } from './order-update/order-update.component';
+import { OrderStatusPipe } from './order-status.pipe';
 
 
 @NgModule({
@@ -24,7 +28,10 @@ import { HttpClientModule } from '@angular/common/http';
     ViewRewardsComponent,
     CustSignUpComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    CustomerOrdersComponent,
+    OrderUpdateComponent,
+    OrderStatusPipe
 
   ],
   imports: [
@@ -35,7 +42,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
