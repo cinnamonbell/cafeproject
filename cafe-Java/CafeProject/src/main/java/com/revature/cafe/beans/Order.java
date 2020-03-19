@@ -4,6 +4,7 @@ package com.revature.cafe.beans;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 
@@ -38,12 +39,12 @@ public class Order {
     private double price;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-    @OneToMany(mappedBy="order", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="order", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<OrderItem> orderItems;
     @OneToOne
     @JoinColumn(name="rev_id")
     private Review review;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="address_id")
     private Address address;
     @Column(name="submitted_time")
