@@ -1,10 +1,8 @@
 package com.revature.cafe.controller;
 
-import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +17,7 @@ import com.revature.cafe.services.ReviewService;
 
 @RestController
 @RequestMapping(value = "/review")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReviewController {
 	private Logger log = Logger.getLogger(ReviewController.class);
 

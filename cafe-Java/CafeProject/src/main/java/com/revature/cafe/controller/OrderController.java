@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value="/order")
-@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
+@CrossOrigin(origins="*", allowedHeaders="*")
 public class OrderController {
     private OrderService orderService;
     private Logger log = Logger.getLogger(OrderController.class);
