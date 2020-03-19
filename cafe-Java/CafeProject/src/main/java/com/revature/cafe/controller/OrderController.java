@@ -30,19 +30,11 @@ public class OrderController {
         else return ResponseEntity.notFound().build();
     }
     
-    @PutMapping(value="/{orderId}")
-    public ResponseEntity<Order> updateOrder(@PathVariable String orderId, 
+    @PutMapping(value="/{id}")
+    public ResponseEntity<Order> updateOrder(@PathVariable int id, 
             @RequestBody Order order){
-        int id;
-        try {
-            id = Integer.parseInt(orderId);
-        }
-        catch (NumberFormatException nfe){
-            log.trace("Request to invalid URI "+orderId);
-            return ResponseEntity.badRequest().build();
-        }
         if (order == null || order.getId() != id){
-            log.trace("Request URI "+orderId+" does not match order's ID");
+            log.trace("Request URI "+id+" does not match order's ID");
             log.trace("Order "+order);
             return ResponseEntity.badRequest().build();
         }
