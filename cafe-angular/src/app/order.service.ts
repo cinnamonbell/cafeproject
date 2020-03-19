@@ -3,8 +3,10 @@ import { Order } from './order';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/user';
-import { Customer } from 'src/app/customer';
+import { MenuComponent } from './menu/menu.component';
+import { LoginService } from './login.service';
+import { Customer } from './customer';
+import { User } from './user';
 
 
 
@@ -12,8 +14,14 @@ import { Customer } from 'src/app/customer';
   providedIn: 'root'
 })
 export class OrderService {
+  public cust: Customer = null;
+  public user: User;
+  constructor(private http:HttpClient, private url:UrlService, private loginService:LoginService) { }
+
+
 
   constructor(private http: HttpClient, private url: UrlService) { }
+
 
   getPendingOrders(): Observable<Array<Order>> {
     let orderArray: Array<Order> = [];

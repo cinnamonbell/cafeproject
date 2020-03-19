@@ -23,6 +23,7 @@ import com.revature.cafe.services.MenuService;
 @CrossOrigin(origins="*")
 public class MenuController {
 
+
 	private Logger log = Logger.getLogger(MenuController.class);
 	
 	@Autowired
