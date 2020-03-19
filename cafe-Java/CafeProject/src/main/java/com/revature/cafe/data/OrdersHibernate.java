@@ -1,11 +1,9 @@
 package com.revature.cafe.data;
 
 import com.revature.cafe.beans.Customer;
-import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.beans.Order;
 import com.revature.cafe.beans.Order.OrderStatus;
 import com.revature.cafe.beans.Order_;
-import com.revature.cafe.beans.Review;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
 import java.sql.Timestamp;
@@ -28,7 +26,6 @@ public class OrdersHibernate implements OrdersDAO {
 
 	private static HibernateUtil hibernate = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(OrdersHibernate.class);
-	private HibernateUtil hu = HibernateUtil.getInstance();
 
 	@Override
 	public List<Order> getPendingOrders() {
@@ -49,7 +46,7 @@ public class OrdersHibernate implements OrdersDAO {
 
 	@Override
 	public List<Order> viewCustOrders(Customer cust) {
-		Session s = hu.getSession();
+		Session s = hibernate.getSession();
 		int id = cust.getId();
 		String query = "FROM Order o where o.customer.id = " + id + " ORDER BY o.orderTime";
 		Query<Order> q = s.createQuery(query, Order.class);
@@ -58,24 +55,24 @@ public class OrdersHibernate implements OrdersDAO {
 		return custOrderList;
 	}
 
-	@Override
-	public void updateReviewOrder(Order ord) {
-			Session s = hu.getSession();
-			Transaction t = null;
-			try {
-				t = s.beginTransaction();
-				s.update(ord);
-				t.commit();
-			} catch (HibernateException e) {
-				if (t != null)
-					t.rollback();
-				LogUtil.logException(e, CustomerHibernate.class);
-			} finally {
-				s.close();
-			}
-		
-		
-	}
+//	@Override
+//	public void updateReviewOrder(Order ord) {
+//			Session s = hibernate.getSession();
+//			Transaction t = null;
+//			try {
+//				t = s.beginTransaction();
+//				s.update(ord);
+//				t.commit();
+//			} catch (HibernateException e) {
+//				if (t != null)
+//					t.rollback();
+//				LogUtil.logException(e, CustomerHibernate.class);
+//			} finally {
+//				s.close();
+//			}
+//		
+//		
+//	}
 
     @Override
     public Order updateOrder(Order order) {

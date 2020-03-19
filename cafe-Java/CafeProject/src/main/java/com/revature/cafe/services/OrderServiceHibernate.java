@@ -35,7 +35,7 @@ public class OrderServiceHibernate implements OrderService{
 
     @Override
     public void updateReview(Order ord) {
-            ordersDao.updateReviewOrder(ord);
+            ordersDao.updateOrder(ord);
 
     }
     

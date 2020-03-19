@@ -8,5 +8,5 @@ public interface OrdersDAO {
     List<Order> getPendingOrders();
     Order updateOrder(Order order);
     List<Order> viewCustOrders(Customer cust);
-    void updateReviewOrder(Order ord);
+//    void updateReviewOrder(Order ord);
 }
