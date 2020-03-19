@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { MenuItem } from '../menu-item';
-<<<<<<< HEAD
-=======
 import { OrderItem } from '../order-item';
 import { OrderService } from '../order.service';
 import { LoginService } from '../login.service';
 import { Customer } from '../customer';
 import { User } from '../user';
->>>>>>> 9843d0bf6924741365c80ec8b75643427a15b397
 import { Order } from '../order';
 
 @Component({
