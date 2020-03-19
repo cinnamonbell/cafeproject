@@ -54,6 +54,7 @@ public class LoginController {
 			return ResponseEntity.ok(u);			
 		} else
 			return ResponseEntity.status(401).build();
+
 	}
 
 }

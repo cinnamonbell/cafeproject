@@ -17,7 +17,6 @@ export class OrderService {
   public cust: Customer = null;
   public user: User;
   constructor(private http:HttpClient, private url:UrlService, private loginService:LoginService) { }
-
   subOrder(data:Order):Observable<any>{
     console.log(this.url.getOrderUrl());
     return this.http.post(this.url.getOrderUrl(), data, {headers: this.url.getHeader()});

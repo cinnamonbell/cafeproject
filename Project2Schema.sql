@@ -114,7 +114,7 @@ CONSTRAINT unique_menu_item UNIQUE (order_id, menu_item)
 
 
 --inserting menu items into menu table
-insert into menu(menu_id, item_name, item_price, inventory) values(1,'Coffee', 3.00, 13);
+insert into menu(menu_id, item_name, item_price, inventory) values(1,'Coffee', 3.00, 1);
 insert into menu(menu_id, item_name, item_price, inventory) values(2,'Espresso', 3.25, 22);
 insert into menu(menu_id, item_name, item_price, inventory) values(3,'Latt?', 3.50, 17);
 insert into menu(menu_id, item_name, item_price, inventory) values(4,'Hot Chocolate', 2.75, 33);
@@ -169,5 +169,6 @@ select * from orders;
 select * from review;
 select * from order_item;
 select * from orders;
-select * from cust_t;
 select * from user_t;
+select * from orders;
+
