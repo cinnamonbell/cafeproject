@@ -114,7 +114,7 @@ select * from user_t;
 
 
 --inserting menu items into menu table
-insert into menu(menu_id, item_name, item_price, inventory) values(1,'Coffee', 3.00, 13);
+insert into menu(menu_id, item_name, item_price, inventory) values(1,'Coffee', 3.00, 1);
 insert into menu(menu_id, item_name, item_price, inventory) values(2,'Espresso', 3.25, 22);
 insert into menu(menu_id, item_name, item_price, inventory) values(3,'Latt?', 3.50, 17);
 insert into menu(menu_id, item_name, item_price, inventory) values(4,'Hot Chocolate', 2.75, 33);
@@ -145,10 +145,6 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (3, 2, 11,
 insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 1);
 commit;
 
-<<<<<<< HEAD
-
 select * from orders;
 select * from user_t;
-=======
 select * from orders;
->>>>>>> a9a557b39cc11cd1e2e275be41b77cb8746fb294
