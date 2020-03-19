@@ -14,6 +14,7 @@ export class OrderUpdateComponent implements OnInit {
   public nextStage:OrderStatus;
   public comStatus = "\n";
   public badAction:boolean = false;
+  private removeItem:boolean = false;
   constructor(@Inject(MAT_DIALOG_DATA) public order: Order, public dialogRef: MatDialogRef<OrderUpdateComponent>,
     private orderService: OrderService) {
   }
@@ -33,7 +34,7 @@ export class OrderUpdateComponent implements OnInit {
   }
 
   closeComponent(){
-    this.dialogRef.close();
+    this.dialogRef.close({remove: this.removeItem, order: this.order});
   }
 
   updateOrder(){
@@ -46,6 +47,8 @@ export class OrderUpdateComponent implements OnInit {
       } else {
         this.badAction = false;
         this.comStatus = "Successfully updated order.";
+        this.order = resp;
+        if (this.nextStage == OrderStatus.Completed) this.removeItem = true;
         setTimeout( ()=>this.closeComponent(), 2500);
       }
     });

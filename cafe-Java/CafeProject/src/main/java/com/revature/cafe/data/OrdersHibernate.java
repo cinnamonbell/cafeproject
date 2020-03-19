@@ -46,10 +46,11 @@ public class OrdersHibernate implements OrdersDAO {
     @Override
     public Order updateOrder(Order order) {
 		Session session = hibernate.getSession();
-                  order.setLastActionTime(Timestamp.valueOf(LocalDateTime.now()));
+                  
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
+                          order.setLastActionTime(Timestamp.valueOf(LocalDateTime.now()));
 			session.update(order);
 			tx.commit();
 		} catch (HibernateException e) {
