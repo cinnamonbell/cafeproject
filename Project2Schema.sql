@@ -161,18 +161,13 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (8, 4, 3, 
 --insert into review(review_id, good_rating, comments) values (0, 0, null);
 commit;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 select * from orders;
 select * from user_t;
-=======
 select * from orders;
->>>>>>> a9a557b39cc11cd1e2e275be41b77cb8746fb294
-=======
+
 select * from review;
 select * from order_item;
 select * from orders;
 select * from cust_t;
 select * from user_t;
->>>>>>> a863a4dffab95baa29a87e3ae48af32116c832df

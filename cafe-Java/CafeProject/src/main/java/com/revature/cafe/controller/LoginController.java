@@ -50,12 +50,11 @@ public class LoginController {
 	public ResponseEntity<User> custLogin(@RequestBody User user) {
 		User u = ls.getUser(user);
 		
-
 		if (u != null) {
 			return ResponseEntity.ok(u);			
 		} else
 			return ResponseEntity.status(401).build();
-
 	}
 
 }
+
