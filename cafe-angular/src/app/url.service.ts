@@ -26,6 +26,9 @@ export class UrlService {
       console.log('url: ' + this.urlMap.baseServerUrl+this.urlMap.signUp);
     return this.urlMap.baseServerUrl+this.urlMap.signUp;
   }
+  getOrderUrl(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.orderUrl;
+  }
 
   getHeader(): HttpHeaders{
     let headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});

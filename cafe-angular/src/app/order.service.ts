@@ -18,7 +18,10 @@ export class OrderService {
   public user: User;
   constructor(private http:HttpClient, private url:UrlService, private loginService:LoginService) { }
 
-
+  subOrder(data:Order):Observable<any>{
+    console.log(this.url.getOrderUrl());
+    return this.http.post(this.url.getOrderUrl(), data, {headers: this.url.getHeader()});
+  }
 
   getPendingOrders(): Observable<Array<Order>>{
     let orderArray:Array<Order> = [];
