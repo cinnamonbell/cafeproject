@@ -5,14 +5,19 @@ import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.beans.Order;
 import com.revature.cafe.beans.Order.OrderStatus;
 import com.revature.cafe.beans.Order_;
+import com.revature.cafe.beans.Review;
 import com.revature.cafe.util.HibernateUtil;
+import com.revature.cafe.util.LogUtil;
+
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import org.springframework.stereotype.Repository;
@@ -50,6 +55,25 @@ public class OrdersHibernate implements OrdersDAO {
 		List<Order> custOrderList = q.getResultList();
 		s.close();
 		return custOrderList;
+	}
+
+	@Override
+	public void updateReviewOrder(Order ord) {
+			Session s = hu.getSession();
+			Transaction t = null;
+			try {
+				t = s.beginTransaction();
+				s.update(ord);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				LogUtil.logException(e, CustomerHibernate.class);
+			} finally {
+				s.close();
+			}
+		
+		
 	}
 
 }

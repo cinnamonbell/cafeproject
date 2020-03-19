@@ -26,5 +26,11 @@ public class OrderServiceHibernate implements OrderService{
 		
 		return ordersDao.viewCustOrders(cust);
 	}
+
+	@Override
+	public void updateReview(Order ord) {
+		ordersDao.updateReviewOrder(ord);
+		
+	}
     
 }

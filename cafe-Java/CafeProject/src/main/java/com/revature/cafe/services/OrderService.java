@@ -8,4 +8,5 @@ import java.util.List;
 public interface OrderService {
     List<Order> getPendingOrders();
     List<Order> getCustOrders(Customer cust);
+    void updateReview(Order ord);
 }

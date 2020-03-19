@@ -7,4 +7,5 @@ import java.util.List;
 public interface OrdersDAO {
     List<Order> getPendingOrders();
     List<Order> viewCustOrders(Customer cust);
+    void updateReviewOrder(Order ord);
 }
