@@ -26,7 +26,36 @@ public class OrdersHibernate implements OrdersDAO {
 
 	private static HibernateUtil hibernate = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(OrdersHibernate.class);
+         private static final double minRewardPrice = 5.0;
+    @Override
+    public Order addOrder(Order order) {
+        Session session = hibernate.getSession();
+        Transaction tx = null;
+        Timestamp time = Timestamp.valueOf(LocalDateTime.now());
+        try {
+                tx = session.beginTransaction();
+                order.setOrderTime(time);
+                order.setLastActionTime(time);
+                if ( order.getCustomer() != null && order.getPrice() > minRewardPrice){
+                    int rewards = order.getCustomer().getStars();
+                    order.getCustomer().setStars(++rewards);
+                }
+                order.setStatus(OrderStatus.PENDING);
+                session.save(order);
+                tx.commit();
+        } catch (HibernateException e) {
+                if (tx != null)
+                        tx.rollback();
+                LogUtil.logException(e, OrdersHibernate.class);
+                  return null;
+        } finally {
+                session.close();
+        }
+        return order;
+    }
 
+        
+        
 	@Override
 	public List<Order> getPendingOrders() {
 		List<Order> list;
