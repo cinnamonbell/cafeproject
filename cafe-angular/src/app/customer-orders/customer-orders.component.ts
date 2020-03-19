@@ -17,7 +17,7 @@ export class CustomerOrdersComponent implements OnInit {
   public cust: Customer = new Customer();
   public ordersList: Order[];
 
-  constructor(public loginService: LoginService, private orderService: OrderService, private reviewService:ReviewService) { }
+  constructor(public loginService: LoginService, private orderService: OrderService, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
   }
@@ -28,33 +28,36 @@ export class CustomerOrdersComponent implements OnInit {
     this.orderService.getCustOrders(this.cust).subscribe((resp: Array<Order>) => {
       this.ordersList = resp;
       this.ordersList.forEach((order, i) => {
-        console.log('customer orders: ');
-        console.log(order);
+     
       })
     });
   }
 
-  commentOrder(order:Order){
+  commentOrder(order: Order) {
     console.log(order.id);
     this.reviewService.comment(order).subscribe();
     this.viewCustOrders();
 
   }
 
-  rateGood(order:Order){
+  rateGood(order: Order) {
     console.log('good rating');
     console.log(order.id);
-    order.review.goodRating = true;
+
+    if (order.review !== null) {
+      order.review.goodRating = true;
+    }
     this.reviewService.goodRating(order).subscribe();
     this.viewCustOrders();
 
   }
-  
-  rateBad(order:Order){
+
+  rateBad(order: Order) {
     console.log('bad rating');
-    console.log(order);
     console.log(order.id);
-    order.review.goodRating = false;
+    if (order.review !== null) {
+      order.review.goodRating = false;
+    }
     this.reviewService.badRating(order).subscribe();
     this.viewCustOrders();
   }
