@@ -9,6 +9,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 import com.revature.cafe.beans.Address;
 import com.revature.cafe.beans.Customer;
@@ -16,18 +17,20 @@ import com.revature.cafe.beans.Review;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
 
+@Repository
 public class ReviewHibernate implements ReviewDAO {
-	
+
 	private HibernateUtil hu = HibernateUtil.getInstance();
 	private Logger log = Logger.getLogger(ReviewHibernate.class);
-	
+
 	@Override
-	public void addReview(Review review) {
+	public int addReview(Review review) {
 		Session s = hu.getSession();
 		Transaction t = null;
+		int id = 0;
 		try {
 			t = s.beginTransaction();
-			s.save(review);
+			id = (int) s.save(review);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -36,6 +39,7 @@ public class ReviewHibernate implements ReviewDAO {
 		} finally {
 			s.close();
 		}
+		return id;
 	}
 
 	@Override
@@ -72,6 +76,6 @@ public class ReviewHibernate implements ReviewDAO {
 			LogUtil.logException(e, CustomerHibernate.class);
 		} finally {
 			s.close();
-		}	
+		}
 	}
 }

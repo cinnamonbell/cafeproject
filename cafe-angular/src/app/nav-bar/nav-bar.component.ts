@@ -50,4 +50,10 @@ export class NavBarComponent implements OnInit {
     this.matDialog.open(LoginComponent, dialogConfig);
   }
 
+  logout(){
+    console.log('logout');
+    this.user = null;
+    this.cust = null;
+  }
+
 }

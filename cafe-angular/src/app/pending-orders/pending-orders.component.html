@@ -1,4 +1,5 @@
-<table class="table">
+<h2 *ngIf="ordersList">There {{ordersList.length != 1 ? "are" : "is"}} {{ordersList.length != 0 ? ordersList.length : "no"}} pending {{ordersList.length != 1 ? "orders" : "order"}}</h2>
+<table class="table" *ngIf="ordersList != null && ordersList.length > 0">
     <thead>
         <tr>
             <td>Customer's Name</td>
@@ -18,7 +19,7 @@
             <td>{{o.price | currency}}</td>
             <td>{{ (o.address != null) ? o.address.address : "No Delivery"}}</td>
             <td><table class="table-condensed"><tr *ngFor="let i of o.orderItems"><td>{{i.menuItem.name+" x "+i.quantity}}</td></tr></table></td>
-            <td>{{o.status}}</td>
+            <td>{{o.status | ostatus}}</td>
             <td>{{o.lastActionTime.toString()| date:'short'}}</td>
             <td><button type="button" class="btn btn-info btn-lg" (click)="getMoreInfo(o)">More Info</button></td>
         </tr>
