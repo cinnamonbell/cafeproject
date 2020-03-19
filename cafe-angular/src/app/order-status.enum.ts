@@ -1,3 +1,6 @@
 export enum OrderStatus {
-    // put names of order statuses we want to use in here later
+    Pending = "PENDING",
+    Ready = "READY",
+    Completed = "COMPLETED",
+    Cancelled = "CANCELLED"
 }
