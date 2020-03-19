@@ -37,20 +37,26 @@ export class CustomerOrdersComponent implements OnInit {
   commentOrder(order:Order){
     console.log(order.id);
     this.reviewService.comment(order).subscribe();
+    this.viewCustOrders();
 
   }
 
   rateGood(order:Order){
     console.log('good rating');
     console.log(order.id);
+    order.review.goodRating = true;
     this.reviewService.goodRating(order).subscribe();
+    this.viewCustOrders();
 
   }
   
   rateBad(order:Order){
     console.log('bad rating');
+    console.log(order);
     console.log(order.id);
+    order.review.goodRating = false;
     this.reviewService.badRating(order).subscribe();
+    this.viewCustOrders();
   }
 
 }

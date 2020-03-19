@@ -31,11 +31,11 @@ public class ReviewController {
 	@PostMapping(value = "/good")
 	public ResponseEntity<Order> goodReview(@RequestBody Order ord) {
 		log.trace("we in goodReview?");
-		log.trace(ord.toString());
+	
 		int id = 0;
 		Review rv = new Review();
 		rv.setGoodRating(true);
-		log.trace(ord.getReview().toString());
+	
 		if (ord.getReview() == null) {
 			log.trace("creating a new review");
 			id = rs.addReview(rv);
@@ -46,8 +46,8 @@ public class ReviewController {
 		} else {
 			log.trace("already have a review");
 			ord.getReview().setGoodRating(true);
-			//rs.updateReview(ord.getReview());
-			os.updateReview(ord);
+			rs.updateReview(ord.getReview());
+			//os.updateReview(ord);
 
 		}
 		log.trace(id);
@@ -57,12 +57,13 @@ public class ReviewController {
 
 	@PostMapping(value = "/bad")
 	public ResponseEntity<Order> badReview(@RequestBody Order ord) {
+	
 		log.trace("we in badReview?");
-		log.trace(ord.toString());
+	
 		int id = 0;
 		Review rv = new Review();
 		rv.setGoodRating(false);
-		log.trace(ord.getReview().toString());
+
 		if (ord.getReview() == null) {
 			log.trace("creating a new review");
 			id = rs.addReview(rv);
@@ -73,8 +74,8 @@ public class ReviewController {
 		} else {
 			log.trace("already have a review");
 			ord.getReview().setGoodRating(false);
-			//rs.updateReview(ord.getReview());
-			os.updateReview(ord);
+			rs.updateReview(ord.getReview());
+			//os.updateReview(ord);
 
 		}
 		log.trace(id);
@@ -85,11 +86,11 @@ public class ReviewController {
 	@PostMapping(value = "/comment")
 	public ResponseEntity<Order> commentReview(@RequestBody Order ord) {
 		log.trace("we in commentReview?");
-		log.trace(ord.toString());
+		
 		int id = 0;
 		Review rv = new Review();
 		rv.setComments("food was amazing");
-		log.trace(ord.getReview().toString());
+
 		if (ord.getReview() == null) {
 			log.trace("creating a new review");
 			id = rs.addReview(rv);
@@ -100,8 +101,8 @@ public class ReviewController {
 		} else {
 			log.trace("already have a review");
 			ord.getReview().setComments("somethingdif");
-			//rs.updateReview(ord.getReview());
-			os.updateReview(ord);
+			rs.updateReview(ord.getReview());
+			//os.updateReview(ord);
 		}
 		log.trace(id);
 

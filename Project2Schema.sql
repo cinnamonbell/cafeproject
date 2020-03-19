@@ -60,7 +60,7 @@ zipcode varchar2(100) not null
 create sequence rev_seq NOCACHE;
 create table review(
 review_id number(5) primary key,
-good_rating varchar2(100),
+good_rating varchar2(100), --true = good false = bad
 comments varchar2(500)
 );
 
@@ -144,8 +144,25 @@ insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitt
 		TO_TIMESTAMP('2020/02/18 14:54:36', 'YYYY/MM/DD HH24:MI:SS'));
 insert into order_item(item_id, order_id, menu_item, quantity) values (3, 2, 11, 2);
 insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 1);
+
+--review order tests have to create user to work
+insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
+	values (3, 2, null, 7.75, 'READY', null, TO_TIMESTAMP('2020/02/18 14:39:16', 'YYYY/MM/DD HH24:MI:SS'),
+		TO_TIMESTAMP('2020/02/18 14:41:57', 'YYYY/MM/DD HH24:MI:SS'));
+insert into order_item(item_id, order_id, menu_item, quantity) values (5, 3, 4, 1);
+insert into order_item(item_id, order_id, menu_item, quantity) values (6, 3, 10, 1);
+		
+insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
+	values (4, 2, null, 5.50, 'PENDING', null, TO_TIMESTAMP('2020/02/18 14:25:22', 'YYYY/MM/DD HH24:MI:SS'),
+		TO_TIMESTAMP('2020/02/18 14:54:36', 'YYYY/MM/DD HH24:MI:SS'));
+insert into order_item(item_id, order_id, menu_item, quantity) values (7, 4, 11, 2);
+insert into order_item(item_id, order_id, menu_item, quantity) values (8, 4, 3, 1);
+
+--insert into review(review_id, good_rating, comments) values (0, 0, null);
 commit;
 
+select * from review;
+select * from order_item;
 select * from orders;
 select * from cust_t;
 select * from user_t;
