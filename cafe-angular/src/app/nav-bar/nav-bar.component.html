@@ -11,6 +11,7 @@
     <a routerLink="/menu">Menu</a>
     <button *ngIf="user == null" mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
     <button *ngIf="user == null"mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
+    <button *ngIf="user != null"mat-raised-button id="logout-button" (click)="logout()">Logout</button>
     <div *ngIf="cust != null" id=divStar style.display='none'>
         <p id="emptyStar">
             {{cust.first + " " + cust.last}}

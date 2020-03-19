@@ -15,6 +15,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
 import { OrderUpdateComponent } from './order-update/order-update.component';
 import { OrderStatusPipe } from './order-status.pipe';
 
@@ -28,6 +29,7 @@ import { OrderStatusPipe } from './order-status.pipe';
     CustSignUpComponent,
     NavBarComponent,
     LoginComponent,
+    CustomerOrdersComponent,
     OrderUpdateComponent,
     OrderStatusPipe
 

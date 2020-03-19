@@ -38,6 +38,12 @@ public class Customer {
     	super();
     }
     
+    public Customer(int id, String name, String last) {
+    	this.id = id;
+    	this.first = name;
+    	this.last = last;
+    }
+    
 	public int getId() {
 		return id;
 	}
