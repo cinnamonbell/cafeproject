@@ -24,6 +24,9 @@ export class UrlService {
   getSignUpUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.signUp;
   }
+  getOrderUrl(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.orderUrl;
+  }
   getUpdateOrderUrl(id: number): string{
     return this.urlMap.baseServerUrl+this.urlMap.orderUrl+"/"+id;
   }

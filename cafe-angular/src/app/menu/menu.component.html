@@ -17,13 +17,25 @@
             <td>{{o.menuItem.price | currency }}</td>
             <td *ngIf= "o.quantity!=0"><button type="button" class="btn btn-info btn-sm" (click)="removeFromOrder(o)">-</button></td>
             <td >{{o.quantity}}</td>
-            <td><button type="button" [disabled]="(o.menuItem.quantity == 1)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>
+            <td><button type="button" [disabled]="(o.menuItem.quantity == 0)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>
         </tr>
     </tbody>
 </table>
 <br>
 <table>
-    <tbody>
+    <thead class = menuT>
+        <tr>
+            <td>Menu Item</td>
+            <td>Price</td>
+            <td>Remove</td>
+        </tr>
+    </thead>
+    <tbody class = menuI>
+        <tr *ngFor="let m of currentMenu">
+            <td>{{m.name}}</td>
+            <td>{{m.price | currency }}</td>
+            <td><button type="button" class="btn btn-info btn-sm" id = "removebutton" (click)="removeFromOrder(m)">Remove</button></td>
+        </tr>
         <tr >total price: {{totPrice}}</tr>
     </tbody>
     <input class='btn btn-success' type="submit" value="Submit Order" (click)="submitOrder()">
