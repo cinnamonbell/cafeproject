@@ -39,6 +39,7 @@ public class OrdersHibernate implements OrdersDAO {
                 if ( order.getCustomer() != null && order.getPrice() > minRewardPrice){
                     int rewards = order.getCustomer().getStars();
                     order.getCustomer().setStars(++rewards);
+                    session.update(order.getCustomer());
                 }
                 order.setStatus(OrderStatus.PENDING);
                 session.save(order);
