@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
 import { OrderUpdateComponent } from './order-update/order-update.component';
 import { OrderStatusPipe } from './order-status.pipe';
+import { CustOrderCommentComponent } from './cust-order-comment/cust-order-comment.component';
 
 
 @NgModule({
@@ -31,9 +32,11 @@ import { OrderStatusPipe } from './order-status.pipe';
     LoginComponent,
     CustomerOrdersComponent,
     OrderUpdateComponent,
-    OrderStatusPipe
+    OrderStatusPipe,
+    CustOrderCommentComponent
 
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
