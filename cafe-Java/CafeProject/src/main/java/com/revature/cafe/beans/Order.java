@@ -12,11 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +34,8 @@ public class Order {
     }
     
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="orders")
+    @SequenceGenerator(name="orders", sequenceName="ord_seq", allocationSize=1)
     @Column(name = "order_id")
     private int id;
     @ManyToOne
@@ -89,6 +94,11 @@ public class Order {
     }
 
     public void setOrderItems(List<OrderItem> orderItems) {
+        if (orderItems != null){
+            for (OrderItem o : orderItems){
+                o.setOrder(this);
+            }
+        }
         this.orderItems = orderItems;
     }
 
