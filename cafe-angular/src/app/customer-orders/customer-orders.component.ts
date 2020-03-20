@@ -20,6 +20,7 @@ export class CustomerOrdersComponent implements OnInit {
 
   public user: User = new User();
   public cust: Customer = new Customer();
+  public review: Review = new Review();
   public ordersList: Order[];
 
   constructor(public matDialog: MatDialog, public loginService: LoginService, private orderService: OrderService, private reviewService: ReviewService) { }
@@ -33,6 +34,12 @@ export class CustomerOrdersComponent implements OnInit {
     this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; this.orderService.getCustOrders(this.cust).subscribe(
       (resp: Array<Order>) => {
       this.ordersList = resp;
+      for (let i = 0; i < this.ordersList.length; i++) {
+        if(this.ordersList[i].review == null){
+          this.review.id = 0;
+          this.ordersList[i].review = this.review;
+        }
+      }
     });
     });
 
@@ -46,7 +53,6 @@ export class CustomerOrdersComponent implements OnInit {
       data: order, minHeight: '20em', width: '30%'
     });
 
-    this.viewCustOrders()
 
   }
 
