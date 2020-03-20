@@ -79,5 +79,7 @@ export class MenuComponent implements OnInit {
       this.order.orderTime = null; // do later
       this.order.lastActionTime = null; // do later
       console.log(this.order);
+      this.orderService.subOrder(this.order).subscribe();
   }
 }
+
