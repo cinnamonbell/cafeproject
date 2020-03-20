@@ -104,6 +104,7 @@ export class NavBarComponent implements OnInit {
     console.log('logout');
     this.user = null;
     this.cust = null;
+    this.loginService.clearLogin();
   }
 
 

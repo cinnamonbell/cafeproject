@@ -1,0 +1,8 @@
+.main-container{
+    width: 90%;
+    margin: auto;
+    background-color: azure;
+    border-radius: 0 0 30px 30px;
+    padding: 30px;
+    overflow-x: auto;
+}

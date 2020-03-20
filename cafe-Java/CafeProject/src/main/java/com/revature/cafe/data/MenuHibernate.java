@@ -14,6 +14,10 @@ import org.springframework.stereotype.Repository;
 import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
+import java.util.HashMap;
+import java.util.Map;
+import javax.persistence.Tuple;
+import javax.persistence.TupleElement;
 @Repository
 public class MenuHibernate implements MenuDAO {
 
@@ -47,16 +51,6 @@ public class MenuHibernate implements MenuDAO {
 	}
 
 	@Override
-	public Set<MenuItem> getMenuList(MenuItem menuItem) {
-		Session s = hu.getSession();
-		String query = "FROM MenuItem";
-		Query<MenuItem> q = s.createQuery(query, MenuItem.class);
-		List<MenuItem> menuList = q.getResultList();
-		s.close();
-		return new HashSet<MenuItem>(menuList);
-	}
-
-	@Override
 	public void updateMenu(MenuItem menuItem) {
 		Session s = hu.getSession();
 		Transaction t = null;
@@ -83,5 +77,33 @@ public class MenuHibernate implements MenuDAO {
 		s.close();
 		return new HashSet<MenuItem>(menuList);
 	}
+
+    @Override
+    public Map<Integer, Double> getPopularItems() {
+        Map<Integer, Double> popularItems = new HashMap<>();
+        log.trace("Getting popular items");
+        Session session = hu.getSession();
+        List<Tuple> itemRatings = session.createQuery(
+                "select "
+                    + " mi.id as item, AVG(r.goodRating) as rating"
+                    + " FROM OrderItem oi"
+                    + " JOIN oi.menuItem mi"
+                    + " JOIN oi.order o"
+                    + " JOIN o.review r"
+                    + " GROUP BY mi.id",
+                Tuple.class
+        ).getResultList();
+        session.close();
+        log.trace(itemRatings.size());
+        for (Tuple t : itemRatings){
+            Integer item = t.get("item", Integer.class);
+            Double rating = t.get("rating", Double.class);
+            popularItems.put(item, rating);
+            log.trace("Inserting item "+item+" with rating "+rating);
+        }
+        return popularItems;
+    }
+        
+        
 
 }
