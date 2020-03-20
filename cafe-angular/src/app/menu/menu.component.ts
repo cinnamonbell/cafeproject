@@ -42,6 +42,10 @@ export class MenuComponent implements OnInit {
       });    console.log(this.orderItems);
     });
   }
+  addToInventory(ord:OrderItem){
+    ord.menuItem.quantity+=1;
+    console.log(ord.quantity);
+  }
 
   ngOnInit(): void {
   }
@@ -56,8 +60,6 @@ export class MenuComponent implements OnInit {
   })
   console.log(this.unique);
   }
-
-
   
   removeFromOrder(ord:OrderItem){
     ord.quantity-=1;
