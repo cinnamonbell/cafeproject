@@ -44,7 +44,7 @@ public class Order {
     @OneToOne
     @JoinColumn(name="rev_id")
     private Review review;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id")
     private Address address;
     @Column(name="submitted_time")
