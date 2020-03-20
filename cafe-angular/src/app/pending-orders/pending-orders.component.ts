@@ -28,6 +28,15 @@ export class PendingOrdersComponent implements OnInit {
     console.log(order);
     let dialogRef = this.dialog.open(OrderUpdateComponent, {
       data: order, minHeight: '35em', width: '60%'});
+      dialogRef.afterClosed().subscribe( ({remove: removeOrder, order: newOrder}) => {
+        if (removeOrder) {
+          let idx = this.ordersList.indexOf(order);
+          if (idx > -1) this.ordersList.splice(idx, 1);
+        } else {
+          let idx = this.ordersList.indexOf(order);
+          if (idx > -1 && newOrder != null) this.ordersList[idx] = newOrder;
+        }
+      })
    }
 
   ngOnInit(): void {

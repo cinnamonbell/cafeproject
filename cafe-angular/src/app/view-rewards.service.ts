@@ -1,23 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Customer } from './customer';
+import { User } from './user';
+import { LoginService } from './login.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViewRewardsService {
-
-  constructor() { }
-
-  getCustRewards():Customer{
-    let customer:Customer = new Customer();
-    customer.id = 1;
-    customer.first = "david";
-    customer.last = "youn";
-    customer.stars = 3;
-    console.log(customer);
+public loggedUser:User = new User();
+  constructor(public loginService:LoginService) { }
 
 
-    return customer;
-  }
 }

@@ -3,8 +3,9 @@ import { Order } from './order';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/user';
-import { Customer } from 'src/app/customer';
+import { LoginService } from './login.service';
+import { Customer } from './customer';
+import { User } from './user';
 
 
 
@@ -12,8 +13,10 @@ import { Customer } from 'src/app/customer';
   providedIn: 'root'
 })
 export class OrderService {
+  public cust: Customer = null;
+  public user: User;
+  constructor(private http:HttpClient, private url:UrlService, private loginService:LoginService) { }
 
-  constructor(private http: HttpClient, private url: UrlService) { }
 
   getPendingOrders(): Observable<Array<Order>> {
     let orderArray: Array<Order> = [];
@@ -27,7 +30,7 @@ export class OrderService {
   }
 
   updateOrder(order: Order): Observable<Order>{
-    return this.http.put<Order>(this.url.getUpdateOrderUrl(order.id), 
-    {headers: this.url.getHeader}).pipe();
+    return this.http.put<Order>(this.url.getUpdateOrderUrl(order.id), order, 
+    {headers: this.url.getHeader() }).pipe();
   }
 }

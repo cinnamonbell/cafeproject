@@ -21,16 +21,22 @@ public class OrderServiceHibernate implements OrderService{
         return ordersDao.getPendingOrders();
     }
 
-	@Override
-	public List<Order> getCustOrders(Customer cust) {
-		
-		return ordersDao.viewCustOrders(cust);
-	}
+    @Override
+    public Order updateOrder(Order order) {
+        return ordersDao.updateOrder(order);
+    }
+    
+   
+    @Override
+    public List<Order> getCustOrders(Customer cust) {
 
-	@Override
-	public void updateReview(Order ord) {
-		ordersDao.updateReviewOrder(ord);
-		
-	}
+            return ordersDao.viewCustOrders(cust);
+    }
+
+    @Override
+    public void updateReview(Order ord) {
+            ordersDao.updateOrder(ord);
+
+    }
     
 }
