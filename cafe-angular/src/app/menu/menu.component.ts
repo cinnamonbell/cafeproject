@@ -7,6 +7,8 @@ import { LoginService } from '../login.service';
 import { Customer } from '../customer';
 import { User } from '../user';
 import { Order } from '../order';
+import { Address } from '../address';
+import { Employee } from '../employee'
 
 @Component({
   selector: 'app-menu',
@@ -16,9 +18,10 @@ import { Order } from '../order';
 
 
 export class MenuComponent implements OnInit {
-  public count:number = 0;
+  public count: number = 0;
   public cust: Customer = null;
   public user: User;
+  public employee: Employee = null;
   public order:Order = new Order();
   public menuItemList: MenuItem[];
   public currentMenu: MenuItem[] = [];
@@ -26,10 +29,11 @@ export class MenuComponent implements OnInit {
   public orderItems:OrderItem[];
   public totPrice:number = 0;
   public unique:OrderItem[];
+  public address:Address = new Address();
 
-  constructor(private menuService: MenuService, private orderService:OrderService, private loginService: LoginService) {
+  constructor(private menuService: MenuService, private orderService: OrderService, private loginService: LoginService) {
     //this.menuItem = MenuService.getMenuItems();
-    menuService.getMenuItems().subscribe((resp:Array<MenuItem>) => {
+    menuService.getMenuItems().subscribe((resp: Array<MenuItem>) => {
       this.menuItemList = resp;
       let oi: OrderItem;
       this.orderItems = [];
@@ -39,25 +43,33 @@ export class MenuComponent implements OnInit {
         oi.menuItem = menuItem;
         oi.quantity = 0;
         this.orderItems.push(oi);
-      });    console.log(this.orderItems);
+      }); console.log(this.orderItems);
     });
+  }
+  addToInventory(ord:OrderItem){
+    let menI = ord.menuItem;
+    menI.quantity += 1;
+    console.log(menI.name + " inventory: " + menI.quantity);
+    this.menuService.updateMenuItems(menI).subscribe();
   }
 
   ngOnInit(): void {
+    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
+    console.log(this.user);
   }
 
-  addToOrder(ord:OrderItem){
+  addToOrder(ord: OrderItem) {
     ord.quantity += 1;
     this.orderItem.push(ord);
-    this.totPrice+=ord.menuItem.price;
+    this.totPrice += ord.menuItem.price;
     //console.log(this.orderItem);
-    this.unique = this.orderItem.filter(function(elem, index, self) {
+    this.unique = this.orderItem.filter(function (elem, index, self) {
       return index === self.indexOf(elem);
-  })
-  console.log(this.unique);
+    })
+    console.log(this.unique);
   }
-
-
+  storeAddress(){
+  }
   
   removeFromOrder(ord:OrderItem){
     ord.quantity-=1;
@@ -75,11 +87,11 @@ export class MenuComponent implements OnInit {
       this.order.orderItems = this.unique;
       this.order.price = this.totPrice;
       this.order.status = null; 
-      this.order.address = null; // do address later
+      this.order.address = this.address; // do address later
       this.order.orderTime = null; // do later
       this.order.lastActionTime = null; // do later
       console.log(this.order);
-      this.orderService.subOrder(this.order).subscribe();
+      console.log(this.address);
+      this.orderService.subOrder(this.order).subscribe(resp => { window.location.reload(); });
   }
 }
-

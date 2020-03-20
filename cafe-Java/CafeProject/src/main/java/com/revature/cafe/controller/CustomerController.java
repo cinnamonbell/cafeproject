@@ -1,6 +1,7 @@
 package com.revature.cafe.controller;
 
 import com.revature.cafe.beans.Customer;
+import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.beans.Order;
 import com.revature.cafe.beans.User;
 
@@ -10,7 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,6 +65,14 @@ public class CustomerController {
 			log.trace(e);
 			return ResponseEntity.ok(null);
 		}
+	}
+	
+	@PutMapping(value="/stars") //same deal as above
+	public ResponseEntity<Customer> updateMenuItem(@RequestBody Customer cust) {
+		log.trace("removing stars");
+		log.trace(cust);
+		cs.updateCustomer(cust);
+		return ResponseEntity.ok(cust);
 	}
 
 }
