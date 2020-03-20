@@ -7,8 +7,8 @@ import { LoginService } from '../login.service';
 import { Customer } from '../customer';
 import { User } from '../user';
 import { Order } from '../order';
-import { Button } from 'protractor';
-import {Employee} from '../employee'
+import { Address } from '../address';
+import { Employee } from '../employee'
 
 @Component({
   selector: 'app-menu',
@@ -29,6 +29,7 @@ export class MenuComponent implements OnInit {
   public orderItems:OrderItem[];
   public totPrice:number = 0;
   public unique:OrderItem[];
+  public address:Address = new Address();
 
   constructor(private menuService: MenuService, private orderService:OrderService, private loginService: LoginService) {
     //this.menuItem = MenuService.getMenuItems();
@@ -67,6 +68,9 @@ export class MenuComponent implements OnInit {
   })
   console.log(this.unique);
   }
+  storeAddress(){
+
+  }
   
   removeFromOrder(ord:OrderItem){
     ord.quantity-=1;
@@ -84,10 +88,11 @@ export class MenuComponent implements OnInit {
       this.order.orderItems = this.unique;
       this.order.price = this.totPrice;
       this.order.status = null; 
-      this.order.address = null; // do address later
+      this.order.address = this.address; // do address later
       this.order.orderTime = null; // do later
       this.order.lastActionTime = null; // do later
       console.log(this.order);
+      console.log(this.address);
       this.orderService.subOrder(this.order).subscribe();
   }
 }

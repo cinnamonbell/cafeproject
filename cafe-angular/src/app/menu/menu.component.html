@@ -1,4 +1,13 @@
-<img src="/assets/header2.jpg" alt="Header"/>
+<body>
+<img src="/assets/header2.jpg" alt="Header"/><br>
+    <label for="Address">Address:</label><br>
+    <input type="text" [(ngModel)]="address.address" ><br>
+    <label for="City">City:</label><br>
+    <input type="text" [(ngModel)]="address.city"><br>
+    <label for="State">State:</label><br>
+    <input type="text" [(ngModel)]="address.state"><br>
+    <label for="Zip Code">Zip Code:</label><br>
+    <input type="text" [(ngModel)]="address.zipCode"><br>
 <h1>Menu</h1>
 <table>
     <thead class = menuT>
@@ -37,3 +46,4 @@
     </tbody>
     <input class='btn btn-success' type="submit" value="Submit Order" (click)="submitOrder()">
 </table>
+</body>
