@@ -87,24 +87,26 @@ public class ReviewController {
 	public ResponseEntity<Order> commentReview(@RequestBody Order ord) {
 		log.trace("we in commentReview?");
 		
-		int id = 0;
-		Review rv = new Review();
-		rv.setComments("food was amazing");
-
-		if (ord.getReview() == null) {
-			log.trace("creating a new review");
-			id = rs.addReview(rv);
-			Review nrv = new Review();
-			nrv = rs.getReview(id);
-			ord.setReview(nrv);
-			os.updateReview(ord);
-		} else {
-			log.trace("already have a review");
-			ord.getReview().setComments("somethingdif");
-			rs.updateReview(ord.getReview());
-			//os.updateReview(ord);
-		}
-		log.trace(id);
+		rs.updateReview(ord.getReview());
+		
+//		int id = 0;
+//		Review rv = new Review();
+//		rv.setComments("food was amazing");
+//
+//		if (ord.getReview() == null) {
+//			log.trace("creating a new review");
+//			id = rs.addReview(rv);
+//			Review nrv = new Review();
+//			nrv = rs.getReview(id);
+//			ord.setReview(nrv);
+//			os.updateReview(ord);
+//		} else {
+//			log.trace("already have a review");
+//			ord.getReview().setComments("somethingdif");
+//			rs.updateReview(ord.getReview());
+//			//os.updateReview(ord);
+//		}
+		//log.trace(id);
 
 		return ResponseEntity.ok(ord);
 	}
