@@ -9,6 +9,7 @@
     <a href="#contact">Contact</a>
     <a routerLink="/pending-orders">Pending Orders</a>
     <a routerLink="/menu">Menu</a>
+    <a routerLink="/review">Review Orders</a>
     <button *ngIf="user == null" mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
     <button *ngIf="user == null"mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
     <button *ngIf="user != null"mat-raised-button id="logout-button" (click)="logout()">Logout</button>

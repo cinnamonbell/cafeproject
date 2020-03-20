@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { User } from 'src/app/user';
 import { LoginService } from 'src/app/login.service';
 import { Customer } from 'src/app/customer';
@@ -25,23 +25,23 @@ export class CustomerOrdersComponent implements OnInit {
   constructor(public matDialog: MatDialog, public loginService: LoginService, private orderService: OrderService, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
+    this.viewCustOrders();
   }
 
   viewCustOrders() {
-    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; });
-    console.log(this.cust);
-    this.orderService.getCustOrders(this.cust).subscribe((resp: Array<Order>) => {
+    this.loginService.getLoggedInUser().subscribe(user => {
+    this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; this.orderService.getCustOrders(this.cust).subscribe(
+      (resp: Array<Order>) => {
       this.ordersList = resp;
-      this.ordersList.forEach((order, i) => {
-
-      })
     });
+    });
+
   }
-  
+
   commentOrder(order: Order) {
     console.log(order.id);
     console.log(order);
-    
+
     let dialogRef = this.matDialog.open(CustOrderCommentComponent, {
       data: order, minHeight: '20em', width: '30%'
     });

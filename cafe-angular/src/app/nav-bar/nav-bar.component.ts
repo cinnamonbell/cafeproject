@@ -21,7 +21,7 @@ export class NavBarComponent implements OnInit {
   public cust: Customer = null;
   public user: User;
   public showVar: boolean = true;
-  constructor(public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, public custOrderComp: CustOrderCommentComponent) {
+  constructor(public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService) {
 
   }
   
