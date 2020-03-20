@@ -10,6 +10,7 @@
     <a routerLink="/pending-orders">Pending Orders</a>
     <a routerLink="/menu">Menu</a>
     <a routerLink="/review">Review Orders</a>
+    <button *ngIf="cust != null && cust.stars >= 5" mat-raised-button id="logout-button" (click)="claimReward()">Claim reward</button>
     <button *ngIf="user == null" mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
     <button *ngIf="user == null"mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
     <button *ngIf="user != null"mat-raised-button id="logout-button" (click)="logout()">Logout</button>

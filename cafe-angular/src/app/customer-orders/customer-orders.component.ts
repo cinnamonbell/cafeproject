@@ -23,7 +23,7 @@ export class CustomerOrdersComponent implements OnInit {
   public status:String = 'COMPLETED';
   public ordersList: Order[];
 
-  constructor(public matDialog: MatDialog, public loginService: LoginService, private orderService: OrderService, private reviewService: ReviewService) { }
+  constructor(public matDialog: MatDialog, public loginService: LoginService, private orderService: OrderService, private reviewService: ReviewService) {     this.viewCustOrders();}
 
   ngOnInit(): void {
     this.viewCustOrders();

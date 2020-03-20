@@ -52,4 +52,8 @@ export class UrlService {
     return this.urlMap.baseServerUrl+this.urlMap.review+'/comment';
   }
 
+  getRemoveStarspUrl(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.signUp+'/stars';
+  }
+
 }
