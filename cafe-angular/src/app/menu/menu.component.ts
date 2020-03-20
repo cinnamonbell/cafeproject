@@ -43,8 +43,10 @@ export class MenuComponent implements OnInit {
     });
   }
   addToInventory(ord:OrderItem){
-    ord.menuItem.quantity+=1;
-    console.log(ord.quantity);
+    let menI = ord.menuItem;
+    menI.quantity += 1;
+    console.log(menI.name + " inventory: " + menI.quantity);
+    this.menuService.updateMenuItems(menI).subscribe();
   }
 
   ngOnInit(): void {
