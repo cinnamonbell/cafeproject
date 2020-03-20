@@ -20,9 +20,10 @@ export class CustomerOrdersComponent implements OnInit {
 
   public user: User = new User();
   public cust: Customer = new Customer();
+  public status:String = 'COMPLETED';
   public ordersList: Order[];
 
-  constructor(public matDialog: MatDialog, public loginService: LoginService, private orderService: OrderService, private reviewService: ReviewService) { }
+  constructor(public matDialog: MatDialog, public loginService: LoginService, private orderService: OrderService, private reviewService: ReviewService) {     this.viewCustOrders();}
 
   ngOnInit(): void {
     this.viewCustOrders();
@@ -30,10 +31,18 @@ export class CustomerOrdersComponent implements OnInit {
 
   viewCustOrders() {
     this.loginService.getLoggedInUser().subscribe(user => {
-    this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; this.orderService.getCustOrders(this.cust).subscribe(
-      (resp: Array<Order>) => {
-      this.ordersList = resp;
-    });
+      this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; this.orderService.getCustOrders(this.cust).subscribe(
+        (resp: Array<Order>) => {
+          this.ordersList = resp;
+          for (let i = 0; i < this.ordersList.length; i++) {
+            if (this.ordersList[i].review == null) {
+              console.log(this.ordersList[i].status);
+              let review: Review = new Review();
+              review.id = 0;
+              this.ordersList[i].review = review;
+            }
+          }
+        });
     });
 
   }
@@ -46,7 +55,6 @@ export class CustomerOrdersComponent implements OnInit {
       data: order, minHeight: '20em', width: '30%'
     });
 
-    this.viewCustOrders()
 
   }
 

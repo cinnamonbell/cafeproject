@@ -4,6 +4,7 @@ import { User } from 'src/app/user';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from 'src/app/url.service';
 import { map } from 'rxjs/internal/operators/map';
+import { Customer } from 'src/app/customer';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class CustSignUpService {
       }
       ));
 
+  }
+
+  removeStars(data: Customer): Observable<any> {
+    return this.http.put(this.url.getRemoveStarspUrl(), data, { headers: this.url.getHeader() }).pipe(map(resp => {const cust: Customer = resp as Customer;}))
   }
 }

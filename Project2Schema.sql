@@ -175,7 +175,7 @@ commit;
 select * from orders;
 select * from user_t;
 select * from orders;
-
+select * from address;
 select * from review;
 select * from order_item;
 select * from orders;

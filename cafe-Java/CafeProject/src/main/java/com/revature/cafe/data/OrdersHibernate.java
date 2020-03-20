@@ -3,6 +3,7 @@ package com.revature.cafe.data;
 import com.revature.cafe.beans.Customer;
 import com.revature.cafe.beans.Order;
 import com.revature.cafe.beans.Order.OrderStatus;
+import com.revature.cafe.beans.OrderItem;
 import com.revature.cafe.beans.Order_;
 import com.revature.cafe.util.HibernateUtil;
 import com.revature.cafe.util.LogUtil;
@@ -36,6 +37,13 @@ public class OrdersHibernate implements OrdersDAO {
                 tx = session.beginTransaction();
                 order.setOrderTime(time);
                 order.setLastActionTime(time);
+            	for(OrderItem o:order.getOrderItems()) {
+            		o.getMenuItem().setQuantity(o.getMenuItem().getQuantity()-o.getQuantity());
+            		
+            		log.trace(o.getMenuItem().getQuantity());
+            		log.trace(order);
+            		session.update(o.getMenuItem());
+            	}
                 if ( order.getCustomer() != null && order.getPrice() > minRewardPrice){
                     int rewards = order.getCustomer().getStars();
                     order.getCustomer().setStars(++rewards);

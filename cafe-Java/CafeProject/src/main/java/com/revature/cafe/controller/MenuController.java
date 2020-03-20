@@ -49,21 +49,12 @@ public class MenuController {
 	
 	@PostMapping
 	public ResponseEntity<MenuItem> addMenuItem(@RequestBody MenuItem mi) {
-		//return ResponseEntity.status(201).body(ms.addMenuItem(mi));
 		return ResponseEntity.ok(mi);
 	}
 	
-//	@GetMapping(value = "{id}") //maybe id should be menu_id?
-//	public ResponseEntity<MenuItem> getMenuItem(@PathVariable("id") int id){
-//		MenuItem mi = ms.getMenuItemById(id);
-//		if(mi != null) {
-//			return ResponseEntity.ok(mi);
-//		}
-//		return ResponseEntity.notFound().build();
-//	}
-	
-	@PutMapping(value="{id}") //same deal as above
+	@PutMapping(value="{id}")
 	public ResponseEntity<MenuItem> updateMenuItem(@PathVariable("id") int id, @RequestBody MenuItem mi) {
+		log.trace("updated menu item");
 		ms.updateMenuItem(mi);
 		return ResponseEntity.ok(ms.getMenuItemById(id));
 	}
