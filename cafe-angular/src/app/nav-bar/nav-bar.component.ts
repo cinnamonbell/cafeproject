@@ -6,17 +6,21 @@ import { ViewRewardsService } from '../view-rewards.service';
 import { LoginService } from '../login.service';
 import { Customer } from '../customer';
 import { User } from '../user';
+import { CustOrderCommentComponent } from 'src/app/cust-order-comment/cust-order-comment.component';
+import { CustomerOrdersComponent } from 'src/app/customer-orders/customer-orders.component';
 
 
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
+
 })
 export class NavBarComponent implements OnInit {
   public cust: Customer = null;
   public user: User;
+  public showVar: boolean = true;
   constructor(public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService) {
 
   }
@@ -27,7 +31,7 @@ export class NavBarComponent implements OnInit {
     console.log(this.user);
   }
 
-
+  
   openModal() {
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
@@ -55,5 +59,7 @@ export class NavBarComponent implements OnInit {
     this.user = null;
     this.cust = null;
   }
+
+
 
 }

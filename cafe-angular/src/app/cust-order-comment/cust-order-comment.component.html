@@ -1,0 +1,24 @@
+<div id="modal-content-wrapper">
+    <header id="modal-header">
+        <h1 id="modal-title">Comment on your Order</h1>
+    </header>
+    <section id="modal-body">
+        <form id='comment' #custComment="ngForm" (ngSubmit)="sendMessage(custComment.value)">
+
+            <div class="container">
+                <div class="formgroup">
+                               
+                    <textarea rows="6" name="comment" form="comment" class="form-control" placeholder="Leave your comment here" ngModel></textarea>
+                    <br>
+                </div>
+                <div class="formgroup">
+
+                    <input class='btn btn-success' type="submit" value="Submit">
+
+                    <button mat-raised-button id="modal-cancel-button" type="button" class="btn btn-dark" (click)="closeModal()">Go back</button>
+                </div>
+            </div>
+        </form>
+
+    </section>
+</div>
