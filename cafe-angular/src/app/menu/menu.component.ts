@@ -18,7 +18,7 @@ import { Employee } from '../employee'
 
 
 export class MenuComponent implements OnInit {
-  public count:number = 0;
+  public count: number = 0;
   public cust: Customer = null;
   public user: User;
   public employee: Employee = null;
@@ -31,9 +31,9 @@ export class MenuComponent implements OnInit {
   public unique:OrderItem[];
   public address:Address = new Address();
 
-  constructor(private menuService: MenuService, private orderService:OrderService, private loginService: LoginService) {
+  constructor(private menuService: MenuService, private orderService: OrderService, private loginService: LoginService) {
     //this.menuItem = MenuService.getMenuItems();
-    menuService.getMenuItems().subscribe((resp:Array<MenuItem>) => {
+    menuService.getMenuItems().subscribe((resp: Array<MenuItem>) => {
       this.menuItemList = resp;
       let oi: OrderItem;
       this.orderItems = [];
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
         oi.menuItem = menuItem;
         oi.quantity = 0;
         this.orderItems.push(oi);
-      });    console.log(this.orderItems);
+      }); console.log(this.orderItems);
     });
   }
   addToInventory(ord:OrderItem){
@@ -58,18 +58,17 @@ export class MenuComponent implements OnInit {
     console.log(this.user);
   }
 
-  addToOrder(ord:OrderItem){
+  addToOrder(ord: OrderItem) {
     ord.quantity += 1;
     this.orderItem.push(ord);
-    this.totPrice+=ord.menuItem.price;
+    this.totPrice += ord.menuItem.price;
     //console.log(this.orderItem);
-    this.unique = this.orderItem.filter(function(elem, index, self) {
+    this.unique = this.orderItem.filter(function (elem, index, self) {
       return index === self.indexOf(elem);
-  })
-  console.log(this.unique);
+    })
+    console.log(this.unique);
   }
   storeAddress(){
-
   }
   
   removeFromOrder(ord:OrderItem){
@@ -93,6 +92,6 @@ export class MenuComponent implements OnInit {
       this.order.lastActionTime = null; // do later
       console.log(this.order);
       console.log(this.address);
-      this.orderService.subOrder(this.order).subscribe();
+      this.orderService.subOrder(this.order).subscribe(resp => { window.location.reload(); });
   }
 }
