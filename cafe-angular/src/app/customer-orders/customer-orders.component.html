@@ -32,10 +32,10 @@
             </td>
             <td>{{o.status | ostatus}}</td>
             <td>{{o.lastActionTime.toString()| date:'short'}}</td>
-            <td><i type="button"  class="fa fa-heart fa-2x" [ngStyle]="{'color':o.review.goodRating == true  ? 'green' : 'grey'}"  (click)="rateGood(o)"></i></td>
-            <td><i type="button" class="fa fa-thumbs-down fa-2x"  [ngStyle]="{'color':o.review.goodRating == false ? 'red' : 'grey'}" aria-hidden="true" (click)="rateBad(o)"></i></td>
+            <td><i *ngIf="o.status == status" type="button"  class="fa fa-heart fa-2x" [ngStyle]="{'color':o.review.goodRating == true  ? 'green' : 'grey'}"  (click)="rateGood(o)"></i></td>
+            <td><i *ngIf="o.status == status" type="button" class="fa fa-thumbs-down fa-2x"  [ngStyle]="{'color':o.review.goodRating == false ? 'red' : 'grey'}" aria-hidden="true" (click)="rateBad(o)"></i></td>
             <td>
-                <button *ngIf="o.review.id != 0" type="button" class="btn btn-info btn-lg" (click)="commentOrder(o)">Comment</button>
+                <button *ngIf="o.review.id != 0 && o.status == status" type="button" class="btn btn-info btn-lg" (click)="commentOrder(o)">Comment</button>
             </td>
         </tr>
 

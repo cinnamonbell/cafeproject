@@ -20,7 +20,7 @@ export class CustomerOrdersComponent implements OnInit {
 
   public user: User = new User();
   public cust: Customer = new Customer();
-
+  public status:String = 'COMPLETED';
   public ordersList: Order[];
 
   constructor(public matDialog: MatDialog, public loginService: LoginService, private orderService: OrderService, private reviewService: ReviewService) { }
@@ -36,6 +36,7 @@ export class CustomerOrdersComponent implements OnInit {
           this.ordersList = resp;
           for (let i = 0; i < this.ordersList.length; i++) {
             if (this.ordersList[i].review == null) {
+              console.log(this.ordersList[i].status);
               let review: Review = new Review();
               review.id = 0;
               this.ordersList[i].review = review;
