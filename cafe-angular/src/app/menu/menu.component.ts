@@ -8,6 +8,7 @@ import { Customer } from '../customer';
 import { User } from '../user';
 import { Order } from '../order';
 import { Address } from '../address';
+import { Employee } from '../employee'
 
 @Component({
   selector: 'app-menu',
@@ -20,6 +21,7 @@ export class MenuComponent implements OnInit {
   public count:number = 0;
   public cust: Customer = null;
   public user: User;
+  public employee: Employee = null;
   public order:Order = new Order();
   public menuItemList: MenuItem[];
   public currentMenu: MenuItem[] = [];
@@ -44,8 +46,16 @@ export class MenuComponent implements OnInit {
       });    console.log(this.orderItems);
     });
   }
+  addToInventory(ord:OrderItem){
+    let menI = ord.menuItem;
+    menI.quantity += 1;
+    console.log(menI.name + " inventory: " + menI.quantity);
+    this.menuService.updateMenuItems(menI).subscribe();
+  }
 
   ngOnInit(): void {
+    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
+    console.log(this.user);
   }
 
   addToOrder(ord:OrderItem){
@@ -58,7 +68,6 @@ export class MenuComponent implements OnInit {
   })
   console.log(this.unique);
   }
-
   storeAddress(){
 
   }
@@ -87,4 +96,3 @@ export class MenuComponent implements OnInit {
       this.orderService.subOrder(this.order).subscribe();
   }
 }
-
