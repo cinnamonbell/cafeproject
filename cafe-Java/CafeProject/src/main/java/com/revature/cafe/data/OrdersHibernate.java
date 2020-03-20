@@ -42,7 +42,7 @@ public class OrdersHibernate implements OrdersDAO {
                     session.update(order.getCustomer());
                 }
                 order.setStatus(OrderStatus.PENDING);
-                session.save(order);
+                session.persist(order);
                 tx.commit();
         } catch (HibernateException e) {
                 if (tx != null)

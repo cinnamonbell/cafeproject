@@ -64,11 +64,11 @@ good_rating varchar2(100), --true = good false = bad
 comments varchar2(500)
 );
 
-create sequence ord_seq start with 3 NOCACHE;
+create sequence ord_seq start with 5 NOCACHE;
 
 create table orders(
 order_id number(5) primary key,
-cust_id number(5) not null,
+cust_id number(5),
 rev_id number(5),
 price decimal(10,2),
 status varchar2(15),
@@ -93,7 +93,7 @@ item_price decimal(10,2),
 inventory number(10,0) check (inventory > 0)
 );
 
-create sequence ordI_seq start with 5 NOCACHE;
+create sequence ordI_seq start with 11 NOCACHE;
 
 create table order_item(
 item_id number(5) primary key,

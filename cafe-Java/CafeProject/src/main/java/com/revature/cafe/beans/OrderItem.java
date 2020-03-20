@@ -5,6 +5,7 @@ package com.revature.cafe.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class OrderItem {
 	@SequenceGenerator(name="order_item", sequenceName="ordI_seq", allocationSize=1)
 	@Column(name = "item_id")
     private int id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
     private int quantity;
