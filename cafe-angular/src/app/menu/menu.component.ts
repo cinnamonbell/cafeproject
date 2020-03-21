@@ -32,8 +32,27 @@ export class MenuComponent implements OnInit {
   public address:Address = new Address();
 
   constructor(private menuService: MenuService, private orderService: OrderService, private loginService: LoginService) {
-    //this.menuItem = MenuService.getMenuItems();
-    menuService.getMenuItems().subscribe((resp: Array<MenuItem>) => {
+  }
+
+
+  addToInventory(ord:OrderItem){
+    let menI = ord.menuItem;
+    menI.quantity += 1;
+    console.log(menI.name + " inventory: " + menI.quantity);
+    this.menuService.updateMenuItems(menI).subscribe();
+  }
+
+  getItemScore(item: MenuItem): number{
+    if (!this.menuItemList || !item) return -1;
+    let ratings: Map<number, number> = this.menuService.getItemRatings();
+    if (ratings.has(item.id)) return ratings.get(item.id);
+    else return -1;
+  }
+
+  ngOnInit(): void {
+    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
+    console.log(this.user);
+    this.menuService.getMenuItems().subscribe((resp: Array<MenuItem>) => {
       this.menuItemList = resp;
       let oi: OrderItem;
       this.orderItems = [];
@@ -45,17 +64,6 @@ export class MenuComponent implements OnInit {
         this.orderItems.push(oi);
       }); console.log(this.orderItems);
     });
-  }
-  addToInventory(ord:OrderItem){
-    let menI = ord.menuItem;
-    menI.quantity += 1;
-    console.log(menI.name + " inventory: " + menI.quantity);
-    this.menuService.updateMenuItems(menI).subscribe();
-  }
-
-  ngOnInit(): void {
-    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
-    console.log(this.user);
   }
 
   addToOrder(ord: OrderItem) {

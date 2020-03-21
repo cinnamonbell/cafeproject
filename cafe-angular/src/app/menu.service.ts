@@ -1,20 +1,34 @@
 import { Injectable } from '@angular/core';
 
 import { MenuItem } from './menu-item';
-import { Observable } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
+import { map } from 'rxjs/internal/operators/map';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
-  private appUrl = this.urlService.getMenuUrl() + 'menu';
 
-  constructor(private http:HttpClient, private urlService:UrlService) { }
+  private itemRatings: Map<number, number>;
+  constructor(private http:HttpClient, private urlService:UrlService) {
+    this.http.get<Object>(this.urlService.getMenuUrl()+"/popular",
+    {headers: this.urlService.getHeader()}).subscribe( data => {     
+      this.itemRatings = new Map<number, number>();
+      Object.keys(data).forEach(
+        (key: string) => this.itemRatings.set(Number(key),data[key])
+      )
+      console.log(data);
+      console.log(this.itemRatings);
+    });
+   }
 
-  getMenuItems(): Observable<Array<MenuItem>>{ 
+   getItemRatings(): Map<number, number>{
+     return this.itemRatings;
+   }
+   getMenuItems(): Observable<Array<MenuItem>>{ 
     let menuArray:Array<MenuItem> = [];
     console.log(menuArray);
     return this.http.get<MenuItem[]>(this.urlService.getMenuUrl(), {headers: this.urlService.getHeader()}).pipe();
