@@ -7,6 +7,8 @@ import { LoginService } from '../login.service';
 import { Customer } from '../customer';
 import { User } from '../user';
 import { Order } from '../order';
+import { Address } from '../address';
+import { Employee } from '../employee'
 
 @Component({
   selector: 'app-menu',
@@ -19,13 +21,15 @@ export class MenuComponent implements OnInit {
   public count: number = 0;
   public cust: Customer = null;
   public user: User;
-  public order: Order = new Order();
+  public employee: Employee = null;
+  public order:Order = new Order();
   public menuItemList: MenuItem[];
   public currentMenu: MenuItem[] = [];
-  public orderItem: OrderItem[] = [];
-  public orderItems: OrderItem[];
-  public totPrice: number = 0;
-  public unique: OrderItem[];
+  public orderItem:OrderItem[] = [];
+  public orderItems:OrderItem[];
+  public totPrice:number = 0;
+  public unique:OrderItem[];
+  public address:Address = new Address();
 
   constructor(private menuService: MenuService, private orderService: OrderService, private loginService: LoginService) {
     //this.menuItem = MenuService.getMenuItems();
@@ -42,8 +46,16 @@ export class MenuComponent implements OnInit {
       }); console.log(this.orderItems);
     });
   }
+  addToInventory(ord:OrderItem){
+    let menI = ord.menuItem;
+    menI.quantity += 1;
+    console.log(menI.name + " inventory: " + menI.quantity);
+    this.menuService.updateMenuItems(menI).subscribe();
+  }
 
   ngOnInit(): void {
+    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
+    console.log(this.user);
   }
 
   addToOrder(ord: OrderItem) {
@@ -56,30 +68,30 @@ export class MenuComponent implements OnInit {
     })
     console.log(this.unique);
   }
-
-
-
-  removeFromOrder(ord: OrderItem) {
-    ord.quantity -= 1;
-    let index: number = this.orderItem.indexOf(ord);
-    this.orderItem.splice(index, 1);
+  storeAddress(){
+  }
+  
+  removeFromOrder(ord:OrderItem){
+    ord.quantity-=1;
+    let index:number = this.orderItem.indexOf(ord);
+    this.orderItem.splice(index,1);
     this.totPrice -= ord.menuItem.price;
     console.log(this.orderItem);
   }
 
-  submitOrder() {
-    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; });
-    console.log(this.user);
-    console.log(this.currentMenu);
-    this.order.customer = this.user.customer;
-    this.order.orderItems = this.unique;
-    this.order.price = this.totPrice;
-    this.order.status = null;
-    this.order.address = null; // do address later
-    this.order.orderTime = null; // do later
-    this.order.lastActionTime = null; // do later
-    console.log(this.order);
-    this.orderService.subOrder(this.order).subscribe(resp => { window.location.reload(); });
+  submitOrder(){
+      this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
+      console.log(this.user);
+      console.log(this.currentMenu);
+      this.order.customer = this.user.customer;
+      this.order.orderItems = this.unique;
+      this.order.price = this.totPrice;
+      this.order.status = null; 
+      this.order.address = this.address; // do address later
+      this.order.orderTime = null; // do later
+      this.order.lastActionTime = null; // do later
+      console.log(this.order);
+      console.log(this.address);
+      this.orderService.subOrder(this.order).subscribe(resp => { window.location.reload(); });
   }
 }
-

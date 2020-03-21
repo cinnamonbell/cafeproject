@@ -19,4 +19,13 @@ export class MenuService {
     console.log(menuArray);
     return this.http.get<MenuItem[]>(this.urlService.getMenuUrl(), {headers: this.urlService.getHeader()}).pipe();
   }
+
+  updateMenuItems(menuI:MenuItem): Observable<MenuItem>{
+    console.log(menuI);
+    console.log(this.urlService.getMenuUrl());
+    return this.http.put<MenuItem>(this.urlService.getUpdateMenuUrl(menuI.id), menuI, {headers: this.urlService.getHeader()}).pipe(); //check this
+  }
 }
+
+// return this.http.put<Order>(this.url.getUpdateOrderUrl(order.id), order, 
+//     {headers: this.url.getHeader() }).pipe();

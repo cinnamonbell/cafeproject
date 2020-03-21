@@ -165,7 +165,11 @@ commit;
 select * from orders;
 select * from user_t;
 select * from orders;
+<<<<<<< HEAD
 select * from cust_t;
+=======
+select * from address;
+>>>>>>> ed5b2600eebaca7d1d5c158a7f0cd54d064e48bf
 select * from review;
 select * from order_item;
 select * from orders;
