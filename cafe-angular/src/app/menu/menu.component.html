@@ -26,7 +26,7 @@
             <td>{{o.menuItem.price | currency }}</td>
             <td *ngIf= "o.quantity!=0"><button type="button" class="btn btn-info btn-sm" (click)="removeFromOrder(o)">-</button></td>
             <td >{{o.quantity}}</td>
-            <td><button type="button" [disabled]="(o.menuItem.quantity == 1)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>
+            <td><button type="button" [disabled]="(o.menuItem.quantity > -1)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>
             <td></td>
             <td><button *ngIf="user.employee != null" type="button" class="btn btn-info btn-sm" id="inv" (click)="addToInventory(o)">+ Inventory</button></td>
         </tr>
