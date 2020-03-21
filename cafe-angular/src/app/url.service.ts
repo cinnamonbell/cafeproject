@@ -21,6 +21,9 @@ export class UrlService {
   getMenuUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.menuUrl;
   }
+  getUpdateMenuUrl(id:number): string{
+    return this.urlMap.baseServerUrl+this.urlMap.menuUrl+"/"+id;
+  } 
   getSignUpUrl(): string{
     return this.urlMap.baseServerUrl+this.urlMap.signUp;
   }
@@ -50,6 +53,10 @@ export class UrlService {
 
   getCommentReview(): string{
     return this.urlMap.baseServerUrl+this.urlMap.review+'/comment';
+  }
+
+  getRemoveStarspUrl(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.signUp+'/stars';
   }
 
 }

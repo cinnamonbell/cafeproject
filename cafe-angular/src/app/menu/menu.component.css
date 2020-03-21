@@ -11,3 +11,10 @@
     background-attachment: fixed;
     background-size: cover;
   } */
+
+.inv:disabled {
+    background: #999;
+    color: #555;
+    cursor: not-allowed;
+}
+

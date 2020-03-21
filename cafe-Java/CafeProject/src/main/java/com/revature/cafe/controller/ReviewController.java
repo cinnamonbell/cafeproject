@@ -34,7 +34,7 @@ public class ReviewController {
 		Review rv = new Review();
 		rv.setGoodRating(true);
 	
-		if (ord.getReview() == null) {
+		if (ord.getReview().getId() == 0) {
 			log.trace("creating a new review");
 			id = rs.addReview(rv);
 			Review nrv = new Review();
@@ -62,7 +62,7 @@ public class ReviewController {
 		Review rv = new Review();
 		rv.setGoodRating(false);
 
-		if (ord.getReview() == null) {
+		if (ord.getReview().getId() == 0) {
 			log.trace("creating a new review");
 			id = rs.addReview(rv);
 			Review nrv = new Review();

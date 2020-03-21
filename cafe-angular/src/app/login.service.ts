@@ -41,5 +41,9 @@ export class LoginService {
         }
       ));
   }
-  
+  clearLogin() {
+    this.cookie.delete("user");
+    this.cookie.delete("password");
+  }
 }
+
