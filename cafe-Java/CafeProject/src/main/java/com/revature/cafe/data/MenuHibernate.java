@@ -79,8 +79,7 @@ public class MenuHibernate implements MenuDAO {
 	}
 
     @Override
-    public Map<Integer, Double> getPopularItems() {
-        Map<Integer, Double> popularItems = new HashMap<>();
+    public List<Tuple> getPopularItems() {
         log.trace("Getting popular items");
         Session session = hu.getSession();
         List<Tuple> itemRatings = session.createQuery(
@@ -94,14 +93,8 @@ public class MenuHibernate implements MenuDAO {
                 Tuple.class
         ).getResultList();
         session.close();
-        log.trace(itemRatings.size());
-        for (Tuple t : itemRatings){
-            Integer item = t.get("item", Integer.class);
-            Double rating = t.get("rating", Double.class);
-            popularItems.put(item, rating);
-            log.trace("Inserting item "+item+" with rating "+rating);
-        }
-        return popularItems;
+
+          return itemRatings;
     }
         
         

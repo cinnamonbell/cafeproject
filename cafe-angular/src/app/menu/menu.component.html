@@ -1,13 +1,16 @@
-<body>
-<img src="/assets/header2.jpg" alt="Header"/><br>
-    <label for="Address">Address:</label><br>
-    <input type="text" [(ngModel)]="address.address" ><br>
-    <label for="City">City:</label><br>
-    <input type="text" [(ngModel)]="address.city"><br>
-    <label for="State">State:</label><br>
-    <input type="text" [(ngModel)]="address.state"><br>
-    <label for="Zip Code">Zip Code:</label><br>
-    <input type="text" [(ngModel)]="address.zipCode"><br>
+<img src="/assets/header2.jpg" alt="Header"/><br> <br>
+<p >Is this a delivery?</p>
+<button type="button" class="butn" (click)="yesButton()" [ngStyle]="{'background-color':what == 1  ? 'darkgray' : 'lightgray'}">Yes</button><div class = "divider"></div><button type="button" class="butn" (click)="noButton()" [ngStyle]="{'background-color':what == 2  ? 'darkgray' : 'lightgray'}">No</button><br>
+<div >
+    <label for="Address" *ngIf="what==1">Address:</label><br *ngIf="what==1">
+    <input type="text" [(ngModel)]="address.address" *ngIf="what==1"><br *ngIf="what==1">
+    <label for="City" *ngIf="what==1">City:</label><br *ngIf="what==1">
+    <input type="text" [(ngModel)]="address.city" *ngIf="what==1"><br *ngIf="what==1">
+    <label for="State" *ngIf="what==1">State:</label><br *ngIf="what==1">
+    <input type="text" [(ngModel)]="address.state" *ngIf="what==1"><br *ngIf="what==1">
+    <label for="Zip Code" *ngIf="what==1">Zip Code:</label><br *ngIf="what==1">
+    <input type="text" [(ngModel)]="address.zipCode" *ngIf="what==1"><br>
+</div>
 <h1>Menu</h1>
 <table>
     <thead class = menuT>
@@ -15,7 +18,7 @@
             <td>Menu Item</td>
             <td>Quantity</td>
             <td>Price</td>
-            <td></td>
+            <td>Rating</td>
             <td>Add to Order</td>
         </tr>
     </thead>
@@ -24,11 +27,12 @@
             <td>{{o.menuItem.name}}</td>
             <td>{{o.menuItem.quantity}}</td>
             <td>{{o.menuItem.price | currency }}</td>
-            <td *ngIf= "o.quantity!=0"><button type="button" class="btn btn-info btn-sm" (click)="removeFromOrder(o)">-</button></td>
+            <td>{{(getItemScore(o.menuItem) >= 0) ? (getItemScore(o.menuItem) | percent) : ""}}</td>
+            <td *ngIf="o.quantity!=0"><button type="button" class="btn btn-info btn-sm" (click)="removeFromOrder(o)">-</button></td>
             <td >{{o.quantity}}</td>
-            <td><button type="button" [disabled]="(o.menuItem.quantity > -1)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>
+            <td><button type="button" [disabled]="(o.menuItem.quantity < 1)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>
             <td></td>
-            <td><button *ngIf="user.employee != null" type="button" class="btn btn-info btn-sm" id="inv" (click)="addToInventory(o)">+ Inventory</button></td>
+            <td><button *ngIf="user != null && user.employee != null" type="button" class="btn btn-info btn-sm" id="inv" (click)="addToInventory(o)">+ Inventory</button></td>
         </tr>
     </tbody>
 </table>
@@ -46,4 +50,3 @@
     </tbody>
     <input class='btn btn-success' type="submit" value="Submit Order" (click)="submitOrder()">
 </table>
-</body>
