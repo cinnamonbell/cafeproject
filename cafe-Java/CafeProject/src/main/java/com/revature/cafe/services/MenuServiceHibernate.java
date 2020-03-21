@@ -2,7 +2,7 @@ package com.revature.cafe.services;
 
 import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.data.MenuDAO;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +36,11 @@ public class MenuServiceHibernate implements MenuService{
 		return menuDao.getMenuList();
 	}
 
+    @Override
+    public Map<Integer, Double> getPopularItems() {
+        return menuDao.getPopularItems();
+    }
+
+        
+        
 }

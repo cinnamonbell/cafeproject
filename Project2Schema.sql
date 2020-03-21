@@ -57,10 +57,10 @@ states varchar2(100) not null,
 zipcode varchar2(100) not null
 );
 
-create sequence rev_seq NOCACHE;
+create sequence rev_seq start with 5 NOCACHE;
 create table review(
 review_id number(5) primary key,
-good_rating varchar2(100), --true = good false = bad
+good_rating number(1), --true = 1
 comments varchar2(500)
 );
 
@@ -116,7 +116,7 @@ CONSTRAINT unique_menu_item UNIQUE (order_id, menu_item)
 --inserting menu items into menu table
 insert into menu(menu_id, item_name, item_price, inventory) values(1,'Coffee', 3.00, 1);
 insert into menu(menu_id, item_name, item_price, inventory) values(2,'Espresso', 3.25, 22);
-insert into menu(menu_id, item_name, item_price, inventory) values(3,'Latt?', 3.50, 17);
+insert into menu(menu_id, item_name, item_price, inventory) values(3,'Latte', 3.50, 17);
 insert into menu(menu_id, item_name, item_price, inventory) values(4,'Hot Chocolate', 2.75, 33);
 insert into menu(menu_id, item_name, item_price, inventory) values(5,'Hot Tea', 3.00, 30);
 insert into menu(menu_id, item_name, item_price, inventory) values(6,'Iced Tea', 3.50, 16);
@@ -147,16 +147,26 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 
 
 --review order tests have to create user to work
 insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
-	values (3, 2, null, 7.75, 'READY', null, TO_TIMESTAMP('2020/02/18 14:39:16', 'YYYY/MM/DD HH24:MI:SS'),
+	values (3, 1, null, 7.75, 'READY', null, TO_TIMESTAMP('2020/02/18 14:39:16', 'YYYY/MM/DD HH24:MI:SS'),
 		TO_TIMESTAMP('2020/02/18 14:41:57', 'YYYY/MM/DD HH24:MI:SS'));
 insert into order_item(item_id, order_id, menu_item, quantity) values (5, 3, 4, 1);
 insert into order_item(item_id, order_id, menu_item, quantity) values (6, 3, 10, 1);
 		
 insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
-	values (4, 2, null, 5.50, 'PENDING', null, TO_TIMESTAMP('2020/02/18 14:25:22', 'YYYY/MM/DD HH24:MI:SS'),
+	values (4, 1, null, 5.50, 'PENDING', null, TO_TIMESTAMP('2020/02/18 14:25:22', 'YYYY/MM/DD HH24:MI:SS'),
 		TO_TIMESTAMP('2020/02/18 14:54:36', 'YYYY/MM/DD HH24:MI:SS'));
 insert into order_item(item_id, order_id, menu_item, quantity) values (7, 4, 11, 2);
 insert into order_item(item_id, order_id, menu_item, quantity) values (8, 4, 3, 1);
+
+insert into review (review_id, good_rating, comments) values (1, 0, null);
+insert into review (review_id, good_rating, comments) values (2, 1, null);
+insert into review (review_id, good_rating, comments) values (3, 1, null);
+insert into review (review_id, good_rating, comments) values (4, 0, null);
+
+update orders set rev_id = 1 where order_id = 1;
+update orders set rev_id = 2 where order_id = 2;
+update orders set rev_id = 3 where order_id = 3;
+update orders set rev_id = 4 where order_id = 4;
 
 --insert into review(review_id, good_rating, comments) values (0, 0, null);
 commit;
@@ -176,3 +186,11 @@ select * from orders;
 select * from user_t;
 select * from orders;
 
+-- how to select top 5 highest reviewed menu items
+select menu_id, avg(good_rating) as av from order_item 
+inner join orders on orders.order_id = order_item.order_id
+inner join menu on order_item.menu_item = menu.menu_id
+inner join review on orders.rev_id = review_id
+where rownum <= 5
+group by menu.menu_id
+order by av desc;
