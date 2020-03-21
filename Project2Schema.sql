@@ -161,7 +161,7 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (8, 4, 3, 
 --insert into review(review_id, good_rating, comments) values (0, 0, null);
 commit;
 
-
+select * from menu;
 select * from orders;
 select * from user_t;
 select * from orders;
