@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
   public orderItems:OrderItem[];
   public totPrice:number = 0;
   public unique:OrderItem[];
-  public address:Address = new Address();
+  public address:Address = null;
   public what:number = 0;
   constructor(private menuService: MenuService, private orderService: OrderService, private loginService: LoginService) {
   }
@@ -79,12 +79,14 @@ export class MenuComponent implements OnInit {
   
   yesButton(){
     console.log("yes");
+    this.what = null;
     this.what = 1;
     this.address = new Address();
   }
 
   noButton(){
     console.log("no");
+    this.what = null;
     this.what = 2;
     this.address = null;
   }

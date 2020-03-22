@@ -49,7 +49,7 @@ export class EmpViewReviewsComponent implements OnInit {
           empReviews.good = 0;
           empReviews.comments = null;
           commentArray = [];
-          
+
           empReviews.cust = this.uniqueCust[j];
           for (let i = 0; i < this.ordersList.length; i++) {
             if (uniqueArray[j].id == this.ordersList[i].customer.id) {
