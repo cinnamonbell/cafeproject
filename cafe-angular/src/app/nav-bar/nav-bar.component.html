@@ -7,7 +7,8 @@
     <a class="active" href="#home">Home</a>
 
     
-    <a routerLink="/pending-orders">Pending Orders</a>
+    <a *ngIf="emp != null"routerLink="/pending-orders">Pending Orders</a>
+    <a *ngIf="emp != null"routerLink="/customer-reviews">Customer Reviews</a>
     <a routerLink="/menu">Menu</a>
     <a routerLink="/review">Review Orders</a>
     <button *ngIf="cust != null && cust.stars >= 5" mat-raised-button id="logout-button" (click)="claimReward()">Claim reward</button>

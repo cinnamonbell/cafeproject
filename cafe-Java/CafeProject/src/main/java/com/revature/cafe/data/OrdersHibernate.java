@@ -27,44 +27,43 @@ public class OrdersHibernate implements OrdersDAO {
 
 	private static HibernateUtil hibernate = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(OrdersHibernate.class);
-         private static final double minRewardPrice = 5.0;
-    @Override
-    public Order addOrder(Order order) {
-        Session session = hibernate.getSession();
-        Transaction tx = null;
-        Timestamp time = Timestamp.valueOf(LocalDateTime.now());
-        try {
-                tx = session.beginTransaction();
-                order.setOrderTime(time);
-                order.setLastActionTime(time);
-            	for(OrderItem o:order.getOrderItems()) {
-            		o.getMenuItem().setQuantity(o.getMenuItem().getQuantity()-o.getQuantity());
-            		
-            		log.trace(o.getMenuItem().getQuantity());
-            		log.trace(order);
-            		session.update(o.getMenuItem());
-            	}
-                if ( order.getCustomer() != null && order.getPrice() > minRewardPrice){
-                    int rewards = order.getCustomer().getStars();
-                    order.getCustomer().setStars(++rewards);
-                    session.update(order.getCustomer());
-                }
-                order.setStatus(OrderStatus.PENDING);
-                session.persist(order);
-                tx.commit();
-        } catch (HibernateException e) {
-                if (tx != null)
-                        tx.rollback();
-                LogUtil.logException(e, OrdersHibernate.class);
-                  return null;
-        } finally {
-                session.close();
-        }
-        return order;
-    }
+	private static final double minRewardPrice = 5.0;
 
-        
-        
+	@Override
+	public Order addOrder(Order order) {
+		Session session = hibernate.getSession();
+		Transaction tx = null;
+		Timestamp time = Timestamp.valueOf(LocalDateTime.now());
+		try {
+			tx = session.beginTransaction();
+			order.setOrderTime(time);
+			order.setLastActionTime(time);
+			for (OrderItem o : order.getOrderItems()) {
+				o.getMenuItem().setQuantity(o.getMenuItem().getQuantity() - o.getQuantity());
+
+				log.trace(o.getMenuItem().getQuantity());
+				log.trace(order);
+				session.update(o.getMenuItem());
+			}
+			if (order.getCustomer() != null && order.getPrice() > minRewardPrice) {
+				int rewards = order.getCustomer().getStars();
+				order.getCustomer().setStars(++rewards);
+				session.update(order.getCustomer());
+			}
+			order.setStatus(OrderStatus.PENDING);
+			session.persist(order);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			LogUtil.logException(e, OrdersHibernate.class);
+			return null;
+		} finally {
+			session.close();
+		}
+		return order;
+	}
+
 	@Override
 	public List<Order> getPendingOrders() {
 		List<Order> list;
@@ -112,26 +111,35 @@ public class OrdersHibernate implements OrdersDAO {
 //		
 //	}
 
-    @Override
-    public Order updateOrder(Order order) {
+	@Override
+	public Order updateOrder(Order order) {
 		Session session = hibernate.getSession();
-                  
+
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-                          order.setLastActionTime(Timestamp.valueOf(LocalDateTime.now()));
+			order.setLastActionTime(Timestamp.valueOf(LocalDateTime.now()));
 			session.update(order);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			LogUtil.logException(e, OrdersHibernate.class);
-                          return null;
+			return null;
 		} finally {
 			session.close();
 		}
-                return order;
-    }
+		return order;
+	}
 
-    
+	@Override
+	public List<Order> getAllOrders() {
+		Session s = hibernate.getSession();
+		String query = "FROM Order o ORDER BY o.customer";
+		Query<Order> q = s.createQuery(query, Order.class);
+		List<Order> allOrderList = q.getResultList();
+		s.close();
+		return allOrderList;
+	}
+
 }

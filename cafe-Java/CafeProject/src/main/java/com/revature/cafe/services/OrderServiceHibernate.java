@@ -44,5 +44,10 @@ public class OrderServiceHibernate implements OrderService{
 		ordersDao.addOrder(order);
 		
 	}
+
+	@Override
+	public List<Order> getAllOrders() {
+		return ordersDao.getAllOrders();
+	}
     
 }

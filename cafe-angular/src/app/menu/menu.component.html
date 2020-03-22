@@ -28,7 +28,7 @@
             <td >{{o.quantity}}</td>
             <td><button type="button" [disabled]="(o.menuItem.quantity == 1)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>
             <td></td>
-            <td><button *ngIf="user.employee != null" type="button" class="btn btn-info btn-sm" id="inv" (click)="addToInventory(o)">+ Inventory</button></td>
+            <td><button *ngIf="emp != null" type="button" class="btn btn-info btn-sm" id="inv" (click)="addToInventory(o)">+ Inventory</button></td>
         </tr>
     </tbody>
 </table>

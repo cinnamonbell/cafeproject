@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
   public count: number = 0;
   public cust: Customer = null;
   public user: User;
-  public employee: Employee = null;
+  public emp: Employee = null;
   public order:Order = new Order();
   public menuItemList: MenuItem[];
   public currentMenu: MenuItem[] = [];
@@ -80,7 +80,8 @@ export class MenuComponent implements OnInit {
   }
 
   submitOrder(){
-      this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
+      this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.employee != null) ? this.emp = user.employee : null;
+         (user != null && user.customer != null) ? this.cust = user.customer : null;});
       console.log(this.user);
       console.log(this.currentMenu);
       this.order.customer = this.user.customer;
