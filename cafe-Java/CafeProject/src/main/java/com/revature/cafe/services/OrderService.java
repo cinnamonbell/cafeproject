@@ -10,5 +10,5 @@ public interface OrderService {
     Order updateOrder(Order order);
     List<Order> getCustOrders(Customer cust);
     void updateReview(Order ord);
-    public void addOrder(Order order);
+    Order addOrder(Order order);
 }

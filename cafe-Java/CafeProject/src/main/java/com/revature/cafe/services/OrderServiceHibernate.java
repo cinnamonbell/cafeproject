@@ -40,9 +40,8 @@ public class OrderServiceHibernate implements OrderService{
     }
 
 	@Override
-	public void addOrder(Order order) {
-		ordersDao.addOrder(order);
-		
+	public Order addOrder(Order order) {
+		return ordersDao.addOrder(order);		
 	}
     
 }

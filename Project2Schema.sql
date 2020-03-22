@@ -57,14 +57,14 @@ states varchar2(100) not null,
 zipcode varchar2(100) not null
 );
 
-create sequence rev_seq start with 5 NOCACHE;
+create sequence rev_seq start with 200 NOCACHE;
 create table review(
 review_id number(5) primary key,
 good_rating number(1), --true = 1
 comments varchar2(500)
 );
 
-create sequence ord_seq start with 5 NOCACHE;
+create sequence ord_seq start with 200 NOCACHE;
 
 create table orders(
 order_id number(5) primary key,
@@ -93,7 +93,7 @@ item_price decimal(10,2),
 inventory number(10,0) check (inventory >= 0)
 );
 
-create sequence ordI_seq start with 11 NOCACHE;
+create sequence ordI_seq start with 250 NOCACHE;
 
 create table order_item(
 item_id number(5) primary key,

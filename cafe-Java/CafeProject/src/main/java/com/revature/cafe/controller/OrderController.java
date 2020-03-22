@@ -3,6 +3,7 @@ package com.revature.cafe.controller;
 import com.revature.cafe.beans.Order;
 import com.revature.cafe.beans.User;
 import com.revature.cafe.services.OrderService;
+import com.revature.cafe.util.LogUtil;
 
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/order")
+@RequestMapping(value="/orders")
 @CrossOrigin(origins="*", allowedHeaders="*")
 public class OrderController {
     private OrderService orderService;
@@ -48,14 +49,13 @@ public class OrderController {
     
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Order> addOrder(@RequestBody Order order){
-    	System.out.println("yoyo");
-    	log.trace(order);
+    	log.trace("POST request to add: "+order);
     	try {
-    		orderService.addOrder(order);
+    		order = orderService.addOrder(order);
     		return ResponseEntity.ok(order);
-    	}catch (RuntimeException e){
-			log.trace(e);
-			return ResponseEntity.ok(null);
+    	} catch (RuntimeException e){
+                LogUtil.logException(e, OrderController.class);
+                return ResponseEntity.badRequest().body(order);
     	}
     }
     
