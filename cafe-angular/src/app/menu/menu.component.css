@@ -18,3 +18,21 @@
     cursor: not-allowed;
 }
 
+.active, .butn:hover {
+    background-color:darkgray;
+    color: yellow;
+  }
+
+  .butn {
+    border: black;
+    outline: black;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .divider{
+    width:10px;
+    height:auto;
+    display:inline-block;
+}

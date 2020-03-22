@@ -171,7 +171,7 @@ update orders set rev_id = 4 where order_id = 4;
 --insert into review(review_id, good_rating, comments) values (0, 0, null);
 commit;
 
-
+select * from menu;
 select * from orders;
 select * from user_t;
 select * from orders;
