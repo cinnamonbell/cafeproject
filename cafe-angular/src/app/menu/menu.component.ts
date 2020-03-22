@@ -30,10 +30,29 @@ export class MenuComponent implements OnInit {
   public totPrice:number = 0;
   public unique:OrderItem[];
   public address:Address = new Address();
-
+  public what:number = 0;
   constructor(private menuService: MenuService, private orderService: OrderService, private loginService: LoginService) {
-    //this.menuItem = MenuService.getMenuItems();
-    menuService.getMenuItems().subscribe((resp: Array<MenuItem>) => {
+  }
+
+
+  addToInventory(ord:OrderItem){
+    let menI = ord.menuItem;
+    menI.quantity += 1;
+    console.log(menI.name + " inventory: " + menI.quantity);
+    this.menuService.updateMenuItems(menI).subscribe();
+  }
+
+  getItemScore(item: MenuItem): number{
+    if (!this.menuItemList || !item) return -1;
+    let ratings: Map<number, number> = this.menuService.getItemRatings();
+    if (ratings.has(item.id)) return ratings.get(item.id);
+    else return -1;
+  }
+
+  ngOnInit(): void {
+    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
+    console.log(this.user);
+    this.menuService.getMenuItems().subscribe((resp: Array<MenuItem>) => {
       this.menuItemList = resp;
       let oi: OrderItem;
       this.orderItems = [];
@@ -46,17 +65,6 @@ export class MenuComponent implements OnInit {
       }); console.log(this.orderItems);
     });
   }
-  addToInventory(ord:OrderItem){
-    let menI = ord.menuItem;
-    menI.quantity += 1;
-    console.log(menI.name + " inventory: " + menI.quantity);
-    this.menuService.updateMenuItems(menI).subscribe();
-  }
-
-  ngOnInit(): void {
-    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
-    console.log(this.user);
-  }
 
   addToOrder(ord: OrderItem) {
     ord.quantity += 1;
@@ -68,7 +76,17 @@ export class MenuComponent implements OnInit {
     })
     console.log(this.unique);
   }
-  storeAddress(){
+  
+  yesButton(){
+    console.log("yes");
+    this.what = 1;
+    this.address = new Address();
+  }
+
+  noButton(){
+    console.log("no");
+    this.what = 2;
+    this.address = null;
   }
   
   removeFromOrder(ord:OrderItem){

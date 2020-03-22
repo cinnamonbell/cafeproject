@@ -1,6 +1,7 @@
 package com.revature.cafe.data;
 
 import com.revature.cafe.beans.Customer;
+import com.revature.cafe.beans.MenuItem;
 import com.revature.cafe.beans.Order;
 import com.revature.cafe.beans.Order.OrderStatus;
 import com.revature.cafe.beans.OrderItem;
@@ -27,42 +28,43 @@ public class OrdersHibernate implements OrdersDAO {
 
 	private static HibernateUtil hibernate = HibernateUtil.getInstance();
 	private static Logger log = Logger.getLogger(OrdersHibernate.class);
-	private static final double minRewardPrice = 5.0;
-
-	@Override
-	public Order addOrder(Order order) {
-		Session session = hibernate.getSession();
-		Transaction tx = null;
-		Timestamp time = Timestamp.valueOf(LocalDateTime.now());
-		try {
-			tx = session.beginTransaction();
-			order.setOrderTime(time);
-			order.setLastActionTime(time);
-			for (OrderItem o : order.getOrderItems()) {
-				o.getMenuItem().setQuantity(o.getMenuItem().getQuantity() - o.getQuantity());
-
-				log.trace(o.getMenuItem().getQuantity());
-				log.trace(order);
-				session.update(o.getMenuItem());
-			}
-			if (order.getCustomer() != null && order.getPrice() > minRewardPrice) {
-				int rewards = order.getCustomer().getStars();
-				order.getCustomer().setStars(++rewards);
-				session.update(order.getCustomer());
-			}
-			order.setStatus(OrderStatus.PENDING);
-			session.persist(order);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			LogUtil.logException(e, OrdersHibernate.class);
-			return null;
-		} finally {
-			session.close();
-		}
-		return order;
-	}
+  private static final double minRewardPrice = 5.0;
+  @Override
+  public Order addOrder(Order order) {
+      Session session = hibernate.getSession();
+      Transaction tx = null;
+      Timestamp time = Timestamp.valueOf(LocalDateTime.now());
+      try {
+              tx = session.beginTransaction();
+              order.setOrderTime(time);
+              order.setLastActionTime(time);
+            for(OrderItem o : order.getOrderItems()) {
+                        MenuItem menuItem = session.get(MenuItem.class,
+                                new Integer(o.getMenuItem().getId()));
+                        o.setMenuItem(menuItem);
+                        menuItem.setQuantity(menuItem.getQuantity() - o.getQuantity());            		
+              log.trace("Updated quantity: "+menuItem.getQuantity());
+              log.trace("Order: "+order);
+              session.update(menuItem);
+            }
+              if ( order.getCustomer() != null && order.getPrice() > minRewardPrice){
+                  int rewards = order.getCustomer().getStars();
+                  order.getCustomer().setStars(++rewards);
+                  session.update(order.getCustomer());
+              }
+              order.setStatus(OrderStatus.PENDING);
+              session.persist(order);
+              tx.commit();
+      } catch (HibernateException e) {
+              if (tx != null)
+                      tx.rollback();
+              LogUtil.logException(e, OrdersHibernate.class);
+                return null;
+      } finally {
+              session.close();
+      }
+      return order;
+  }
 
 	@Override
 	public List<Order> getPendingOrders() {

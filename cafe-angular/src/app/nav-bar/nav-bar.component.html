@@ -3,10 +3,10 @@
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
-<div class="topnav">
-    <a class="active" href="#home">Home</a>
+<div id = "myDIV" class="topnav">
+    <a class="btn active" href="#home">Home</a>
 
-    
+
     <a *ngIf="emp != null"routerLink="/pending-orders">Pending Orders</a>
     <a *ngIf="emp != null"routerLink="/customer-reviews">Customer Reviews</a>
     <a routerLink="/menu">Menu</a>
@@ -15,6 +15,7 @@
     <button *ngIf="user == null" mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
     <button *ngIf="user == null"mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
     <button *ngIf="user != null"mat-raised-button id="logout-button" (click)="logout()">Logout</button>
+
     <div *ngIf="cust != null" id=divStar style.display='none'>
         <p id="emptyStar">
             {{cust.first + " " + cust.last}}
