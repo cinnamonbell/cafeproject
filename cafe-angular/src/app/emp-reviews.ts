@@ -1,5 +1,7 @@
+import { Customer } from 'src/app/customer';
+
 export class EmpReviews {
-    id:number;
+    cust:Customer;
     name: string;
     good: number;
     bad: number;

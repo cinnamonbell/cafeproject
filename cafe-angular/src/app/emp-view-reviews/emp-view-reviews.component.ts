@@ -14,14 +14,17 @@ export class EmpViewReviewsComponent implements OnInit {
 
   public ordersList: Order[];
   public custSet: Array<Customer> = new Array<Customer>();
-
+  public uniqueCust: Array<Customer> = new Array<Customer>();
+  public revArray: Array<EmpReviews> = new Array<EmpReviews>();
 
 
   constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
-    let revArray: Array<EmpReviews> = new Array<EmpReviews>();
+
     let commentArray: Array<string> = new Array<string>();
+    let empReviews: EmpReviews = new EmpReviews();
+
     this.orderService.getAllOrders().subscribe(
       (resp: Array<Order>) => {
         this.ordersList = resp;
@@ -37,29 +40,40 @@ export class EmpViewReviewsComponent implements OnInit {
           (thing, i, arr) => arr.findIndex(t => t.id === thing.id) === i
         );
         console.log('Customers:');
-        console.log(uniqueArray);
+        this.uniqueCust = uniqueArray;
+        console.log(this.uniqueCust);
         for (let j = 0; j < uniqueArray.length; j++) {
-          let empReviews: EmpReviews = new EmpReviews();
+          empReviews = new EmpReviews();
+          empReviews.cust = new Customer();
+          empReviews.bad = 0;
+          empReviews.good = 0;
+          empReviews.comments = null;
+          commentArray = [];
+          
+          empReviews.cust = this.uniqueCust[j];
           for (let i = 0; i < this.ordersList.length; i++) {
             if (uniqueArray[j].id == this.ordersList[i].customer.id) {
-              empReviews.id = j;
-              if (this.ordersList[i].review.goodRating != null && this.ordersList[i].review.goodRating == true) {
-                empReviews.good++;
-              }
-              if (this.ordersList[i].review.goodRating != null && this.ordersList[i].review.goodRating == false) {
-                empReviews.bad++;
-              }
-              if (this.ordersList[i].review.comments != null) {
-                commentArray.push(this.ordersList[i].review.comments);
+              if (this.ordersList[i].review != null) {
+
+                if (this.ordersList[i].review.goodRating != null && this.ordersList[i].review.goodRating == true) {
+                  empReviews.good++;
+                }
+                if (this.ordersList[i].review.goodRating != null && this.ordersList[i].review.goodRating == false) {
+                  empReviews.bad++;
+                }
+                if (this.ordersList[i].review.comments != null) {
+                  commentArray.push(this.ordersList[i].review.comments);
+                }
               }
             }
           }
           empReviews.comments = commentArray;
-          revArray.push(empReviews);
+          this.revArray.push(empReviews);
         }
+        console.log('the craziness');
+        console.log(this.revArray);
       });
-    console.log('the craziness');
-    console.log(revArray);
+
 
   }
 

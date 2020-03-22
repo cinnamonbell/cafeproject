@@ -27,15 +27,15 @@ cust_first varchar2(50),
 cust_last varchar2(50),
 reward_stars number(5)
 );
-create sequence emp_seq start with 2 NOCACHE;
+create sequence emp_seq start with 5 NOCACHE;
 
 create table employee_t(
 emp_id number(5) primary key,
 emp_first varchar2(50),
 emp_last varchar2(50)
-
 );
-create sequence user_seq start with 2 NOCACHE;
+
+create sequence user_seq start with 5 NOCACHE;
 
 create table user_t(
 user_id number(5) primary key,
@@ -168,6 +168,17 @@ update orders set rev_id = 2 where order_id = 2;
 update orders set rev_id = 3 where order_id = 3;
 update orders set rev_id = 4 where order_id = 4;
 
+--employees
+insert into employee_t(emp_id, emp_first, emp_last) values (1, 'May', 'Love');
+insert into employee_t(emp_id, emp_first, emp_last) values (2, 'David', 'Youn');
+insert into employee_t(emp_id, emp_first, emp_last) values (3, 'Alexander', 'Bae');
+insert into employee_t(emp_id, emp_first, emp_last) values (4, 'Jordan', 'Zech');
+
+insert into user_t(user_id, cust_id, emp_id, user_name, user_pass) values (1, null, 1, 'may', 'pass');
+insert into user_t(user_id, cust_id, emp_id, user_name, user_pass) values (2, null, 2, 'david', 'pass');
+insert into user_t(user_id, cust_id, emp_id, user_name, user_pass) values (3, null, 3, 'alexb', 'pass');
+insert into user_t(user_id, cust_id, emp_id, user_name, user_pass) values (4, null, 4, 'jzech', 'pass');
+
 --insert into review(review_id, good_rating, comments) values (0, 0, null);
 commit;
 
@@ -175,7 +186,7 @@ commit;
 select * from orders;
 select * from user_t;
 select * from orders;
-
+select * from employee_t;
 select * from cust_t;
 
 select * from address;
