@@ -57,14 +57,14 @@ states varchar2(100) not null,
 zipcode varchar2(100) not null
 );
 
-create sequence rev_seq start with 5 NOCACHE;
+create sequence rev_seq start with 200 NOCACHE;
 create table review(
 review_id number(5) primary key,
 good_rating number(1), --true = 1
 comments varchar2(500)
 );
 
-create sequence ord_seq start with 5 NOCACHE;
+create sequence ord_seq start with 200 NOCACHE;
 
 create table orders(
 order_id number(5) primary key,
@@ -90,10 +90,10 @@ create table menu(
 menu_id number primary key,
 item_name varchar(50),
 item_price decimal(10,2),
-inventory number(10,0) check (inventory > 0)
+inventory number(10,0) check (inventory >= 0)
 );
 
-create sequence ordI_seq start with 11 NOCACHE;
+create sequence ordI_seq start with 250 NOCACHE;
 
 create table order_item(
 item_id number(5) primary key,
@@ -147,8 +147,8 @@ insert into order_item(item_id, order_id, menu_item, quantity) values (4, 2, 3, 
 
 --review order tests have to create user to work
 insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
-	values (3, 1, null, 7.75, 'READY', null, TO_TIMESTAMP('2020/02/18 14:39:16', 'YYYY/MM/DD HH24:MI:SS'),
-		TO_TIMESTAMP('2020/02/18 14:41:57', 'YYYY/MM/DD HH24:MI:SS'));
+	values (3, 1, null, 7.75, 'READY', null, CURRENT_TIMESTAMP,
+		CURRENT_TIMESTAMP);
 insert into order_item(item_id, order_id, menu_item, quantity) values (5, 3, 4, 1);
 insert into order_item(item_id, order_id, menu_item, quantity) values (6, 3, 10, 1);
 		
@@ -168,7 +168,7 @@ update orders set rev_id = 2 where order_id = 2;
 update orders set rev_id = 3 where order_id = 3;
 update orders set rev_id = 4 where order_id = 4;
 
---insert into review(review_id, good_rating, comments) values (0, 0, null);
+
 commit;
 
 select * from menu;
