@@ -11,4 +11,5 @@ public interface OrderService {
     List<Order> getCustOrders(Customer cust);
     void updateReview(Order ord);
     Order addOrder(Order order);
+    List<Order> getAllOrders();
 }

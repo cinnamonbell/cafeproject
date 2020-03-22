@@ -59,4 +59,8 @@ export class UrlService {
     return this.urlMap.baseServerUrl+this.urlMap.signUp+'/stars';
   }
 
+  getAllOrdersUrl(): string{
+    return this.urlMap.baseServerUrl+this.urlMap.orderUrl+'/all'
+  }
+
 }

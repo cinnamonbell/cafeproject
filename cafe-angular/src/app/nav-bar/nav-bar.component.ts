@@ -14,6 +14,7 @@ import { MenuService } from 'src/app/menu.service';
 import { MenuItem } from 'src/app/menu-item';
 import { OrderItem } from 'src/app/order-item';
 import { CustSignUpService } from 'src/app/cust-sign-up.service';
+import { Employee } from 'src/app/employee';
 
 
 
@@ -26,17 +27,20 @@ import { CustSignUpService } from 'src/app/cust-sign-up.service';
 export class NavBarComponent implements OnInit {
   public cust: Customer;
   public user: User;
+  public emp: Employee = null;
   public order: Order = new Order();
   public menuItemList: MenuItem[];
   public items: OrderItem[] = [];
 
   constructor(private menuService: MenuService, public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, private orderService: OrderService, public custService:CustSignUpService) {
-    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; });
+    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; (user != null && user.employee != null) ? this.emp = user.employee : null;
+       (user != null && user.customer != null) ? this.cust = user.customer : null; });
   }
 
 
   ngOnInit(): void {
-    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; });
+    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; this.user = user; (user != null && user.employee != null) ? this.emp = user.employee : null;
+       (user != null && user.customer != null) ? this.cust = user.customer : null; });
     console.log(this.user);
             // Add active class to the current button (highlight it)
             var header = document.getElementById("myDIV");

@@ -19,6 +19,7 @@ import { CustomerOrdersComponent } from './customer-orders/customer-orders.compo
 import { OrderUpdateComponent } from './order-update/order-update.component';
 import { OrderStatusPipe } from './order-status.pipe';
 import { CustOrderCommentComponent } from './cust-order-comment/cust-order-comment.component';
+import { EmpViewReviewsComponent } from './emp-view-reviews/emp-view-reviews.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { CustOrderCommentComponent } from './cust-order-comment/cust-order-comme
     CustomerOrdersComponent,
     OrderUpdateComponent,
     OrderStatusPipe,
-    CustOrderCommentComponent
+    CustOrderCommentComponent,
+    EmpViewReviewsComponent
 
   ],
   
