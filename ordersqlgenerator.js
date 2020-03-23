@@ -108,7 +108,7 @@ var ScriptRunner = /** @class */ (function () {
     return ScriptRunner;
 }());
 window.onload = function () {
-    var sql = new ScriptRunner().generate(100);
+    var sql = new ScriptRunner().generate(50);
     var container = document.getElementById("container");
     var newHtml;
     for (var _i = 0, sql_1 = sql; _i < sql_1.length; _i++) {

@@ -134,7 +134,7 @@ class ScriptRunner{
 }
 
 window.onload = () => {
-    let sql = new ScriptRunner().generate(100);
+    let sql = new ScriptRunner().generate(50);
     let container = document.getElementById("container");
     let newHtml;
     for (let statement of sql){
