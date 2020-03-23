@@ -13,6 +13,7 @@ import { Customer } from './customer';
 export class LoginService {
 
   private loggedUser = new BehaviorSubject<User>(null);
+  private user: User;
 
   constructor(private http: HttpClient, private url: UrlService, private cookie: CookieService) {
     if (this.cookie.check("user") && this.cookie.check("password")){
@@ -23,19 +24,15 @@ export class LoginService {
       user.password = password;
       this.login(user).subscribe();
     }
+    this.loggedUser.subscribe( u => this.user);
    }
 
   getLoggedInUser(): Observable<User>{
     return this.loggedUser.asObservable();
   }
 
-  updateCustomerInfo(customer: Customer){
-    let u: User;
-    this.loggedUser.subscribe( user => {
-      u = user;
-      if (u) u.customer = customer;
-      this.loggedUser.next(u);
-    } )
+  updateCustomerInfo(customer: Customer ){
+    if (this.user) this.user.customer = customer;
   }
 
   login(data: User): Observable<any> {

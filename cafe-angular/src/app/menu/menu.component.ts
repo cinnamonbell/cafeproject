@@ -127,9 +127,9 @@ export class MenuComponent implements OnInit {
     let dialogRef = this.dialog.open(ConfirmOrderComponent, {
       data: order, minHeight: '35em', width: '60%'});
       dialogRef.afterClosed().subscribe( (newOrder: Order) => {
-        if (newOrder) {
-          this.loginService.updateCustomerInfo(newOrder.customer);
+        if (newOrder && newOrder.customer) {
           this.router.navigate(['/review']);
+          this.loginService.updateCustomerInfo(newOrder.customer);
         }
       });
    }
