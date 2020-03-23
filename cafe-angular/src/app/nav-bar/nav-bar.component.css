@@ -16,13 +16,13 @@
   
   /* Change the color of links on hover */
   .topnav a:hover {
-    background-color: #4CAF50;
+    background-color: rgb(87, 55, 34);
     color: white;
   }
   
   /* Add a color to the active/current link */
   .topnav a.active {
-    background-color: #4CAF50;
+    background-color: rgb(87, 55, 34);
     color: white;
   }
 
@@ -36,7 +36,7 @@
 }
 
 #logout-button:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: rgb(87, 55, 34); /* Green */
     color: white;
   }
 

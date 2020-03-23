@@ -1,0 +1,22 @@
+p  {
+    color: rgb(0, 0, 0);
+    font-family: courier;
+    font-size: 160%;
+    font-style:italic;
+    border: 1px solid rgb(119, 58, 0);
+    background-color: rgb(216, 173, 121)
+  }
+
+  img {
+    border-radius: 8px;
+    width: 1400px;
+    margin-bottom: 25px;
+    
+  }
+
+  #imgDiv {
+    margin-right: 1000px;
+    margin-left: 120px;
+    
+  }
+ 
