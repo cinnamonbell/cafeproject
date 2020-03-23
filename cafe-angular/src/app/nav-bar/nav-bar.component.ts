@@ -25,35 +25,26 @@ import { Employee } from 'src/app/employee';
 
 })
 export class NavBarComponent implements OnInit {
-  public cust: Customer;
   public user: User;
-  public emp: Employee = null;
   public order: Order = new Order();
   public menuItemList: MenuItem[];
   public items: OrderItem[] = [];
 
   constructor(private menuService: MenuService, public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, private orderService: OrderService, public custService:CustSignUpService) {
-    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; (user != null && user.employee != null) ? this.emp = user.employee : null;
-       (user != null && user.customer != null) ? this.cust = user.customer : null; });
+    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; });
   }
 
+  getEmployee(): Employee{
+    if (this.user == null) return null;
+    return this.user.employee;
+  }
+
+  getCustomer(): Customer{
+    if (this.user == null) return null;
+    return this.user.customer;
+  }
 
   ngOnInit(): void {
-    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; this.user = user; (user != null && user.employee != null) ? this.emp = user.employee : null;
-       (user != null && user.customer != null) ? this.cust = user.customer : null; });
-    console.log(this.user);
-            // Add active class to the current button (highlight it)
-            var header = document.getElementById("myDIV");
-            var btns = header.getElementsByClassName("btn");
-            console.log(btns);
-            for (var i = 0; i < btns.length; i++) {
-              btns[i].addEventListener("click", function() {
-              var current = document.getElementsByClassName("active");
-              current[0].className = current[0].className.replace(" active", "");
-              this.className += " active";
-              });
-            }
-    
   }
 
 
@@ -100,15 +91,15 @@ export class NavBarComponent implements OnInit {
       oi2.menuItem = this.menuItemList[9];
       oi2.quantity = 1;
       this.items.push(oi2);
-      this.order.customer = this.cust;
+      this.order.customer = this.getCustomer();
       this.order.orderItems = this.items;
       this.order.price = 0;
       this.order.status = null;
       this.order.address = null; // do address later
       this.order.orderTime = null; // do later
       this.order.lastActionTime = null;
-      this.cust.stars = 0;
-      this.custService.removeStars(this.cust).subscribe();
+      this.getCustomer().stars = 0;
+      this.custService.removeStars(this.getCustomer()).subscribe();
       this.orderService.subOrder(this.order).subscribe();
       window.location.reload();
 
@@ -119,7 +110,6 @@ export class NavBarComponent implements OnInit {
   logout() {
     console.log('logout');
     this.user = null;
-    this.cust = null;
     this.loginService.clearLogin();
   }
 

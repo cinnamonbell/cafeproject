@@ -9,6 +9,9 @@ import { User } from '../user';
 import { Order } from '../order';
 import { Address } from '../address';
 import { Employee } from '../employee'
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmOrderComponent } from '../confirm-order/confirm-order.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -31,7 +34,9 @@ export class MenuComponent implements OnInit {
   public unique:OrderItem[];
   public address:Address = null;
   public what:number = 0;
-  constructor(private menuService: MenuService, private orderService: OrderService, private loginService: LoginService) {
+  constructor(private menuService: MenuService, private orderService: OrderService,
+     private loginService: LoginService, private dialog: MatDialog,
+     private router: Router) {
   }
 
 
@@ -109,10 +114,23 @@ export class MenuComponent implements OnInit {
       this.order.price = this.totPrice;
       this.order.status = null; 
       this.order.address = this.address; // do address later
-      this.order.orderTime = null; // do later
-      this.order.lastActionTime = null; // do later
+      this.order.orderTime = null; // handled internally
+      this.order.lastActionTime = null; // handled internally
       console.log(this.order);
       console.log(this.address);
-      this.orderService.subOrder(this.order).subscribe(resp => { window.location.reload(); });
+      this.confirmDialog(this.order);
+      //this.orderService.subOrder(this.order).subscribe(resp => { window.location.reload(); });
   }
+
+  confirmDialog(order: Order){
+    console.log(order);
+    let dialogRef = this.dialog.open(ConfirmOrderComponent, {
+      data: order, minHeight: '35em', width: '60%'});
+      dialogRef.afterClosed().subscribe( (newOrder: Order) => {
+        if (newOrder && newOrder.customer) {
+          this.router.navigate(['/review']);
+          this.loginService.updateCustomerInfo(newOrder.customer);
+        }
+      });
+   }
 }

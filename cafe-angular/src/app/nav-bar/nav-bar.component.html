@@ -4,22 +4,20 @@
 
 </head>
 <div id = "myDIV" class="topnav">
-    <a class="btn active" href="#home">Home</a>
-
-
-    <a *ngIf="emp != null"routerLink="/pending-orders">Pending Orders</a>
-    <a *ngIf="emp != null"routerLink="/customer-reviews">Customer Reviews</a>
-    <a routerLink="/menu">Menu</a>
-    <a routerLink="/review">Review Orders</a>
-    <button *ngIf="cust != null && cust.stars >= 5" mat-raised-button id="logout-button" (click)="claimReward()">Claim reward</button>
+    <a routerLink="/">Home</a>
+    <a *ngIf="getEmployee()"routerLink="/pending-orders" [routerLinkActive]="'btn active'">Pending Orders</a>
+    <a *ngIf="getEmployee()"routerLink="/customer-reviews" [routerLinkActive]="'btn active'">Customer Reviews</a>
+    <a routerLink="/menu" [routerLinkActive]="'btn active'">Menu</a>
+    <a *ngIf="getCustomer()" routerLink="/review"[routerLinkActive]="'btn active'" >Review Orders</a>
+    <button *ngIf="getCustomer() != null && (getCustomer()).stars >= 5" mat-raised-button id="logout-button" (click)="claimReward()">Claim reward</button>
     <button *ngIf="user == null" mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
     <button *ngIf="user == null"mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
     <button *ngIf="user != null"mat-raised-button id="logout-button" (click)="logout()">Logout</button>
 
-    <div *ngIf="cust != null" id=divStar style.display='none'>
+    <div *ngIf="getCustomer() != null" id=divStar style.display='none'>
         <p id="emptyStar">
-            {{cust.first + " " + cust.last}}
-            <i class="fa fa-star" *ngFor="let j of [1,2,3,4,5]" [ngStyle]="{'color':cust.stars >= j ? 'yellow' : 'white'}"></i>          
+            {{getCustomer().first + " " + getCustomer().last}}
+            <i class="fa fa-star" *ngFor="let j of [1,2,3,4,5]" [ngStyle]="{'color':getCustomer().stars >= j ? 'yellow' : 'white'}"></i>          
         </p>
     </div>
 </div>

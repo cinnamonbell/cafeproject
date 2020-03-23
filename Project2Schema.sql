@@ -19,7 +19,7 @@ drop sequence rev_seq;
 
 --cust id references customer table
 --emp id references employee table
-create sequence cust_seq start with 2 NOCACHE;
+create sequence cust_seq start with 4 NOCACHE;
 
 create table cust_t(
 cust_id number(5) primary key,
@@ -131,6 +131,10 @@ insert into menu(menu_id, item_name, item_price, inventory) values(13,'Fruit Cup
 -- insert test orders into order table
 insert into cust_t(cust_id, cust_first, cust_last, reward_stars)
     values (1, 'Leeroy', 'Jenkins', 2);
+insert into cust_t(cust_id, cust_first, cust_last, reward_stars)
+    values (2, 'Dorian', 'Gray', 0);
+insert into cust_t(cust_id, cust_first, cust_last, reward_stars)
+    values (3, 'Suzie', 'Derkins', 3);
 
 
 insert into orders(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
@@ -168,6 +172,14 @@ update orders set rev_id = 2 where order_id = 2;
 update orders set rev_id = 3 where order_id = 3;
 update orders set rev_id = 4 where order_id = 4;
 
+
+--GENERATOR FOR ORDERS/REVIEWS IN SQL
+
+INSERT INTO orders
+(order_id, cust_id, rev_id, price, status, address_id, submitted_time, last_action)
+VALUES (5, 2, NULL, 0, 'COMPLETED', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
 --employees
 insert into employee_t(emp_id, emp_first, emp_last) values (1, 'May', 'Love');
 insert into employee_t(emp_id, emp_first, emp_last) values (2, 'David', 'Youn');
@@ -199,11 +211,10 @@ select * from orders;
 insert into user_t(user_id, cust_id, emp_id, user_name, user_pass) values(5, 1, null, 'leeroy', 'pass');
 
 -- how to select top 5 highest reviewed menu items
-select menu_id, avg(good_rating) as av from order_item 
+select menu.menu_id, avg(good_rating) as av from order_item 
 inner join orders on orders.order_id = order_item.order_id
 inner join menu on order_item.menu_item = menu.menu_id
 inner join review on orders.rev_id = review_id
-where rownum <= 5
 group by menu.menu_id
 order by av desc;
 
