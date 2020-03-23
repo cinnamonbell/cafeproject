@@ -39,7 +39,7 @@ public class Order {
     @Column(name = "order_id")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "cust_id", nullable=false)
+    @JoinColumn(name = "cust_id", nullable=true)
     private Customer customer;
     private double price;
     @Enumerated(EnumType.STRING)

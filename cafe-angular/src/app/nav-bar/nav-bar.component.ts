@@ -15,6 +15,7 @@ import { MenuItem } from 'src/app/menu-item';
 import { OrderItem } from 'src/app/order-item';
 import { CustSignUpService } from 'src/app/cust-sign-up.service';
 import { Employee } from 'src/app/employee';
+import { ClaimRewardCommentComponent } from 'src/app/claim-reward-comment/claim-reward-comment.component';
 
 
 
@@ -30,9 +31,8 @@ export class NavBarComponent implements OnInit {
   public menuItemList: MenuItem[];
   public items: OrderItem[] = [];
 
-  constructor(private menuService: MenuService, public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, private orderService: OrderService, public custService:CustSignUpService) {
-    this.loginService.getLoggedInUser().subscribe(user => { this.user = user;
-    console.log("nav bar user updated");});
+  constructor(public dialog: MatDialog, private menuService: MenuService, public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, private orderService: OrderService, public custService:CustSignUpService) {
+    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; });
   }
 
   getEmployee(): Employee{
@@ -65,7 +65,7 @@ export class NavBarComponent implements OnInit {
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
-    dialogConfig.height = "500px";
+    dialogConfig.height = "400px";
     dialogConfig.width = "600px";
     // https://material.angular.io/components/dialog/overview
     this.matDialog.open(LoginComponent, dialogConfig);
@@ -99,13 +99,17 @@ export class NavBarComponent implements OnInit {
       this.order.address = null; // do address later
       this.order.orderTime = null; // do later
       this.order.lastActionTime = null;
-      this.getCustomer().stars -= 5;
-      this.custService.removeStars(this.getCustomer()).subscribe();
-      this.orderService.subOrder(this.order).subscribe();
-      //window.location.reload();
+      this.getCustomer().stars = 0;
+      this.custService.removeStars(this.getCustomer()).subscribe(resp => 
+        {this.orderService.subOrder(this.order).subscribe(resp => {this.openRewardModal();});});
 
 
     });
+  }
+
+  openRewardModal() {
+    let dialogRef = this.dialog.open(ClaimRewardCommentComponent, {
+      data: this.items, minHeight: '10em', width: '40%'});
   }
 
   logout() {

@@ -28,9 +28,9 @@ export class CustOrderCommentComponent implements OnInit {
     if (this.order.review !== null) {
       this.order.review.comments = data.comment;
     }
-    this.reviewService.comment(this.order).subscribe((resp: Array<Order>) => {  window.location.reload();});
+    this.reviewService.comment(this.order).subscribe((resp: Array<Order>) => { this.dialogRef.close();});
     
-    this.dialogRef.close();
+   // this.dialogRef.close();
   }
 
   closeModal() {

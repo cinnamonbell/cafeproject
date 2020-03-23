@@ -25,29 +25,29 @@ export class MenuComponent implements OnInit {
   public cust: Customer = null;
   public user: User;
   public emp: Employee = null;
-  public order:Order = new Order();
+  public order: Order = new Order();
   public menuItemList: MenuItem[];
   public currentMenu: MenuItem[] = [];
-  public orderItem:OrderItem[] = [];
-  public orderItems:OrderItem[];
-  public totPrice:number = 0;
-  public unique:OrderItem[];
-  public address:Address = null;
-  public what:number = 0;
+  public orderItem: OrderItem[] = [];
+  public orderItems: OrderItem[];
+  public totPrice: number = 0;
+  public unique: OrderItem[];
+  public address: Address = null;
+  public what: number = 0;
   constructor(private menuService: MenuService, private orderService: OrderService,
-     private loginService: LoginService, private dialog: MatDialog,
-     private router: Router) {
+    private loginService: LoginService, private dialog: MatDialog,
+    private router: Router) {
   }
 
 
-  addToInventory(ord:OrderItem){
+  addToInventory(ord: OrderItem) {
     let menI = ord.menuItem;
     menI.quantity += 1;
     console.log(menI.name + " inventory: " + menI.quantity);
     this.menuService.updateMenuItems(menI).subscribe();
   }
 
-  getItemScore(item: MenuItem): number{
+  getItemScore(item: MenuItem): number {
     if (!this.menuItemList || !item) return -1;
     let ratings: Map<number, number> = this.menuService.getItemRatings();
     if (ratings.has(item.id)) return ratings.get(item.id);
@@ -55,7 +55,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null;});
+    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; (user != null && user.customer != null) ? this.cust = user.customer : null; });
     console.log(this.user);
     this.menuService.getMenuItems().subscribe((resp: Array<MenuItem>) => {
       this.menuItemList = resp;
@@ -81,58 +81,65 @@ export class MenuComponent implements OnInit {
     })
     console.log(this.unique);
   }
-  
-  yesButton(){
+
+  yesButton() {
     console.log("yes");
     this.what = null;
     this.what = 1;
     this.address = new Address();
   }
 
-  noButton(){
+  noButton() {
     console.log("no");
     this.what = null;
     this.what = 2;
     this.address = null;
   }
-  
-  removeFromOrder(ord:OrderItem){
-    ord.quantity-=1;
-    let index:number = this.orderItem.indexOf(ord);
-    this.orderItem.splice(index,1);
+
+  removeFromOrder(ord: OrderItem) {
+    ord.quantity -= 1;
+    let index: number = this.orderItem.indexOf(ord);
+    this.orderItem.splice(index, 1);
     this.totPrice -= ord.menuItem.price;
     console.log(this.orderItem);
   }
 
-  submitOrder(){
-      this.loginService.getLoggedInUser().subscribe(user => {this.user = user; (user != null && user.employee != null) ? this.emp = user.employee : null;
-         (user != null && user.customer != null) ? this.cust = user.customer : null;});
-      console.log(this.user);
-      console.log(this.currentMenu);
-      this.order.customer = this.user.customer;
-      this.order.orderItems = this.unique;
-      this.order.price = this.totPrice;
-      this.order.status = null; 
-      this.order.address = this.address; // do address later
-      this.order.orderTime = null; // handled internally
-      this.order.lastActionTime = null; // handled internally
-      console.log(this.order);
-      console.log(this.address);
-      this.confirmDialog(this.order);
-      //this.orderService.subOrder(this.order).subscribe(resp => { window.location.reload(); });
+  submitOrder() {
+    this.loginService.getLoggedInUser().subscribe(user => {
+    this.user = user; (user != null && user.employee != null) ? this.emp = user.employee : null;
+      (user != null && user.customer != null) ? this.cust = user.customer : null;
+    });
+    console.log(this.user);
+    console.log(this.currentMenu);
+    this.order.customer = (this.user) ? this.user.customer : null;
+    this.order.orderItems = this.unique;
+    this.order.price = this.totPrice;
+    this.order.status = null;
+    this.order.address = this.address; // do address later
+    this.order.orderTime = null; // handled internally
+    this.order.lastActionTime = null; // handled internally
+    console.log(this.order);
+    console.log(this.address);
+    this.confirmDialog(this.order);
+    //this.orderService.subOrder(this.order).subscribe(resp => { window.location.reload(); });
   }
 
-  confirmDialog(order: Order){
+  confirmDialog(order: Order) {
     console.log(order);
     let dialogRef = this.dialog.open(ConfirmOrderComponent, {
-      data: order, minHeight: '35em', width: '60%'});
-      dialogRef.afterClosed().subscribe( (newOrder: Order) => {
-        if (newOrder && newOrder.customer) {
-          console.log("Closed dialog with this customer");
-          console.log(newOrder.customer);
+      data: order, minHeight: '35em', width: '60%'
+    });
+    dialogRef.afterClosed().subscribe((newOrder: Order) => {
+      if (newOrder) {
+        if (newOrder.customer) {
           this.loginService.updateCustomerInfo(newOrder.customer);
           this.router.navigate(['/review']);
         }
-      });
-   }
+        else {
+          this.router.navigate(['/']);
+        }
+      }
+
+    });
+  }
 }
