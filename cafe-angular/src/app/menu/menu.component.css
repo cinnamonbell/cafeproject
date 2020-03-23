@@ -12,6 +12,25 @@
     background-size: cover;
   } */
 
+  div.container{
+    width: fit-content;
+    padding: 11px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  div.address{
+    width: fit-content;
+    padding: 9px;
+    margin: auto;
+  }
+
+  p.count{
+    width: 1em;
+    text-overflow: clip;
+    text-align: center;
+  }
+
 .inv:disabled {
     background: #999;
     color: #555;

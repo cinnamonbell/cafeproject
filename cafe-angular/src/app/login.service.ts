@@ -5,6 +5,7 @@ import { UrlService } from './url.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { CookieService } from 'ngx-cookie-service';
+import { Customer } from './customer';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,15 @@ export class LoginService {
     return this.loggedUser.asObservable();
   }
 
+  updateCustomerInfo(customer: Customer){
+    let u: User;
+    this.loggedUser.subscribe( user => {
+      u = user;
+      if (u) u.customer = customer;
+      this.loggedUser.next(u);
+    } )
+  }
+
   login(data: User): Observable<any> {
     console.log(this.url.getLoginUrl());
     return this.http.post(this.url.getLoginUrl(), data, { headers: this.url.getHeader() }).pipe(
@@ -44,6 +54,7 @@ export class LoginService {
   clearLogin() {
     this.cookie.delete("user");
     this.cookie.delete("password");
+    this.loggedUser.next(null);
   }
 }
 

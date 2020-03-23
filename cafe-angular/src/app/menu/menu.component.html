@@ -1,52 +1,61 @@
-<img src="/assets/header2.jpg" alt="Header"/><br> <br>
-<p >Is this a delivery?</p>
-<button type="button" class="butn" (click)="yesButton()" [ngStyle]="{'background-color':what == 1  ? 'darkgray' : 'lightgray'}">Yes</button><div class = "divider"></div><button type="button" class="butn" (click)="noButton()" [ngStyle]="{'background-color':what == 2  ? 'darkgray' : 'lightgray'}">No</button><br>
-<div >
-    <label for="Address" *ngIf="what==1">Address:</label><br *ngIf="what==1">
-    <input type="text" [(ngModel)]="address.address" *ngIf="what==1"><br *ngIf="what==1">
-    <label for="City" *ngIf="what==1">City:</label><br *ngIf="what==1">
-    <input type="text" [(ngModel)]="address.city" *ngIf="what==1"><br *ngIf="what==1">
-    <label for="State" *ngIf="what==1">State:</label><br *ngIf="what==1">
-    <input type="text" [(ngModel)]="address.state" *ngIf="what==1"><br *ngIf="what==1">
-    <label for="Zip Code" *ngIf="what==1">Zip Code:</label><br *ngIf="what==1">
-    <input type="text" [(ngModel)]="address.zipCode" *ngIf="what==1"><br>
+<div class="container">
+    <img src="/assets/header2.jpg" alt="Header"/>
+    <h1>Menu</h1>
 </div>
-<h1>Menu</h1>
-<table>
-    <thead class = menuT>
+<ng-container *ngIf="user == null || user.customer != null">
+    <div class="container">
+        <p><strong>Is this a delivery?</strong></p>
+        <button type="button" class="butn" (click)="yesButton()" [ngStyle]="{'background-color':what == 1  ? 'darkgray' : 'lightgray'}">Yes</button><div class = "divider"></div><button type="button" class="butn" (click)="noButton()" [ngStyle]="{'background-color':what == 2  ? 'darkgray' : 'lightgray'}">No</button><br>       
+    </div>
+    <div *ngIf="what==1" class="address">
+        <label for="Address">Address:</label><br>
+        <input type="text" [(ngModel)]="address.address"><br>
+        <label for="City">City:</label><br>
+        <input type="text" [(ngModel)]="address.city"><br>
+        <label for="State">State:</label><br>
+        <input type="text" [(ngModel)]="address.state"><br>
+        <label for="Zip Code">Zip Code:</label><br>
+        <input type="text" [(ngModel)]="address.zipCode"><br>
+    </div>
+</ng-container>
+<table class="table">
+    <thead>
         <tr>
             <td>Menu Item</td>
             <td>Quantity</td>
             <td>Price</td>
-            <td>Rating</td>
-            <td>Add to Order</td>
+            <ng-container *ngIf="user == null || user.customer != null">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </ng-container>
+            <ng-container *ngIf="user != null && user.employee != null">
+                <td>Rating</td>
+                <td>Add to Inventory</td>
+            </ng-container>
         </tr>
     </thead>
-    <tbody class = menuI>
+    <tbody>
         <tr *ngFor="let o of orderItems">
             <td>{{o.menuItem.name}}</td>
             <td>{{o.menuItem.quantity}}</td>
             <td>{{o.menuItem.price | currency }}</td>
-            <td>{{(getItemScore(o.menuItem) >= 0) ? (getItemScore(o.menuItem) | percent) : ""}}</td>
-            <td *ngIf="o.quantity!=0"><button type="button" class="btn btn-info btn-sm" (click)="removeFromOrder(o)">-</button></td>
-            <td >{{o.quantity}}</td>
-            <td><button type="button" [disabled]="(o.menuItem.quantity < 1)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>
-            <td></td>
-            <td><button *ngIf="user != null && user.employee != null" type="button" class="btn btn-info btn-sm" id="inv" (click)="addToInventory(o)">+ Inventory</button></td>
+            <ng-container *ngIf="user == null || user.customer != null">
+                <td><img src="assets/recommended.png" height="30px" *ngIf="getItemScore(o.menuItem) > 0.8" [title]="(getItemScore(o.menuItem) | percent) + ' of customers left a positive review'"></td>
+                <td ><button [disabled]="o.quantity==0" type="button" class="btn btn-info btn-sm" (click)="removeFromOrder(o)">-</button></td>
+                <td ><p class="count">{{o.quantity}}</p></td>
+                <td><button type="button" [disabled]="(o.quantity >= o.menuItem.quantity)" class="btn btn-info btn-sm" (click)="addToOrder(o)">+</button></td>    
+            </ng-container>
+            <ng-container *ngIf="user != null && user.employee != null">
+                <td>{{(getItemScore(o.menuItem) >= 0) ? (getItemScore(o.menuItem) | percent) : ""}}</td>
+                <td><button type="button" class="btn btn-info btn-sm" id="inv" (click)="addToInventory(o)">+ Inventory</button></td>
+            </ng-container>
         </tr>
     </tbody>
 </table>
 <br>
-<table>
-    <thead class = menuT>
-        <tr>
-            <td>Menu Item</td>
-            <td>Price</td>
-            <td>Remove</td>
-        </tr>
-    </thead>
-    <tbody class = menuI>
-        <tr >total price: {{totPrice}}</tr>
-    </tbody>
+<div class="container" *ngIf="user == null || user.customer != null">
+    <h2>Total price: {{totPrice | currency}}</h2>
     <input class='btn btn-success' type="submit" value="Submit Order" (click)="submitOrder()">
-</table>
+</div>
