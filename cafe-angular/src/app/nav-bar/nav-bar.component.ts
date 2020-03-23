@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CustSignUpComponent } from 'src/app/cust-sign-up/cust-sign-up.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -30,7 +30,6 @@ export class NavBarComponent implements OnInit {
   public order: Order = new Order();
   public menuItemList: MenuItem[];
   public items: OrderItem[] = [];
-
 
   constructor(public dialog: MatDialog, private menuService: MenuService, public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, private orderService: OrderService, public custService:CustSignUpService) {
     this.loginService.getLoggedInUser().subscribe(user => { this.user = user; });
@@ -103,9 +102,6 @@ export class NavBarComponent implements OnInit {
       this.getCustomer().stars = 0;
       this.custService.removeStars(this.getCustomer()).subscribe(resp => 
         {this.orderService.subOrder(this.order).subscribe(resp => {this.openRewardModal();});});
-     // this.orderService.subOrder(this.order).subscribe();
-     // console.log(this.items);
-      
 
 
     });

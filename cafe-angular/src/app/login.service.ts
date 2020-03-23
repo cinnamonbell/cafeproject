@@ -24,7 +24,7 @@ export class LoginService {
       user.password = password;
       this.login(user).subscribe();
     }
-    this.loggedUser.subscribe( u => this.user);
+    this.loggedUser.subscribe( u => this.user = u);
    }
 
   getLoggedInUser(): Observable<User>{
@@ -32,7 +32,11 @@ export class LoginService {
   }
 
   updateCustomerInfo(customer: Customer ){
-    if (this.user) this.user.customer = customer;
+      let user: User = this.user;
+      if (user) { 
+      user.customer = customer;
+      this.loggedUser.next(user);
+      }
   }
 
   login(data: User): Observable<any> {
@@ -44,6 +48,8 @@ export class LoginService {
             this.loggedUser.next(user);
             this.cookie.set("user", user.username);
             this.cookie.set("password", user.password);
+            console.log("logged in");
+            console.log(this.user);
           }
         }
       ));

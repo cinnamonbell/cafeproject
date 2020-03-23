@@ -17,7 +17,7 @@
     <div *ngIf="getCustomer() != null" id=divStar style.display='none'>
         <p id="emptyStar">
             {{getCustomer().first + " " + getCustomer().last}}
-            <i class="fa fa-star" *ngFor="let j of [1,2,3,4,5]" [ngStyle]="{'color':getCustomer().stars >= j ? 'yellow' : 'white'}"></i>          
+            <i class="fa fa-star" *ngFor="let j of [1,2,3,4,5]" [ngStyle]="{'color':this.user.customer.stars >= j ? 'yellow' : 'white'}"></i>          
         </p>
     </div>
 </div>

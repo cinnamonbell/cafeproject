@@ -6,9 +6,9 @@
 
 
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/orclpdb</property>
-		<property name="hibernate.connection.username">hr</property>
-		<property name="hibernate.connection.password">jordan0406</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@delorean.c5clp3c3iluv.us-east-2.rds.amazonaws.com:1521:ORCL</property>
+		<property name="hibernate.connection.username">coolbeans</property>
+		<property name="hibernate.connection.password">megabeans</property>
 
 
 		<!-- Hibernate set up -->
