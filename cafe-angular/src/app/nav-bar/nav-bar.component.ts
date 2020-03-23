@@ -66,7 +66,7 @@ export class NavBarComponent implements OnInit {
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
-    dialogConfig.height = "500px";
+    dialogConfig.height = "400px";
     dialogConfig.width = "600px";
     // https://material.angular.io/components/dialog/overview
     this.matDialog.open(LoginComponent, dialogConfig);

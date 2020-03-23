@@ -22,6 +22,7 @@ import { CustOrderCommentComponent } from './cust-order-comment/cust-order-comme
 import { EmpViewReviewsComponent } from './emp-view-reviews/emp-view-reviews.component';
 import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
 import { ClaimRewardCommentComponent } from './claim-reward-comment/claim-reward-comment.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ClaimRewardCommentComponent } from './claim-reward-comment/claim-reward
     CustOrderCommentComponent,
     EmpViewReviewsComponent,
     ConfirmOrderComponent,
-    ClaimRewardCommentComponent
+    ClaimRewardCommentComponent,
+    HomePageComponent
 
   ],
   

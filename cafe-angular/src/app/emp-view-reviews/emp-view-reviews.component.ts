@@ -30,7 +30,9 @@ export class EmpViewReviewsComponent implements OnInit {
         this.ordersList = resp;
         for (let i = 0; i < this.ordersList.length; i++) {
           {
-            this.custSet.push(this.ordersList[i].customer);
+            if (this.ordersList[i].customer !== null) {
+              this.custSet.push(this.ordersList[i].customer);
+            }
           }
 
 
@@ -52,7 +54,7 @@ export class EmpViewReviewsComponent implements OnInit {
 
           empReviews.cust = this.uniqueCust[j];
           for (let i = 0; i < this.ordersList.length; i++) {
-            if (uniqueArray[j].id == this.ordersList[i].customer.id) {
+            if (this.ordersList[i].customer !== null && uniqueArray[j].id == this.ordersList[i].customer.id) {
               if (this.ordersList[i].review != null) {
 
                 if (this.ordersList[i].review.goodRating != null && this.ordersList[i].review.goodRating == true) {

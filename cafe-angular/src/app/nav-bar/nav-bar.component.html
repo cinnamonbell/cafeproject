@@ -12,7 +12,7 @@
     <button *ngIf="getCustomer() != null && (getCustomer()).stars >= 5" routerLink="/" mat-raised-button id="logout-button" (click)="claimReward()">Claim reward</button>
     <button *ngIf="user == null" mat-raised-button id="logout-button" (click)="openLoginModal()">Login</button>
     <button *ngIf="user == null"mat-raised-button id="logout-button" (click)="openModal()">Sign Up</button>
-    <button *ngIf="user != null"mat-raised-button id="logout-button" (click)="logout()">Logout</button>
+    <button *ngIf="user != null"mat-raised-button id="logout-button" routerLink="/" (click)="logout()">Logout</button>
 
     <div *ngIf="getCustomer() != null" id=divStar style.display='none'>
         <p id="emptyStar">
