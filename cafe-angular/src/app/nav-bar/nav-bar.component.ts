@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CustSignUpComponent } from 'src/app/cust-sign-up/cust-sign-up.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -31,7 +31,8 @@ export class NavBarComponent implements OnInit {
   public items: OrderItem[] = [];
 
   constructor(private menuService: MenuService, public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, private orderService: OrderService, public custService:CustSignUpService) {
-    this.loginService.getLoggedInUser().subscribe(user => { this.user = user; });
+    this.loginService.getLoggedInUser().subscribe(user => { this.user = user;
+    console.log("nav bar user updated");});
   }
 
   getEmployee(): Employee{
@@ -98,10 +99,10 @@ export class NavBarComponent implements OnInit {
       this.order.address = null; // do address later
       this.order.orderTime = null; // do later
       this.order.lastActionTime = null;
-      this.getCustomer().stars = 0;
+      this.getCustomer().stars -= 5;
       this.custService.removeStars(this.getCustomer()).subscribe();
       this.orderService.subOrder(this.order).subscribe();
-      window.location.reload();
+      //window.location.reload();
 
 
     });

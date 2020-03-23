@@ -128,8 +128,10 @@ export class MenuComponent implements OnInit {
       data: order, minHeight: '35em', width: '60%'});
       dialogRef.afterClosed().subscribe( (newOrder: Order) => {
         if (newOrder && newOrder.customer) {
-          this.router.navigate(['/review']);
+          console.log("Closed dialog with this customer");
+          console.log(newOrder.customer);
           this.loginService.updateCustomerInfo(newOrder.customer);
+          this.router.navigate(['/review']);
         }
       });
    }
