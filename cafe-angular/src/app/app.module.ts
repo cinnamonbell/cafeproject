@@ -21,6 +21,7 @@ import { OrderStatusPipe } from './order-status.pipe';
 import { CustOrderCommentComponent } from './cust-order-comment/cust-order-comment.component';
 import { EmpViewReviewsComponent } from './emp-view-reviews/emp-view-reviews.component';
 import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
+import { ClaimRewardCommentComponent } from './claim-reward-comment/claim-reward-comment.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ConfirmOrderComponent } from './confirm-order/confirm-order.component';
     OrderStatusPipe,
     CustOrderCommentComponent,
     EmpViewReviewsComponent,
-    ConfirmOrderComponent
+    ConfirmOrderComponent,
+    ClaimRewardCommentComponent
 
   ],
   

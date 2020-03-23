@@ -15,6 +15,7 @@ import { MenuItem } from 'src/app/menu-item';
 import { OrderItem } from 'src/app/order-item';
 import { CustSignUpService } from 'src/app/cust-sign-up.service';
 import { Employee } from 'src/app/employee';
+import { ClaimRewardCommentComponent } from 'src/app/claim-reward-comment/claim-reward-comment.component';
 
 
 
@@ -30,7 +31,8 @@ export class NavBarComponent implements OnInit {
   public menuItemList: MenuItem[];
   public items: OrderItem[] = [];
 
-  constructor(private menuService: MenuService, public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, private orderService: OrderService, public custService:CustSignUpService) {
+
+  constructor(public dialog: MatDialog, private menuService: MenuService, public matDialog: MatDialog, public viewRewardsService: ViewRewardsService, public loginService: LoginService, private orderService: OrderService, public custService:CustSignUpService) {
     this.loginService.getLoggedInUser().subscribe(user => { this.user = user; });
   }
 
@@ -99,12 +101,19 @@ export class NavBarComponent implements OnInit {
       this.order.orderTime = null; // do later
       this.order.lastActionTime = null;
       this.getCustomer().stars = 0;
-      this.custService.removeStars(this.getCustomer()).subscribe();
-      this.orderService.subOrder(this.order).subscribe();
-      window.location.reload();
+      this.custService.removeStars(this.getCustomer()).subscribe(resp => 
+        {this.orderService.subOrder(this.order).subscribe(resp => {this.openRewardModal();});});
+     // this.orderService.subOrder(this.order).subscribe();
+     // console.log(this.items);
+      
 
 
     });
+  }
+
+  openRewardModal() {
+    let dialogRef = this.dialog.open(ClaimRewardCommentComponent, {
+      data: this.items, minHeight: '10em', width: '40%'});
   }
 
   logout() {
