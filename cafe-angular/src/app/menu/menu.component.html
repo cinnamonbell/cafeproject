@@ -1,3 +1,4 @@
+
 <div class="container">
     <img src="/assets/header2.jpg" alt="Header"/>
     <h1>Menu</h1>
@@ -55,6 +56,7 @@
     </tbody>
 </table>
 <br>
+
 <div class="container" *ngIf="user == null || user.customer != null">
     <h2>Total price: {{totPrice | currency}}</h2>
     <input class='btn btn-success' type="submit" value="Submit Order" (click)="submitOrder()">
