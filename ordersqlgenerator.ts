@@ -41,7 +41,7 @@ class ScriptRunner{
         // min is the start point for creating order items
         this.review = new SQLType('review', 5, 0);
         // min is the start point for creating reviews
-        this.customer = new SQLType('cust_t', 1, 1);
+        this.customer = new SQLType('cust_t', 1, 3);
         // min and max must be valid customers (chosen randomly)
     }
 
@@ -122,7 +122,7 @@ class ScriptRunner{
              while (++itemCount < Math.pow(Math.random(), -1.25));
 
             reviewValues[0] = orderId;
-            reviewValues[1] = (Math.random() < 0.80 + adjuster) ? "1" : "0";
+            reviewValues[1] = (Math.random() < 0.70 + adjuster) ? "1" : "0";
             sqlStatements.push(this.insert(
                 this.review, reviewColumns, reviewValues));
 

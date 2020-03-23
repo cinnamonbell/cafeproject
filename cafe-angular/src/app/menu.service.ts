@@ -20,8 +20,6 @@ export class MenuService {
       Object.keys(data).forEach(
         (key: string) => this.itemRatings.set(Number(key),data[key])
       )
-      console.log(data);
-      console.log(this.itemRatings);
     });
    }
 
